@@ -1,4 +1,4 @@
-SECRET_KEY = 'a!2ksd@l68cta%fejtdrv@ac7dy=_06hcyf-@y+ksdy8p%kvs5'
+
 
 
 
