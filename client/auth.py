@@ -110,7 +110,7 @@ class auth():
         data = dict()
         data['username'] = self.auth['username']
         data['password'] = self.auth['password']
-        token_response = requests.post('http://127.0.0.1:8000/user_auth/get_token/', data=data)
+        token_response = requests.post('GET_TOKEN_URL', data=data)
         response_dict = json.loads(token_response.text)
         self.auth['token'] = response_dict['token']
         with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
