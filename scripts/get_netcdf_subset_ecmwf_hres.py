@@ -6,7 +6,6 @@ import getpass
 import json
 import os
 import sys
-sys.path.append('/home/anubinda/dataex-client/client/')
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_URL
 
