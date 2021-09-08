@@ -5,6 +5,7 @@ import json
 import os
 from datetime import datetime as dt
 import sys
+sys.path.append('/home/anubinda/dataex-client/client/')
 from auth import auth
 from CONFIG import GET_OBS_DATA_URL
 
@@ -29,8 +30,12 @@ def main(start_date, end_date, stn_id, p_id, out):
     payload['param_id'] = p_id
 
     auth_obj = auth()
-
-    if not auth_obj.check_token():
+    try:
+        is_token_valid = auth_obj.check_token()
+    except:
+        is_token_valid = False   
+    
+    if not is_token_valid:
         token = auth_obj.get_new_token_from_dataex()
     else:
         token = auth_obj.get_token()

@@ -6,6 +6,7 @@ import getpass
 import json
 import os
 import sys
+sys.path.append('/home/anubinda/dataex-client/client/')
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_URL
 
@@ -19,8 +20,8 @@ parameters = [
 
 @click.command()
 @click.option('--params', is_flag=False, default=','.join(parameters), show_default=True, metavar='<columns>', type=click.STRING, help='Select parameters')
-@click.option('--latbounds', nargs=2, type=float, help='Enter top lat and then bottom lat; seperate values with space')
-@click.option('--lonbounds', nargs=2, type=float, help='Enter right lon and then left lon; sepearate values with space')
+@click.option('--latbounds', nargs=2, type=float, help='Enter bottom lat and then top lat; seperate values with space')
+@click.option('--lonbounds', nargs=2, type=float, help='Enter left lon and then right lon; sepearate values with space')
 @click.option('--out', help='output filename or full path with filename')
 
 def main(params, latbounds, lonbounds, out):
@@ -34,14 +35,19 @@ def main(params, latbounds, lonbounds, out):
     for par in params:
         param_list.append(par)
     
-    coords['top-lat'], coords['bottom-lat'] = latbounds
+    coords['bottom-lat'], coords['top-lat'], = latbounds
     coords['left-lon'],coords['right-lon'] = lonbounds
     payload['params'] = param_list
     payload['domain'] = coords
     
     auth_obj = auth()
-
-    if not auth_obj.check_token():
+    
+    try:
+        is_token_valid = auth_obj.check_token()
+    except:
+        is_token_valid = False   
+    
+    if not is_token_valid:
         token = auth_obj.get_new_token_from_dataex()
     else:
         token = auth_obj.get_token()
