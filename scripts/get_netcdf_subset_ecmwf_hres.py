@@ -6,7 +6,6 @@ import getpass
 import json
 import os
 import sys
-sys.path.append('/home/anubinda/dataex-client/client/')
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_URL
 
@@ -46,7 +45,7 @@ def main(params, latbounds, lonbounds, out):
         token = auth_obj.get_new_token_from_dataex()
     else:
         token = auth_obj.get_token()
-    
+ 
     headers = {
         'Content-Type': 'application/json',
         'Authorization': token

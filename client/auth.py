@@ -41,6 +41,7 @@ class auth():
 
 
     def check_token(self):
+
         header_data = jwt.get_unverified_header(self.auth['token'])
         data = jwt.decode(self.auth['token'], CONFIG.SECRET_KEY, algorithms=[header_data['alg']])
         exp = dt.fromtimestamp(data['exp'])
