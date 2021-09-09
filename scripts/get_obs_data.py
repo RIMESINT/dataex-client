@@ -5,7 +5,7 @@ import json
 import os
 from datetime import datetime as dt
 import sys
-sys.path.append('/home/anubinda/dataex-client/client/')
+sys.path.append('/home/anubinda/dataex-client/client')
 from auth import auth
 from CONFIG import GET_OBS_DATA_URL
 
