@@ -50,6 +50,7 @@ class auth():
         if dt.utcnow() > exp: #+ delt(hours=5):
             return False
         '''
+        print("checking token...")
         data =  self.auth
         
         headers = {
@@ -59,9 +60,12 @@ class auth():
         response = requests.post(CONFIG.CHECK_TOKEN_URL, headers=headers)
         
         res_dict  = json.loads(response.text)
-        print(res_dict)
-        if res_dict['error'] == 'None':
+        
+        if res_dict['error'] is None:
+            print(res_dict['message'])
             return True
+
+        print(res_dict["message"])
         return False
     
       
@@ -106,7 +110,7 @@ class auth():
         
 
     def get_new_token_from_dataex(self):
-
+        print("getting new token...")
         data = dict()
         data['username'] = self.auth['username']
         data['password'] = self.auth['password']
@@ -115,6 +119,6 @@ class auth():
         self.auth['token'] = response_dict['token']
         with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
                 json.dump(self.auth, f)
-
+        
         return response_dict['token']
   
