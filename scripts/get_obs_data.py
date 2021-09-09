@@ -3,6 +3,7 @@ import requests
 import click
 import json
 import os
+from yaspin import yaspin
 from datetime import datetime as dt
 import sys
 sys.path.append('/home/anubinda/dataex-client/client')
@@ -45,19 +46,28 @@ def main(start_date, end_date, stn_id, p_id, out):
         'Authorization': token
     }
 
+    with yaspin(text="Success", color="yellow") as spinner:
+        response = requests.post(GET_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
 
-    response = requests.post(GET_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
+        if response.status_code == 200:
+            data = json.loads(response.text)
+            if data['error'] is None:
+                spinner.ok("✅")
+            else:
+                spinner.fail("💥 ")
+                
+        else:
+            print("here")
+            print(response.status_code)
+            spinner.fail("💥 ")
+            
 
-    if response.status_code == 200:
-        print(response.content)
-    else:
-        print(response.status_code)
-
-    print(response.headers) 
-    print(response.text)
     
-    with open(f'{out}.json', 'w') as f:
-        f.write(response.text)
+        with open(f'{out}.json', 'w') as f:
+            f.write(response.text)
+
+        
+        
 
 
 if __name__=='__main__':
