@@ -6,13 +6,14 @@ import getpass
 import json
 import os
 import sys
+from yaspin import yaspin
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_URL
 
 
 parameters = [
     'u10', 'swvl1','swvl2', 'swvl3', 'swvl4' 
-    'd2m', 'v10', 't2m', 'cp' 'lsp'
+    'd2m', 'v10', 't2m', 'cp', 'lsp'
     'ssr', 'str', 'sshf', 'slhf'
 
 ]
@@ -56,17 +57,22 @@ def main(params, latbounds, lonbounds, out):
         'Authorization': token
     }
 
+    with yaspin(text="Success", color="yellow") as spinner:
+        response = requests.post(GET_NETCDF_SUBSET_URL, headers=headers, data=json.dumps(payload))
+        if response.status_code == 200:
+            spinner.ok("✅")
+            if response.headers['content-type'] == "application/json":
+                data = json.loads(response.text)
+                print(data['error'], data['message'])
+                spinner.fail("💥 ")
+        else:
+            print(response.status_code)
+            spinner.fail("💥 ")
+            
+            
 
-    response = requests.post(GET_NETCDF_SUBSET_URL, headers=headers, data=json.dumps(payload))
-
-    if response.status_code == 200:
-        print(response.content)
-    else:
-        print(response.status_code)
-        print(response.text)
-
-    with open(f'{out}.nc', 'wb') as f:
-        f.write(response.content)
+        with open(f'{out}.nc', 'wb') as f:
+            f.write(response.content)
     
     
     
