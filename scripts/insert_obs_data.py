@@ -6,7 +6,6 @@ import os
 from yaspin import yaspin
 from datetime import datetime as dt
 import sys
-sys.path.append('/home/anubinda/dataex-client/client/')
 import pandas as pd
 from auth import auth
 from CONFIG import INSERT_OBS_DATA_URL
