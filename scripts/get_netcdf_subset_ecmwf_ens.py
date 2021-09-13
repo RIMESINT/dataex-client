@@ -58,7 +58,7 @@ def main(params, latbounds, lonbounds, out):
         'Authorization': token
     }
 
-    with yaspin(text="Success", color="yellow") as spinner:
+    with yaspin(text="Downloading", color="yellow") as spinner:
         response = requests.post(GET_NETCDF_SUBSET_ENS_URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
             spinner.ok("✅")
