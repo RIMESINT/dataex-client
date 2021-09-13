@@ -35,7 +35,7 @@ def main(obs_data):
         'Authorization': data['token'] 
     }
 
-    with yaspin(text="Success", color="yellow") as spinner:
+    with yaspin(text="Inserting", color="yellow") as spinner:
         response = requests.post(INSERT_OBS_DATA_URL, headers=headers, data=json.dumps(data))
 
         if response.status_code == 200:

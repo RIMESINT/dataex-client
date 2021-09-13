@@ -1,4 +1,5 @@
 import json
+import time
 import requests
 import click
 from io import BytesIO 
@@ -6,6 +7,7 @@ import getpass
 import json
 import os
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 from yaspin import yaspin
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_ENS_URL
@@ -58,7 +60,8 @@ def main(params, latbounds, lonbounds, out):
         'Authorization': token
     }
 
-    with yaspin(text="Success", color="yellow") as spinner:
+    with yaspin(text="Downloading", color="yellow") as spinner:
+        time.sleep(3)
         response = requests.post(GET_NETCDF_SUBSET_ENS_URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
             spinner.ok("✅")

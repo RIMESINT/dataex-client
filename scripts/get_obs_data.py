@@ -45,7 +45,7 @@ def main(start_date, end_date, stn_id, p_id, out):
         'Authorization': token
     }
 
-    with yaspin(text="Success", color="yellow") as spinner:
+    with yaspin(text="Downloading", color="yellow") as spinner:
         response = requests.post(GET_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
 
         if response.status_code == 200:
