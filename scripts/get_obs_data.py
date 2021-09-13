@@ -56,7 +56,6 @@ def main(start_date, end_date, stn_id, p_id, out):
                 spinner.fail("💥 ")
                 
         else:
-            print("here")
             print(response.status_code)
             spinner.fail("💥 ")
             
