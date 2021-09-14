@@ -1,3 +1,32 @@
+"""Get NetCDF Subset ECMWF HRES
+
+This script allows the user to get a subset of ECMWF HRES data. 
+This tool downloads the data only in netCDF file format.
+
+Usage:
+
+$ get_netcdf_subset_ecmwf_hres.py  
+
+Arguments
+---------
+params : str or list of str
+        Single or comma seperated parameter short names
+latbounds : float float
+        South and North latitude values space seperated
+lonbounds : float float
+        West and East latitude values space seperated
+out : str
+     filename
+      
+    
+Returns
+-------
+Binary
+    a netCDF file containing the subset of ecmwf ens foreacast data
+        
+
+"""
+
 import json
 import requests
 import click

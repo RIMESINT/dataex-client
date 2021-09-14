@@ -1,3 +1,38 @@
+"""Get Observation Data
+
+This script allows the user to get the specified observation data from Dataex server. 
+This tool downloads the desired observation data in json format.
+
+Usage:
+
+$ get_obs_data.py 
+
+Parameters
+---------
+start_date : DateTime
+        Date in YYYY-MM-DD format
+        
+end_date : DateTime
+        Date in YYYY-MM-DD format
+stn_id : int
+        station id
+        
+p_id : int 
+       parameter id        
+
+out : str
+     output filename
+      
+    
+Returns
+-------
+Json
+    a json file containing requested observation data
+        
+
+"""
+
+
 import json
 import requests
 import click

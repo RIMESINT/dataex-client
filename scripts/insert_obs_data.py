@@ -1,3 +1,29 @@
+"""Insert observation data
+
+This script allows the user to insert observation data into Dataex server. 
+It takes as input the json file containing the observations.
+
+Usage:
+
+$ get_obs_data.py             
+
+Parameters
+---------
+
+country_id : int
+        station id
+        
+p_id : int 
+       parameter id        
+
+obs_data : str
+     input file either csv or excel
+      
+   
+
+"""
+
+
 import json
 import requests
 import click
@@ -12,6 +38,7 @@ from CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()
+<<<<<<< HEAD
 @click.option('--obs_data', help='json filename or path to json with filename')
 @click.option('--country_id', type=int, help='json filename or path to json with filename')
 
@@ -27,6 +54,19 @@ def main(obs_data, country_id):
 
     #with open(obs_data, 'r') as f:
     #    data = json.load(f)
+=======
+@click.option('--obs_data', help='filename or path to file with filename')
+@click.option('--country_id', type=int, help='id of country')
+
+def main(obs_data, country_id):
+
+    try:
+        file = pd.read_csv(obs_data)
+    except:
+        file = pd.read_excel(obs_data,engine='openpyxl')
+
+    payload = create_json(file, country_id)
+>>>>>>> local-anubinda-devl
 
     auth_obj = auth()
     
@@ -66,6 +106,27 @@ def main(obs_data, country_id):
 
 
 def create_json(file, country_id):
+<<<<<<< HEAD
+=======
+    """Creates a json file
+    
+    Parameters
+    ----------
+    file : object
+        dataframe
+    country_id: str
+        Id of country entered by the user
+
+    
+    Returns
+    --------
+    json 
+          a json file containing rows of observation data
+        
+       
+    
+    """ 
+>>>>>>> local-anubinda-devl
     
     obs_data_json = {}
     data = []
@@ -86,6 +147,10 @@ def create_json(file, country_id):
 
     return obs_data_json
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> local-anubinda-devl
 if __name__=="__main__":
     main()
 
