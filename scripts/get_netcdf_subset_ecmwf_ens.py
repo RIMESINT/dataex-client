@@ -5,12 +5,24 @@ This tool downloads the data only in netCDF file format.
 
 Usage:
 
-get_netcdf_subset_ecmwf_ens.py --params = [single or multiple comma seperated parameter short names ] | 
-                               --latbounds = [space seperated south and north float values] |
-                               --lonbounds = [space seperated west and east float values] |
-                               --out = [output filename]           
+$ get_netcdf_subset_ecmwf_ens.py         
 
-
+Parameters
+---------
+params : str or list of str
+        Single or comma seperated parameter short names
+latbounds : float float
+        South and North latitude values space seperated
+lonbounds : float float
+        West and East latitude values space seperated
+out : str
+     filename
+    
+Returns
+-------
+Binary
+    a netCDF file containing the subset of ecmwf hres foreacast data
+        
 
 """
 
@@ -23,7 +35,6 @@ import getpass
 import json
 import os
 import sys
-sys.path.append('/home/anubinda/dataex-client/client')
 from yaspin import yaspin
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_ENS_URL
@@ -45,25 +56,7 @@ parameters = [
 
 def main(params, latbounds, lonbounds, out):
 
-    """Gets the subset of ecmwf hres in netcdf file
-    
-    Parameters
-    ----------
-    params : str or list of str
-        Single or comma seperated parameter short names
-    latbounds : float float
-        South and North latitude values space seperated
-    lonbounds : float float
-        West and East latitude values space seperated
-    
-    Returns:
-    --------
-    Binary
-          a netCDF file containing the subset of ecmwf hres foreacast data
-        
-       
-    
-    """ 
+
 
     params = [param.strip() for param in params.split(',')]
     payload = {}

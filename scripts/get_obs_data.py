@@ -5,13 +5,30 @@ This tool downloads the desired observation data in json format.
 
 Usage:
 
-get_obs_data.py --start_date = [YYYY-MM-DD] |
-                --end_date = [YYYY-MM-DD] |
-                --stn_id = [Id of station] |
-                --p_id = [Id of parameter] |
-                --out = [output filename]                
+$ get_obs_data.py 
 
+Parameters
+---------
+start_date : DateTime
+        Date in YYYY-MM-DD format
+        
+end_date : DateTime
+        Date in YYYY-MM-DD format
+stn_id : int
+        station id
+        
+p_id : int 
+       parameter id        
 
+out : str
+     output filename
+      
+    
+Returns
+-------
+Json
+    a json file containing requested observation data
+        
 
 """
 

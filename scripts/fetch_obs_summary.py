@@ -5,9 +5,13 @@ This script allows the user to fetch summary of observation data statistics from
 
 Usage:
 
-get_obs_data.py --out = [output filename]              
+$ fetch_obs_summary.py 
 
+Parameters
+---------
 
+out : str
+    name of output file            
 
 """
 
@@ -20,7 +24,6 @@ import json
 import os
 from yaspin import yaspin
 import sys
-sys.path.append('/home/anubinda/dataex-client/client/')
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL
 

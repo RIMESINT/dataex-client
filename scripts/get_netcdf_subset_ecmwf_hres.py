@@ -5,12 +5,25 @@ This tool downloads the data only in netCDF file format.
 
 Usage:
 
-get_netcdf_subset_ecmwf_hres.py --params = [single or multiple comma seperated parameter short names ]  |
-                               --latbounds = [space seperated south and north float values] |
-                               --lonbounds = [space seperated west and east float values] |
-                               --out = [output filename] 
+$ get_netcdf_subset_ecmwf_hres.py  
 
-
+Arguments
+---------
+params : str or list of str
+        Single or comma seperated parameter short names
+latbounds : float float
+        South and North latitude values space seperated
+lonbounds : float float
+        West and East latitude values space seperated
+out : str
+     filename
+      
+    
+Returns
+-------
+Binary
+    a netCDF file containing the subset of ecmwf ens foreacast data
+        
 
 """
 
@@ -41,25 +54,6 @@ parameters = [
 @click.option('--out', help='output filename or full path with filename')
 
 def main(params, latbounds, lonbounds, out):
-    """Gets the subset of ecmwf hres in netcdf file
-    
-    Parameters
-    ----------
-    params : str or list of str
-        Single or comma seperated parameter short names
-    latbounds : float float
-        South and North latitude values space seperated
-    lonbounds : float float
-        West and East latitude values space seperated
-    
-    Returns:
-    --------
-    Binary
-          a netCDF file containing the subset of ecmwf hres foreacast data
-        
-       
-    
-    """ 
 
     params = [param.strip() for param in params.split(',')]
     payload = {}

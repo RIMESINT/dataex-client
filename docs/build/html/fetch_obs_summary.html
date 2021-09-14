@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>get_obs_data module &#8212; dataex-client 1.0.0 documentation</title>
+    <title>fetch_obs_summary module &#8212; dataex-client 1.0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="insert_obs_data module" href="insert_obs_data.html" />
-    <link rel="prev" title="get_netcdf_subset_ecmwf_hres module" href="get_netcdf_subset_ecmwf_hres.html" />
+    <link rel="next" title="get_netcdf_subset_ecmwf_ens module" href="get_netcdf_subset_ecmwf_ens.html" />
+    <link rel="prev" title="scripts" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,49 +34,18 @@
 
           <div class="body" role="main">
             
-  <section id="module-get_obs_data">
-<span id="get-obs-data-module"></span><h1>get_obs_data module<a class="headerlink" href="#module-get_obs_data" title="Permalink to this headline">¶</a></h1>
-<p>Get Observation Data</p>
-<p>This script allows the user to get the specified observation data from Dataex server.
-This tool downloads the desired observation data in json format.</p>
+  <section id="module-fetch_obs_summary">
+<span id="fetch-obs-summary-module"></span><h1>fetch_obs_summary module<a class="headerlink" href="#module-fetch_obs_summary" title="Permalink to this headline">¶</a></h1>
+<p>Fetch observation data summary</p>
+<p>This script allows the user to fetch summary of observation data statistics from Dataex server.</p>
 <p>Usage:</p>
-<p>$ get_obs_data.py</p>
+<p>$ fetch_obs_summary.py</p>
 <dl class="field-list simple">
-<dt class="field-odd">param start_date</dt>
-<dd class="field-odd"><p>Date in YYYY-MM-DD format</p>
-</dd>
-<dt class="field-even">type start_date</dt>
-<dd class="field-even"><p>DateTime</p>
-</dd>
-<dt class="field-odd">param end_date</dt>
-<dd class="field-odd"><p>Date in YYYY-MM-DD format</p>
-</dd>
-<dt class="field-even">type end_date</dt>
-<dd class="field-even"><p>DateTime</p>
-</dd>
-<dt class="field-odd">param stn_id</dt>
-<dd class="field-odd"><p>station id</p>
-</dd>
-<dt class="field-even">type stn_id</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param p_id</dt>
-<dd class="field-odd"><p>parameter id</p>
-</dd>
-<dt class="field-even">type p_id</dt>
-<dd class="field-even"><p>int</p>
-</dd>
 <dt class="field-odd">param out</dt>
-<dd class="field-odd"><p>output filename</p>
+<dd class="field-odd"><p>name of output file</p>
 </dd>
 <dt class="field-even">type out</dt>
 <dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">returns</dt>
-<dd class="field-odd"><p>a json file containing requested observation data</p>
-</dd>
-<dt class="field-even">rtype</dt>
-<dd class="field-even"><p>Json</p>
 </dd>
 </dl>
 </section>
@@ -101,10 +70,10 @@ This tool downloads the desired observation data in json format.</p>
 <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">scripts</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="fetch_obs_summary.html">fetch_obs_summary module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">fetch_obs_summary module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_netcdf_subset_ecmwf_ens.html">get_netcdf_subset_ecmwf_ens module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_netcdf_subset_ecmwf_hres.html">get_netcdf_subset_ecmwf_hres module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">get_obs_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_obs_data.html">get_obs_data module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="insert_obs_data.html">insert_obs_data module</a></li>
 </ul>
 </li>
@@ -115,8 +84,8 @@ This tool downloads the desired observation data in json format.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">scripts</a><ul>
-      <li>Previous: <a href="get_netcdf_subset_ecmwf_hres.html" title="previous chapter">get_netcdf_subset_ecmwf_hres module</a></li>
-      <li>Next: <a href="insert_obs_data.html" title="next chapter">insert_obs_data module</a></li>
+      <li>Previous: <a href="modules.html" title="previous chapter">scripts</a></li>
+      <li>Next: <a href="get_netcdf_subset_ecmwf_ens.html" title="next chapter">get_netcdf_subset_ecmwf_ens module</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -151,7 +120,7 @@ This tool downloads the desired observation data in json format.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/get_obs_data.rst.txt"
+      <a href="_sources/fetch_obs_summary.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

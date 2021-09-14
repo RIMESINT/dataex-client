@@ -39,10 +39,47 @@
 <p>This script allows the user to insert observation data into Dataex server.
 It takes as input the json file containing the observations.</p>
 <p>Usage:</p>
-<dl class="simple">
-<dt>get_obs_data.py –country_id = [Id of country]</dt><dd><p>–obs_data = [json file]</p>
+<p>$ get_obs_data.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">param country_id</dt>
+<dd class="field-odd"><p>station id</p>
+</dd>
+<dt class="field-even">type country_id</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param p_id</dt>
+<dd class="field-odd"><p>parameter id</p>
+</dd>
+<dt class="field-even">type p_id</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param obs_data</dt>
+<dd class="field-odd"><p>input file either csv or excel</p>
+</dd>
+<dt class="field-even">type obs_data</dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
+<dl class="py function">
+<dt id="insert_obs_data.create_json">
+<code class="sig-prename descclassname">insert_obs_data.</code><code class="sig-name descname">create_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">country_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#insert_obs_data.create_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>object</em>) – dataframe</p></li>
+<li><p><strong>country_id</strong> (<em>str</em>) – Id of country entered by the user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a json file containing rows of observation data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>json</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -65,6 +102,7 @@ It takes as input the json file containing the observations.</p>
 <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fetch_obs_summary.html">fetch_obs_summary module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_netcdf_subset_ecmwf_ens.html">get_netcdf_subset_ecmwf_ens module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_netcdf_subset_ecmwf_hres.html">get_netcdf_subset_ecmwf_hres module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_obs_data.html">get_obs_data module</a></li>

@@ -5,10 +5,21 @@ It takes as input the json file containing the observations.
 
 Usage:
 
-get_obs_data.py --country_id = [Id of country] 
-                --obs_data = [json file]              
+$ get_obs_data.py             
 
+Parameters
+---------
 
+country_id : int
+        station id
+        
+p_id : int 
+       parameter id        
+
+obs_data : str
+     input file either csv or excel
+      
+   
 
 """
 
@@ -26,7 +37,8 @@ from CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()
-@click.option('--obs_data', help='json filename or path to json with filename')
+@click.option('--obs_data', help='filename or path to file with filename')
+@click.option('--country_id', type=int, help='id of country')
 
 def main(obs_data, country_id):
 
@@ -36,9 +48,6 @@ def main(obs_data, country_id):
         file = pd.read_excel(obs_data,engine='openpyxl')
 
     payload = create_json(file, country_id)
-
-    #with open(obs_data, 'r') as f:
-    #    data = json.load(f)
 
     auth_obj = auth()
     
@@ -78,6 +87,24 @@ def main(obs_data, country_id):
 
 
 def create_json(file, country_id):
+    """Creates a json file
+    
+    Parameters
+    ----------
+    file : object
+        dataframe
+    country_id: str
+        Id of country entered by the user
+
+    
+    Returns
+    --------
+    json 
+          a json file containing rows of observation data
+        
+       
+    
+    """ 
     
     obs_data_json = {}
     data = []

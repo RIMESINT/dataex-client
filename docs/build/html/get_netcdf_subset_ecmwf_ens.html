@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="get_netcdf_subset_ecmwf_hres module" href="get_netcdf_subset_ecmwf_hres.html" />
-    <link rel="prev" title="scripts" href="modules.html" />
+    <link rel="prev" title="fetch_obs_summary module" href="fetch_obs_summary.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -40,10 +40,37 @@
 <p>This script allows the user to get a subset of ECMWF ENS data.
 This tool downloads the data only in netCDF file format.</p>
 <p>Usage:</p>
-<dl class="simple">
-<dt>get_netcdf_subset_ecmwf_ens.py –params = [single or multiple comma seperated parameter short names ]  ..</dt><dd><p>–latbounds = [space seperated south and north float values] ..
-–lonbounds = [space seperated west and east float values] ..
-–out = [output filename] ..</p>
+<p>$ get_netcdf_subset_ecmwf_ens.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">param params</dt>
+<dd class="field-odd"><p>Single or comma seperated parameter short names</p>
+</dd>
+<dt class="field-even">type params</dt>
+<dd class="field-even"><p>str or list of str</p>
+</dd>
+<dt class="field-odd">param latbounds</dt>
+<dd class="field-odd"><p>South and North latitude values space seperated</p>
+</dd>
+<dt class="field-even">type latbounds</dt>
+<dd class="field-even"><p>float float</p>
+</dd>
+<dt class="field-odd">param lonbounds</dt>
+<dd class="field-odd"><p>West and East latitude values space seperated</p>
+</dd>
+<dt class="field-even">type lonbounds</dt>
+<dd class="field-even"><p>float float</p>
+</dd>
+<dt class="field-odd">param out</dt>
+<dd class="field-odd"><p>filename</p>
+</dd>
+<dt class="field-even">type out</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">returns</dt>
+<dd class="field-odd"><p>a netCDF file containing the subset of ecmwf hres foreacast data</p>
+</dd>
+<dt class="field-even">rtype</dt>
+<dd class="field-even"><p>Binary</p>
 </dd>
 </dl>
 </section>
@@ -68,6 +95,7 @@ This tool downloads the data only in netCDF file format.</p>
 <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fetch_obs_summary.html">fetch_obs_summary module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">get_netcdf_subset_ecmwf_ens module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_netcdf_subset_ecmwf_hres.html">get_netcdf_subset_ecmwf_hres module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_obs_data.html">get_obs_data module</a></li>
@@ -81,7 +109,7 @@ This tool downloads the data only in netCDF file format.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">scripts</a><ul>
-      <li>Previous: <a href="modules.html" title="previous chapter">scripts</a></li>
+      <li>Previous: <a href="fetch_obs_summary.html" title="previous chapter">fetch_obs_summary module</a></li>
       <li>Next: <a href="get_netcdf_subset_ecmwf_hres.html" title="next chapter">get_netcdf_subset_ecmwf_hres module</a></li>
   </ul></li>
   </ul></li>
