@@ -22,7 +22,6 @@ import json
 import os
 from yaspin import yaspin
 import sys
-sys.path.append('/home/anubinda/dataex-client/client')
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL
 

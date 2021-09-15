@@ -30,7 +30,6 @@ import getpass
 import json
 import os
 import sys
-sys.path.append('/home/anubinda/dataex-client/client')
 from yaspin import yaspin
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_ENS_URL
