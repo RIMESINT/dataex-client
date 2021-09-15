@@ -36,41 +36,22 @@
             
   <section id="module-get_netcdf_subset_ecmwf_ens">
 <span id="get-netcdf-subset-ecmwf-ens-module"></span><h1>get_netcdf_subset_ecmwf_ens module<a class="headerlink" href="#module-get_netcdf_subset_ecmwf_ens" title="Permalink to this headline">¶</a></h1>
-<p>Get NetCDF Subset ECMWF ENS</p>
+<p>Get NetCDF Subset ECMWF ENS CLI</p>
 <p>This script allows the user to get a subset of ECMWF ENS data.
-This tool downloads the data only in netCDF file format.</p>
+This tool downloads the data in netCDF file format.</p>
 <p>Usage:</p>
-<p>$ get_netcdf_subset_ecmwf_ens.py</p>
-<dl class="field-list simple">
-<dt class="field-odd">param params</dt>
-<dd class="field-odd"><p>Single or comma seperated parameter short names</p>
+<p>$ get_netcdf_subset_ecmwf_ens.py -- params &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --out &lt;str&gt;</p>
+<dl class="simple">
+<dt>Options:</dt><dd><dl class="simple">
+<dt>params<span class="classifier">str or list of str</span></dt><dd><p>Single or comma seperated parameter short names</p>
 </dd>
-<dt class="field-even">type params</dt>
-<dd class="field-even"><p>str or list of str</p>
+<dt>latbounds<span class="classifier">first float is for south and second float is for north</span></dt><dd><p>South and North latitude values space seperated</p>
 </dd>
-<dt class="field-odd">param latbounds</dt>
-<dd class="field-odd"><p>South and North latitude values space seperated</p>
+<dt>lonbounds<span class="classifier">first float is for south and second float is for north</span></dt><dd><p>West and East latitude values space seperated</p>
 </dd>
-<dt class="field-even">type latbounds</dt>
-<dd class="field-even"><p>float float</p>
+<dt>out<span class="classifier">str</span></dt><dd><p>output filename</p>
 </dd>
-<dt class="field-odd">param lonbounds</dt>
-<dd class="field-odd"><p>West and East latitude values space seperated</p>
-</dd>
-<dt class="field-even">type lonbounds</dt>
-<dd class="field-even"><p>float float</p>
-</dd>
-<dt class="field-odd">param out</dt>
-<dd class="field-odd"><p>filename</p>
-</dd>
-<dt class="field-even">type out</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">returns</dt>
-<dd class="field-odd"><p>a netCDF file containing the subset of ecmwf hres foreacast data</p>
-</dd>
-<dt class="field-even">rtype</dt>
-<dd class="field-even"><p>Binary</p>
+</dl>
 </dd>
 </dl>
 </section>

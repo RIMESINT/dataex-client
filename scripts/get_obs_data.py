@@ -1,34 +1,26 @@
-"""Get Observation Data
+"""Get Observation Data CLI
 
 This script allows the user to get the specified observation data from Dataex server. 
 This tool downloads the desired observation data in json format.
 
 Usage:
 
-$ get_obs_data.py 
+$ get_obs_data.py \--start_date <YYYY-MM-DD> \--end_date <YYYY-MM-DD> \-- stn_id <int> \--p_id <int> \--out <str>
 
-Parameters
----------
-start_date : DateTime
-        Date in YYYY-MM-DD format
+Options:
+    start_date : DateTime
+                 Date in YYYY-MM-DD format \n
         
-end_date : DateTime
-        Date in YYYY-MM-DD format
-stn_id : int
-        station id
-        
-p_id : int 
-       parameter id        
+    end_date : DateTime
+              Date in YYYY-MM-DD format \n
+    stn_id : int
+             station id
+            
+    p_id : int 
+           parameter id \n       
 
-out : str
-     output filename
-      
-    
-Returns
--------
-Json
-    a json file containing requested observation data
-        
+    out : str
+          output filename \n
 
 """
 
@@ -41,6 +33,7 @@ import os
 from yaspin import yaspin
 from datetime import datetime as dt
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 from auth import auth
 from CONFIG import GET_OBS_DATA_URL
 

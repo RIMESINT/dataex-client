@@ -1,29 +1,22 @@
-"""Get NetCDF Subset ECMWF HRES
+"""Get NetCDF Subset ECMWF HRES CLI
 
 This script allows the user to get a subset of ECMWF HRES data. 
-This tool downloads the data only in netCDF file format.
+This tool downloads the data in netCDF file format.
 
 Usage:
 
-$ get_netcdf_subset_ecmwf_hres.py  
+$ get_netcdf_subset_ecmwf_hres.py \-- params <str> \--latbounds <float> <float> \--lonbounds <float> <float> \--out <str>
 
-Arguments
----------
-params : str or list of str
-        Single or comma seperated parameter short names
-latbounds : float float
-        South and North latitude values space seperated
-lonbounds : float float
-        West and East latitude values space seperated
-out : str
-     filename
+Options:
+    params : str or list of str
+             Single or comma seperated parameter short names \n
+    latbounds : first float is for south and second float is for north
+             South and North latitude values space seperated \n
+    lonbounds : first float is for south and second float is for north 
+             West and East latitude values space seperated \n 
+    out : str
+       output filename
       
-    
-Returns
--------
-Binary
-    a netCDF file containing the subset of ecmwf ens foreacast data
-        
 
 """
 
@@ -35,6 +28,7 @@ import getpass
 import json
 import os
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 from yaspin import yaspin
 from auth import auth
 from CONFIG import GET_NETCDF_SUBSET_URL

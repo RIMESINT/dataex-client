@@ -1,26 +1,17 @@
-"""Insert observation data
+"""Insert observation data CLI
 
 This script allows the user to insert observation data into Dataex server. 
-It takes as input the json file containing the observations.
+It takes as input the json file containing the observations along with the country id number.
 
 Usage:
 
-$ get_obs_data.py             
+$ get_obs_data.py \--country_id <int> \--obs_data <str> \n 
 
-Parameters
----------
-
-country_id : int
-        station id
-        
-p_id : int 
-       parameter id        
-
-obs_data : str
-     input file either csv or excel
-      
-   
-
+Options:
+    country_id : int
+                 id number of country \n
+    obs_data : str
+               input filename either csv or excel   
 """
 
 
@@ -32,6 +23,7 @@ import os
 from yaspin import yaspin
 from datetime import datetime as dt
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 import pandas as pd
 from auth import auth
 from CONFIG import INSERT_OBS_DATA_URL
@@ -88,7 +80,7 @@ def main(obs_data, country_id):
 
 
 def create_json(file, country_id):
-    """Creates a json file
+    """\nCreates a json file
     
     Parameters
     ----------

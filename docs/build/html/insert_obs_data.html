@@ -35,49 +35,36 @@
             
   <section id="module-insert_obs_data">
 <span id="insert-obs-data-module"></span><h1>insert_obs_data module<a class="headerlink" href="#module-insert_obs_data" title="Permalink to this headline">¶</a></h1>
-<p>Insert observation data</p>
+<p>Insert observation data CLI</p>
 <p>This script allows the user to insert observation data into Dataex server.
-It takes as input the json file containing the observations.</p>
+It takes as input the json file containing the observations along with the country id number.</p>
 <p>Usage:</p>
-<p>$ get_obs_data.py</p>
-<dl class="field-list simple">
-<dt class="field-odd">param country_id</dt>
-<dd class="field-odd"><p>station id</p>
+<p>$ get_obs_data.py --country_id &lt;int&gt; --obs_data &lt;str&gt;</p>
+<dl class="simple">
+<dt>Options:</dt><dd><dl class="simple">
+<dt>country_id<span class="classifier">int</span></dt><dd><p>id number of country</p>
 </dd>
-<dt class="field-even">type country_id</dt>
-<dd class="field-even"><p>int</p>
+<dt>obs_data<span class="classifier">str</span></dt><dd><p>input filename either csv or excel</p>
 </dd>
-<dt class="field-odd">param p_id</dt>
-<dd class="field-odd"><p>parameter id</p>
-</dd>
-<dt class="field-even">type p_id</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">param obs_data</dt>
-<dd class="field-odd"><p>input file either csv or excel</p>
-</dd>
-<dt class="field-even">type obs_data</dt>
-<dd class="field-even"><p>str</p>
+</dl>
 </dd>
 </dl>
 <dl class="py function">
 <dt id="insert_obs_data.create_json">
 <code class="sig-prename descclassname">insert_obs_data.</code><code class="sig-name descname">create_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">country_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#insert_obs_data.create_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a json file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>object</em>) – dataframe</p></li>
-<li><p><strong>country_id</strong> (<em>str</em>) – Id of country entered by the user</p></li>
-</ul>
+<blockquote>
+<div><dl class="simple">
+<dt>file<span class="classifier">object</span></dt><dd><p>dataframe</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a json file containing rows of observation data</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>json</p>
+<dt>country_id: str</dt><dd><p>Id of country entered by the user</p>
 </dd>
 </dl>
+<dl class="simple">
+<dt>json</dt><dd><p>a json file containing rows of observation data</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 </section>

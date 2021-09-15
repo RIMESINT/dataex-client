@@ -1,17 +1,15 @@
 
-"""Fetch observation data summary
+"""Fetch observation data summary CLI
 
 This script allows the user to fetch summary of observation data statistics from Dataex server. 
 
 Usage:
 
-$ fetch_obs_summary.py 
+$ fetch_obs_summary.py \--out <str>
 
-Parameters
----------
-
-out : str
-    name of output file            
+Options:
+    out : str
+          name of output file            
 
 """
 
@@ -24,6 +22,7 @@ import json
 import os
 from yaspin import yaspin
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL
 
