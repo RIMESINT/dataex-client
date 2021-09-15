@@ -38,23 +38,6 @@ from CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()
-<<<<<<< HEAD
-@click.option('--obs_data', help='json filename or path to json with filename')
-@click.option('--country_id', type=int, help='json filename or path to json with filename')
-
-
-def main(obs_data, country_id):
-
-    try:
-        file = pd.read_csv(obs_data)
-    except:
-        file = pd.read_excel(obs_data,engine='openpyxl')
-
-    payload = create_json(file, country_id)
-
-    #with open(obs_data, 'r') as f:
-    #    data = json.load(f)
-=======
 @click.option('--obs_data', help='filename or path to file with filename')
 @click.option('--country_id', type=int, help='id of country')
 
@@ -66,7 +49,6 @@ def main(obs_data, country_id):
         file = pd.read_excel(obs_data,engine='openpyxl')
 
     payload = create_json(file, country_id)
->>>>>>> local-anubinda-devl
 
     auth_obj = auth()
     
@@ -106,8 +88,6 @@ def main(obs_data, country_id):
 
 
 def create_json(file, country_id):
-<<<<<<< HEAD
-=======
     """Creates a json file
     
     Parameters
@@ -126,7 +106,6 @@ def create_json(file, country_id):
        
     
     """ 
->>>>>>> local-anubinda-devl
     
     obs_data_json = {}
     data = []
@@ -147,10 +126,6 @@ def create_json(file, country_id):
 
     return obs_data_json
 
-<<<<<<< HEAD
-=======
-
->>>>>>> local-anubinda-devl
 if __name__=="__main__":
     main()
 
