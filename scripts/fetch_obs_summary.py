@@ -22,7 +22,6 @@ import pandas as pd
 import os
 import sys
 from yaspin import yaspin
-sys.path.append('/home/anubinda/dataex-client/client')
 import sys
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL

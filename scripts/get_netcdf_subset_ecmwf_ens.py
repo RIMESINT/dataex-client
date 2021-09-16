@@ -17,7 +17,6 @@ Options:
     out : str
        output filename
     
-        
 
 """
 
