@@ -26,6 +26,7 @@ Options:
 
 
 import json
+import pandas as pd
 import requests
 import click
 import json
@@ -33,6 +34,7 @@ import os
 from yaspin import yaspin
 from datetime import datetime as dt
 import sys
+sys.path.append('/home/anubinda/dataex-client/client')
 from auth import auth
 from CONFIG import GET_OBS_DATA_URL
 
@@ -41,12 +43,14 @@ from CONFIG import GET_OBS_DATA_URL
 @click.option('--end_date', help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
 @click.option('--stn_id', help='Id of desired station',type=int)
 @click.option('--p_id', help='Id of desired parameter', type=int)
+@click.option('--output_type', type=click.Choice(['json', 'csv'], case_sensitive=False))
 @click.option('--out', help='output filename or path with filename')
 
-def main(start_date, end_date, stn_id, p_id, out):
+
+def main(start_date, end_date, stn_id, p_id, output_type, out):
     
     if start_date > end_date:
-        print("date range is invalid:start should be before end")
+        print("date range is invalid:start date is greater")
         return 0
 
     payload = {}
@@ -72,28 +76,53 @@ def main(start_date, end_date, stn_id, p_id, out):
         'Authorization': token
     }
 
-    with yaspin(text="Downloading", color="yellow") as spinner:
+    with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(GET_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
-
+        
         if response.status_code == 200:
-            data = json.loads(response.text)
-            if data['error'] is None:
-                spinner.ok("✅")
-            else:
-                spinner.fail("💥 ")
-                
+
+            data = response.json()
+            if 'error' in data: 
+                if data['error'] is None:
+                    print(data['message'])
+                    spinner.text = "Done"
+                    spinner.ok("✅")
+                else:
+                    print(data['error'])
+                    print(data['message'])
+                    spinner.fail("💥 ")
+
+            
+            if output_type=='json':
+                with open(f'{out}.json', 'w') as f:
+                    json.dump(data, f)
+
+            elif output_type=='csv':
+                json_to_csv(data, out)
+
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-            
 
+
+
+
+def json_to_csv(data, name):
+
+    row = []
+    values = []
+
+    for obs in data['data']:
+        row.append(obs['start_time'])
+        row.append(obs['end_time'])
+        row.append(obs['value'])
+        values.append(row)
+        row = []
     
-        with open(f'{out}.json', 'w') as f:
-            f.write(response.text)
+    df = pd.DataFrame(values,columns=['start_time', 'end_time', 'value'])
+    df.to_csv(f'{name}.csv', index=False)
 
-        
-        
-
+ 
 
 if __name__=='__main__':
     main()

@@ -56,8 +56,6 @@ def main(params, latbounds, lonbounds, out):
     params = [param.strip() for param in params.split(',')]
     payload = {}
     coords = {}
-    token = ''
-
     param_list = []
     for par in params:
         param_list.append(par)
@@ -87,19 +85,24 @@ def main(params, latbounds, lonbounds, out):
     with yaspin(text="Downloading", color="yellow") as spinner:
         response = requests.post(GET_NETCDF_SUBSET_ENS_URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
-            spinner.ok("✅")
+
             if response.headers['content-type'] == "application/json":
-                data = json.loads(response.text)
+                data = response.json()
                 print(data['error'], data['message'])
                 spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+                with open(f'{out}.nc', 'wb') as f:
+                    f.write(response.content)
+
         else:
             print(response.status_code)
             spinner.fail("💥 ")
             
             
 
-        with open(f'{out}.nc', 'wb') as f:
-            f.write(response.content)
+
     
     
     

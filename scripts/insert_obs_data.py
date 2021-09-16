@@ -67,6 +67,7 @@ def main(obs_data, country_id):
             data = json.loads(response.text)
             if data['error'] is None:
                 print(data['message'])
+                spinner.text = "Done"
                 spinner.ok("✅")
             else:
                 print(data['error'], data['message'])
@@ -88,15 +89,12 @@ def create_json(file, country_id):
         dataframe
     country_id: str
         Id of country entered by the user
-
-    
+   
     Returns
     --------
     json 
           a json file containing rows of observation data
         
-       
-    
     """ 
     
     obs_data_json = {}
@@ -122,25 +120,3 @@ if __name__=="__main__":
     main()
 
 
-
-'''
-Json format for inserting data
-Not allowing insertion of data from multiple countries at once
-
-{   
-    country_id : <int>,
-    data: [
-        { 
-            station_id: <int>, 
-            parameter_id: <int>, 
-            level_id: <int>, 
-            start_time: <date>, 
-            end_time: <date>, 
-            value: <float>
-        },
-        .
-        .
-        .
-    ]
-}
-'''

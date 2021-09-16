@@ -15,12 +15,14 @@ Options:
 
 
 
-import json
 import requests
 import click
 import json
+import pandas as pd
 import os
+import sys
 from yaspin import yaspin
+sys.path.append('/home/anubinda/dataex-client/client')
 import sys
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL
@@ -28,10 +30,11 @@ from CONFIG import FETCH_OBS_SUMMARY_URL
 
 @click.command()
 @click.option('--out', help='output filename')
+@click.option('--output_type', type=click.Choice(['json', 'csv'], case_sensitive=False))
 
 
 
-def main(out):
+def main(out, output_type):
 
     auth_obj = auth()
     
@@ -50,27 +53,52 @@ def main(out):
         'Authorization': token
     }
 
-    with yaspin(text="Fetching", color="yellow") as spinner:
+    with yaspin(text="Fetching...", color="yellow") as spinner:
 
         response = requests.post(FETCH_OBS_SUMMARY_URL, headers=headers)
-
+        data = response.json()
         if response.status_code == 200:
-            data = json.loads(response.text)
-            if data['error'] is None:
-                print(data['message'])
-                spinner.ok("✅")
-            else:
-                spinner.fail("💥 ")
-            
+
+            if 'error' in data:
+                if data['error'] is None:
+                    print(data['message'])
+                    spinner.text = "Done"
+                    spinner.ok("✅")
+                else:
+                    print(data['message'])
+                    spinner.fail("💥 ")
+
+            if output_type=='json':
+                with open(f'{out}.json', 'w') as f:
+                    json.dump(data, f)
+            elif output_type=='csv':
+                json_to_csv(data, out)
+
         else:
             print(response.status_code)
             spinner.fail("💥 ")
             
-        with open(f'{out}.json', 'w') as f:
-            f.write(response.text)
+
+
 
           
+def json_to_csv(data, name):
+
+    row = []
+    values = []
+
+    for obs in data['summary']:
+        row.append(obs['name'])
+        row.append(obs['stn_num'])
+        row.append(obs['time_period'])
+        row.append(obs['total'])
+        row.append(obs['miss_ptg'])
+        values.append(row)
+        row = []
     
+    df = pd.DataFrame(values,columns=['name', 'stn_num', 'miss_ptg', 'total', 'time_period'])
+    df.to_csv(f'{name}.csv', index=False)
+
 
 
 if __name__=="__main__":
