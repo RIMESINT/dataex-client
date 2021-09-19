@@ -5,15 +5,15 @@ This tool downloads the data in netCDF file format.
 
 Usage:
 
-$ get_netcdf_subset_ecmwf_hres.py \-- params <str> \--latbounds <float> <float> \--lonbounds <float> <float> \--out <str>
+$ get_netcdf_subset_ecmwf_hres.py -- params <str> --latbounds <float> <float> --lonbounds <float> <float> --out <str>
 
 Options:
     params : str or list of str
-             Single or comma seperated parameter short names \n
+             Single or comma seperated parameter short names 
     latbounds : first float is for south and second float is for north
-             South and North latitude values space seperated \n
+             South and North latitude values space seperated 
     lonbounds : first float is for south and second float is for north 
-             West and East latitude values space seperated \n 
+             West and East latitude values space seperated 
     out : str
        output filename
       
@@ -42,9 +42,9 @@ parameters = [
 
 @click.command()
 @click.option('--params', is_flag=False, default=','.join(parameters), show_default=True, metavar='<columns>', type=click.STRING, help='Select parameters')
-@click.option('--latbounds', nargs=2, type=float, help='Enter bottom lat and then top lat; seperate values with space')
-@click.option('--lonbounds', nargs=2, type=float, help='Enter left lon and then right lon; sepearate values with space')
-@click.option('--out', help='output filename or full path with filename')
+@click.option('--latbounds', required=True, nargs=2, type=float, help='Enter bottom lat and then top lat; seperate values with space')
+@click.option('--lonbounds', required=True, nargs=2, type=float, help='Enter left lon and then right lon; sepearate values with space')
+@click.option('--out', required=True,help='output filename or full path with filename')
 
 def main(params, latbounds, lonbounds, out):
 
@@ -78,7 +78,7 @@ def main(params, latbounds, lonbounds, out):
         'Authorization': token
     }
 
-    with yaspin(text="Downloading", color="yellow") as spinner:
+    with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(GET_NETCDF_SUBSET_URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
 
@@ -97,11 +97,6 @@ def main(params, latbounds, lonbounds, out):
             spinner.fail("💥 ")
            
 
-    
-    
-    
-    
-    
 
 if __name__=='__main__':
     main()

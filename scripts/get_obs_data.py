@@ -5,22 +5,22 @@ This tool downloads the desired observation data in json format.
 
 Usage:
 
-$ get_obs_data.py \--start_date <YYYY-MM-DD> \--end_date <YYYY-MM-DD> \-- stn_id <int> \--p_id <int> \--out <str>
+$ get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- stn_id <int> --p_id <int> --out <str>
 
 Options:
     start_date : DateTime
-                 Date in YYYY-MM-DD format \n
+                 Date in YYYY-MM-DD format
         
     end_date : DateTime
-              Date in YYYY-MM-DD format \n
+              Date in YYYY-MM-DD format
     stn_id : int
              station id
             
     p_id : int 
-           parameter id \n       
+           parameter id     
 
     out : str
-          output filename \n
+          output filename
 
 """
 
@@ -38,12 +38,12 @@ from auth import auth
 from CONFIG import GET_OBS_DATA_URL
 
 @click.command()
-@click.option('--start_date', help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--end_date', help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--stn_id', help='Id of desired station',type=int)
-@click.option('--p_id', help='Id of desired parameter', type=int)
-@click.option('--output_type', type=click.Choice(['json', 'csv'], case_sensitive=False))
-@click.option('--out', help='output filename or path with filename')
+@click.option('--start_date', required=True, help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))
+@click.option('--end_date', required=True, help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
+@click.option('--stn_id', required=True, help='Id of desired station',type=int)
+@click.option('--p_id', required=True, help='Id of desired parameter', type=int)
+@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
+@click.option('--out', required=True, help='output filename or path with filename')
 
 
 def main(start_date, end_date, stn_id, p_id, output_type, out):
@@ -53,7 +53,6 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
         return 0
 
     payload = {}
-    token = ''
     payload['start_date'] = start_date.strftime('%Y-%m-%d')
     payload['end_date'] = end_date.strftime('%Y-%m-%d')
     payload['station_id'] = stn_id
@@ -87,8 +86,7 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
                     spinner.text = "Done"
                     spinner.ok("✅")
                 else:
-                    print(data['error'])
-                    print(data['message'])
+                    print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
             

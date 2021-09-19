@@ -42,14 +42,6 @@ class auth():
 
     def check_token(self):
 
-        '''
-        header_data = jwt.get_unverified_header(self.auth['token'])
-        data = jwt.decode(self.auth['token'], CONFIG.SECRET_KEY, algorithms=[header_data['alg']])
-        exp = dt.fromtimestamp(data['exp'])
-
-        if dt.utcnow() > exp: #+ delt(hours=5):
-            return False
-        '''
         print("checking token...")
         data =  self.auth
         
@@ -65,7 +57,7 @@ class auth():
             print(res_dict['message'])
             return True
 
-        print(res_dict["message"])
+        print(res_dict['error'], "-> ", res_dict['message'])
         return False
     
       
@@ -110,15 +102,22 @@ class auth():
         
 
     def get_new_token_from_dataex(self):
+        
         print("getting new token...")
         data = dict()
         data['username'] = self.auth['username']
         data['password'] = self.auth['password']
         token_response = requests.post(CONFIG.GET_TOKEN_URL, data=data)
-        response_dict = json.loads(token_response.text)
-        self.auth['token'] = response_dict['token']
-        with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
-                json.dump(self.auth, f)
-        
-        return response_dict['token']
+        response_dict = token_response.json()
+        if response_dict['error'] is None:
+            print(response_dict['message'])
+            self.auth['token'] = response_dict['token']    
+            with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
+                    json.dump(self.auth, f)
+
+
+        try:
+            return response_dict['token']
+        except:
+            print(response_dict['message'])
   

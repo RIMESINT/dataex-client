@@ -5,11 +5,11 @@ It takes as input the json file containing the observations along with the count
 
 Usage:
 
-$ get_obs_data.py \--country_id <int> \--obs_data <str> \n 
+$ get_obs_data.py --country_id <int> --obs_data <str> 
 
 Options:
     country_id : int
-                 id number of country \n
+                 id number of country
     obs_data : str
                input filename either csv or excel   
 """
@@ -29,8 +29,8 @@ from CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()
-@click.option('--obs_data', help='filename or path to file with filename')
-@click.option('--country_id', type=int, help='id of country')
+@click.option('--obs_data', require=True, help='filename or path to file with filename')
+@click.option('--country_id', require=True ,type=int, help='id of country')
 
 def main(obs_data, country_id):
 
@@ -58,7 +58,7 @@ def main(obs_data, country_id):
         'Authorization': token
     }
 
-    with yaspin(text="Inserting", color="yellow") as spinner:
+    with yaspin(text="Inserting...", color="yellow") as spinner:
 
         response = requests.post(INSERT_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
 
@@ -80,7 +80,7 @@ def main(obs_data, country_id):
 
 
 def create_json(file, country_id):
-    """\nCreates a json file
+    """Creates a json file
     
     Parameters
     ----------
@@ -114,6 +114,8 @@ def create_json(file, country_id):
     obs_data_json['data'] = data    
 
     return obs_data_json
+
+
 
 if __name__=="__main__":
     main()

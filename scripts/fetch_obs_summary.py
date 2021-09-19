@@ -28,8 +28,8 @@ from CONFIG import FETCH_OBS_SUMMARY_URL
 
 
 @click.command()
-@click.option('--out', help='output filename')
-@click.option('--output_type', type=click.Choice(['json', 'csv'], case_sensitive=False))
+@click.option('--out', required=True, help='output filename')
+@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
 
 
 
