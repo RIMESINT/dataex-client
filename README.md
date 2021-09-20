@@ -55,6 +55,16 @@ country_id : int
 obs_data : str
            file either csv or excel  
 ```
+Format of csv and excel
+
+The column headers in both csv and excel must be `start_time, end_time, value, level+id, parameter_id and station_id`.
+For csv:
+```
+start_time,end_time,value,level_id,parameter_id,station_id
+1995-01-25 00:00:00+0800,1995-01-26 00:00:00+0800,30,2,3,54
+1995-01-26 06:00:00.000000-08:00,1995-01-27 06:00:00.000000-08:00,29.6,2,3,54
+```
+
 
 ### Using get_obs_data.py
 This script is for getting observation data from dataex. The data can be downloaded in either csv or json format.
