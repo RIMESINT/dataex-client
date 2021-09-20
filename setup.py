@@ -1,6 +1,6 @@
 from setuptools import setup
 
-readme_contents = open('readme.md', 'r').read()
+readme_contents = open('README.md', 'r').read()
 
 scripts_list = [
     'scripts/get_netcdf_subset_ecmwf_ens.py',
