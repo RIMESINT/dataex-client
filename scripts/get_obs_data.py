@@ -3,11 +3,11 @@
 """Get Observation Data CLI
 
 This script allows the user to get the specified observation data from Dataex server. 
-This tool downloads the desired observation data in json format.
+This tool downloads the desired observation data in the selected format.
 
 Usage:
 
-$ get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- stn_id <int> --p_id <int> --out <str>
+$ get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- stn_id <int> --p_id <int> --output_type <str> --out <str>
 
 Options:
     start_date : DateTime
@@ -20,6 +20,9 @@ Options:
             
     p_id : int 
            parameter id     
+
+    output_type : str
+                  json or csv       
 
     out : str
           output filename

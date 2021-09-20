@@ -6,11 +6,13 @@ This script allows the user to fetch summary of observation data statistics from
 
 Usage:
 
-$ fetch_obs_summary.py \--out <str>
+$ fetch_obs_summary.py --out <str> --output_type <str>
 
 Options:
     out : str
-          name of output file            
+          name of output file      
+    output_type: str
+                 json or csv      
 
 """
 
