@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 """Fetch observation data summary CLI
 

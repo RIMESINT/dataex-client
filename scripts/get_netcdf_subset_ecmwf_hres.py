@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Get NetCDF Subset ECMWF HRES CLI
 
 This script allows the user to get a subset of ECMWF HRES data. 

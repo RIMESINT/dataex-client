@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Insert observation data CLI
 
 This script allows the user to insert observation data into Dataex server. 
