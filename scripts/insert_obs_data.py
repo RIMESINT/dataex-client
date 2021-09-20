@@ -65,7 +65,7 @@ def main(obs_data, country_id):
         response = requests.post(INSERT_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
 
         if response.status_code == 200:
-            data = json.loads(response.text)
+            data = response.json()
             if data['error'] is None:
                 print(data['message'])
                 spinner.text = "Done"
@@ -109,7 +109,7 @@ def create_json(file, country_id):
         row['end_time'] = file.iloc[i]['end_time'] + 'Z'
         row['value'] = int(file.iloc[i]['value'])
         data.append(row)
-        row={}
+        row = {}
 
     obs_data_json['country_id'] = country_id
 

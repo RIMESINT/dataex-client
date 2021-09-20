@@ -16,7 +16,7 @@ setup(
     python_requires = '>=3.6',
     author = 'nzahasan, anubinda',
     author_email = 'nzahasan@gmail.com, grg.jomle@gmail.com',
-    packages = ["client"],
+    packages = ["dataex-client"],
     include_package_data = True,
     url = "https://github.com/nzahasan/dataex-client",
     license = "MIT",

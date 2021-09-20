@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Get Observation Data CLI
 
 This script allows the user to get the specified observation data from Dataex server. 
