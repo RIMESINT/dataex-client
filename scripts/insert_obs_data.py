@@ -76,7 +76,7 @@ def main(obs_data, country_id):
             
         else:
             print(response.status_code)
-            data = json.loads(response.text)
+            data = response.json()
             print(data['error'], data['message'])
             spinner.fail("💥 ")
 
@@ -87,9 +87,9 @@ def create_json(file, country_id):
     Parameters
     ----------
     file : object
-        dataframe
+           dataframe
     country_id: str
-        Id of country entered by the user
+                Id of country entered by the user
    
     Returns
     --------
