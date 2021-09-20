@@ -1,5 +1,9 @@
 ## dataex-client API
-A client API for using dataex.
+A client API for using dataex services such as:
+- Getting observation data from dataex.
+- Insert observation data into dataex.
+- Getting netcdf subset files of HRES and ENS forecasts.
+- Getting summary information of observation data.
 
 #### Installation
 
