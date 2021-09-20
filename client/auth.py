@@ -1,12 +1,8 @@
-
 import os
 import getpass
 import json
-from sys import path
 import requests
-import jwt
 import CONFIG
-from datetime import datetime as dt, timedelta as delt
 
 
 class auth():
@@ -14,7 +10,6 @@ class auth():
     home_dir = os.environ['HOME']
 
     def __init__(self):
-
         path_to_file = os.path.join(self.home_dir, '.dataex_auth.json')
         data = {}
         if not os.path.exists(path_to_file):
@@ -34,7 +29,7 @@ class auth():
             return self.create_auth()
         else:
             with open(f'{self.home_dir}/.dataex_auth.json', 'r') as f:
-                 data = json.load(f)
+                data = json.load(f)
         
         self.auth = data
         return self.auth
@@ -113,7 +108,7 @@ class auth():
             print(response_dict['message'])
             self.auth['token'] = response_dict['token']    
             with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
-                    json.dump(self.auth, f)
+                json.dump(self.auth, f)
 
 
         try:

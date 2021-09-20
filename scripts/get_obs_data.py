@@ -24,18 +24,16 @@ Options:
 
 """
 
-
+import sys
 import json
 import pandas as pd
-import requests
-import click
-import json
-import os
-from yaspin import yaspin
-from datetime import datetime as dt
-import sys
 from auth import auth
 from CONFIG import GET_OBS_DATA_URL
+import requests
+import click
+from yaspin import yaspin
+
+
 
 @click.command()
 @click.option('--start_date', required=True, help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))

@@ -14,15 +14,12 @@ Options:
 """
 
 
-
+import sys
+import json
 import requests
 import click
-import json
 import pandas as pd
-import os
-import sys
 from yaspin import yaspin
-import sys
 from auth import auth
 from CONFIG import FETCH_OBS_SUMMARY_URL
 
@@ -36,12 +33,10 @@ from CONFIG import FETCH_OBS_SUMMARY_URL
 def main(out, output_type):
 
     auth_obj = auth()
-    
     try:
         is_token_valid = auth_obj.check_token()
     except:
-        is_token_valid = False   
-    
+        is_token_valid = False
     if not is_token_valid:
         token = auth_obj.get_new_token_from_dataex()
     else:
@@ -76,7 +71,6 @@ def main(out, output_type):
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-            
 
 
 
@@ -94,7 +88,6 @@ def json_to_csv(data, name):
         row.append(obs['miss_ptg'])
         values.append(row)
         row = []
-    
     df = pd.DataFrame(values,columns=['name', 'stn_num', 'miss_ptg', 'total', 'time_period'])
     df.to_csv(f'{name}.csv', index=False)
 

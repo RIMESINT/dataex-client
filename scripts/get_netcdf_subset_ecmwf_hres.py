@@ -23,10 +23,7 @@ Options:
 import json
 import requests
 import click
-from io import BytesIO 
-import getpass
 import json
-import os
 import sys
 from yaspin import yaspin
 from auth import auth
