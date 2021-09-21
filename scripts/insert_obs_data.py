@@ -21,7 +21,6 @@ import json
 import requests
 import click
 import json
-import os
 from yaspin import yaspin
 from datetime import datetime as dt
 import sys
