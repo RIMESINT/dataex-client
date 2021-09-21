@@ -3,7 +3,7 @@
 """Insert observation data CLI
 
 This script allows the user to insert observation data into Dataex server. 
-It takes as input the json file containing the observations along with the country id number.
+It can takes as input either csv or excel file containing the observations along with the country id number.
 
 Usage:
 
