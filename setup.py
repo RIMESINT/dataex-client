@@ -27,6 +27,7 @@ setup(
         "pandas",
         "yaspin",
         "click",
+        "openpyxl"
     ]
 )
 

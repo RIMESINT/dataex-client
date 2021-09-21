@@ -16,27 +16,26 @@ Options:
                input filename either csv or excel   
 """
 
-
+import sys
 import json
 import requests
 import click
 from yaspin import yaspin
-import sys
 import pandas as pd
 from auth import auth
 from CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()
-@click.option('--obs_data', require=True, help='filename or path to file with filename')
-@click.option('--country_id', require=True ,type=int, help='id of country')
+@click.option('--obs_data', required=True, help='filename or path to file with filename')
+@click.option('--country_id', required=True ,type=int, help='id of country')
 
 def main(obs_data, country_id):
 
     try:
         file = pd.read_csv(obs_data)
     except:
-        file = pd.read_excel(obs_data,engine='openpyxl')
+        file = pd.read_excel(obs_data, engine='openpyxl')
 
     payload = create_json(file, country_id)
 
