@@ -7,7 +7,7 @@ It takes as input the json file containing the observations along with the count
 
 Usage:
 
-$ get_obs_data.py --country_id <int> --obs_data <str> 
+$ insert_obs_data.py --country_id <int> --obs_data <str> 
 
 Options:
     country_id : int

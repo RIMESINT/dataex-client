@@ -65,7 +65,7 @@ The following parameters are available for subsetting in `ECMWF ENS`,
 This script is for inserting observation data into dataex. It takes as input a json file and country id.
 
 ```
-$ get_obs_data.py --country_id 1 --obs_data filename
+$ insert_obs_data.py --country_id 1 --obs_data filename
 ```
 Options:
 ```
