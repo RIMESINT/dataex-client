@@ -20,9 +20,7 @@ Options:
 import json
 import requests
 import click
-import json
 from yaspin import yaspin
-from datetime import datetime as dt
 import sys
 import pandas as pd
 from auth import auth

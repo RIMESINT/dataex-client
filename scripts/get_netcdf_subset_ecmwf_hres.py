@@ -25,7 +25,6 @@ Options:
 import json
 import requests
 import click
-import json
 import sys
 from yaspin import yaspin
 from auth import auth

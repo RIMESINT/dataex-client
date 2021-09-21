@@ -21,7 +21,7 @@ This package contains `get_netcdf_subset_ecmwf_hres.py` and `get_netcdf_subset_e
 ```
 $ get_netcdf_subset_ecmwf_hres.py --params u10 --latbounds 20 40 --lonbounds 80 120 --out filename
 
-$ get_netcdf_subset_ecmwf_ens.py --params u10 --latbounds 20 40 --lonbounds 80 120 --out filename
+$ get_netcdf_subset_ecmwf_ens.py --params t2m_q50 --latbounds 20 40 --lonbounds 80 120 --out filename
 ```
 
 Options:
@@ -38,6 +38,26 @@ Options:
 --out : str
         output filename
 
+```
+
+### List of parameters in ECMWF HRES
+
+The following parameters are available for subsetting in `ECMWF HRES`,
+
+```
+    u10, ssr, str, sshf, slhf
+    d2m, v10, t2m, cp, lsp
+    swvl1,swvl2, swvl3, swvl4
+```
+
+### List of parameters in ECMWF ENS
+
+The following parameters are available for subsetting in `ECMWF ENS`,
+
+```
+    cp_q5, cp_q25, cp_q50, cp_q75, cp_q95,
+    t2m_q5, t2m_q25, t2m_q50, t2m_q75, t2m_q95,
+    lsp_q5, lsp_q25, lsp_q50, lsp_q75, lsp_q95
 ```
 
 ### Using insert_obs_data.py 
