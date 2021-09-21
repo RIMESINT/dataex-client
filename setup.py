@@ -26,7 +26,6 @@ setup(
     install_requires=[
         "pandas",
         "yaspin",
-        "json",
         "click",
     ]
 )
