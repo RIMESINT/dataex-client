@@ -15,11 +15,9 @@ Options:
     latbounds : first float is for south and second float is for north
              South and North latitude values space seperated
     lonbounds : first float is for south and second float is for north
-             West and East latitude values space seperated
+             West and East longitude values space seperated
     out : str
        output filename
-    
-
 """
 
 import json
