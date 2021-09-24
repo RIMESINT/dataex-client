@@ -25,7 +25,7 @@ import requests
 import click
 import sys
 from yaspin import yaspin
-from client.auth import auth
+from client.auth.auth import auth
 from client.CONFIG import GET_NETCDF_SUBSET_ENS_URL
 
 

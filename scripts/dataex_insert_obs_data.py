@@ -22,7 +22,7 @@ import requests
 import click
 from yaspin import yaspin
 import pandas as pd
-from client.auth import auth
+from client.auth.auth import auth
 from client.CONFIG import INSERT_OBS_DATA_URL
 
 
