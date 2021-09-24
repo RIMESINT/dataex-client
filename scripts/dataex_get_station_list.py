@@ -1,25 +1,18 @@
 #!/usr/bin/env python3
 
-"""Get Observation Data CLI
+"""Get Station Info CLI
 
-This script allows the user to get the specified observation data from Dataex server. 
-This tool downloads the desired observation data in the selected format.
+This script allows the user to get country's station information such as ID number and name from Dataex server. 
+This tool can download in either csv or json file.
 
 Usage:
 
-$ get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- stn_id <int> --p_id <int> --output_type <str> --out <str>
+$ dataex_get_station_info.py --country_id <int> --output_type <str> --out <str>
 
 Options:
-    start_date : DateTime
-                 Date in YYYY-MM-DD format
-        
-    end_date : DateTime
-              Date in YYYY-MM-DD format
-    stn_id : int
-             station id
-            
-    p_id : int 
-           parameter id     
+
+    country : int
+              country id     
 
     output_type : str
                   json or csv       
@@ -33,7 +26,7 @@ import sys
 import json
 import pandas as pd
 from auth import auth
-from CONFIG import GET_OBS_DATA_URL
+from CONFIG import GET_STATION_INFO_URL
 import requests
 import click
 from yaspin import yaspin
@@ -41,26 +34,24 @@ from yaspin import yaspin
 
 
 @click.command()
-@click.option('--start_date', required=True, help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--end_date', required=True, help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--stn_id', required=True, help='Id of desired station',type=int)
-@click.option('--p_id', required=True, help='Id of desired parameter', type=int)
+@click.option('--country_id', required=True, help='Id number of country', type=click.STRING)
+@click.option('--not_empty/--empty', help='Option to filter stations that are empty', default=False)
 @click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
 @click.option('--out', required=True, help='output filename or path with filename')
 
 
-def main(start_date, end_date, stn_id, p_id, output_type, out):
+def main(country_id, not_empty, output_type, out):
     
-    if start_date > end_date:
-        print("date range is invalid:start date is greater")
-        return 0
 
-    payload = {}
-    payload['start_date'] = start_date.strftime('%Y-%m-%d')
-    payload['end_date'] = end_date.strftime('%Y-%m-%d')
-    payload['station_id'] = stn_id
-    payload['param_id'] = p_id
+    payload = dict()
+    payload['country_id'] = country_id
 
+    if not_empty:
+        payload['not_empty'] = True
+    else:
+        payload['not_empty'] = None
+
+    
     auth_obj = auth()
     try:
         is_token_valid = auth_obj.check_token()
@@ -78,25 +69,24 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
+        response = requests.get(GET_STATION_INFO_URL, headers=headers, data=payload)
         
         if response.status_code == 200:
 
             data = response.json()
+
             if 'error' in data: 
                 if data['error'] is None:
-                    print(data['message'])
+                    print(data['message'])    
                     spinner.text = "Done"
                     spinner.ok("✅")
                 else:
                     print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
-            
             if output_type=='json':
                 with open(f'{out}.json', 'w') as f:
-                    json.dump(data, f)
-
+                    json.dump(data['data'], f)
             elif output_type=='csv':
                 json_to_csv(data, out)
 
@@ -105,24 +95,28 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
             spinner.fail("💥 ")
 
 
-
-
 def json_to_csv(data, name):
 
     row = []
     values = []
 
     for obs in data['data']:
-        row.append(obs['start_time'])
-        row.append(obs['end_time'])
-        row.append(obs['value'])
+        row.append(obs['id'])
+        row.append(obs['name'])
+        row.append(obs['lat'])
+        row.append(obs['lon'])
+        row.append(obs['country__name'])
+        row.append(obs['wmo_id'])
+        row.append(obs['station_type'])
+        row.append(obs['maintainer__name'])
+        row.append(obs['maintainer__website'])
         values.append(row)
         row = []
     
-    df = pd.DataFrame(values,columns=['start_time', 'end_time', 'value'])
+    df = pd.DataFrame(values,columns=['id', 'name', 'lat', 'lon', 'country_name', 'wmo_id', 'station_type', 'maintainer__name', 'maintainer__website'])
     df.to_csv(f'{name}.csv', index=False)
 
- 
+
 
 if __name__=='__main__':
     main()

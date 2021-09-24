@@ -108,10 +108,12 @@ class auth():
         response_dict = token_response.json()
         if response_dict['error'] is None:
             print(response_dict['message'])
-            self.auth['token'] = response_dict['token']    
-            with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
-                json.dump(self.auth, f)
-
+            try:
+                self.auth['token'] = response_dict['token']    
+                with open(f'{self.home_dir}/.dataex_auth.json','w') as f:
+                    json.dump(self.auth, f)
+            except:
+                print('Token request rejected') 
 
         try:
             return response_dict['token']
