@@ -83,7 +83,7 @@ def json_to_csv(data, name):
     row = []
     values = []
 
-    for obs in data['summary']:
+    for obs in data['countries']:
         row.append(obs['name'])
         row.append(obs['stn_num'])
         row.append(obs['time_period'])
