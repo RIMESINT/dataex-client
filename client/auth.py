@@ -4,7 +4,7 @@ import os
 import getpass
 import json
 import requests
-import CONFIG
+from . import CONFIG
 
 
 class auth():

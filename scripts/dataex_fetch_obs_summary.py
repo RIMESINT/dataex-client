@@ -23,8 +23,8 @@ import requests
 import click
 import pandas as pd
 from yaspin import yaspin
-from auth import auth
-from CONFIG import FETCH_OBS_SUMMARY_URL
+from client.auth import auth
+from client.CONFIG import FETCH_OBS_SUMMARY_URL
 
 
 @click.command()

@@ -22,8 +22,8 @@ import requests
 import click
 from yaspin import yaspin
 import pandas as pd
-from auth import auth
-from CONFIG import INSERT_OBS_DATA_URL
+from client.auth import auth
+from client.CONFIG import INSERT_OBS_DATA_URL
 
 
 @click.command()

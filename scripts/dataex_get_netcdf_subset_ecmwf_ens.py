@@ -25,8 +25,8 @@ import requests
 import click
 import sys
 from yaspin import yaspin
-from auth import auth
-from CONFIG import GET_NETCDF_SUBSET_ENS_URL
+from client.auth import auth
+from client.CONFIG import GET_NETCDF_SUBSET_ENS_URL
 
 
 parameters = [

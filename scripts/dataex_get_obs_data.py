@@ -32,8 +32,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from auth import auth
-from CONFIG import GET_OBS_DATA_URL
+from client.auth import auth
+from client.CONFIG import GET_OBS_DATA_URL
 import requests
 import click
 from yaspin import yaspin

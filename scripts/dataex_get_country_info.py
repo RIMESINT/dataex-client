@@ -25,8 +25,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from auth import auth
-from CONFIG import GET_COUNTRY_INFO_URL
+from client.auth import auth
+from client.CONFIG import GET_COUNTRY_INFO_URL
 import requests
 import click
 from yaspin import yaspin
