@@ -25,8 +25,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from client.auth.auth import auth
-from client.CONFIG import GET_COUNTRY_INFO_URL
+from dataex_client_core.auth import auth
+from dataex_client_core.CONFIG import GET_COUNTRY_INFO_URL
 import requests
 import click
 from yaspin import yaspin

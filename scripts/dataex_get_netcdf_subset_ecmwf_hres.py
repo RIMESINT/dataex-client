@@ -27,8 +27,8 @@ import requests
 import click
 import sys
 from yaspin import yaspin
-from client.auth.auth import auth
-from client.CONFIG import GET_NETCDF_SUBSET_URL
+from dataex_client_core.auth import auth
+from dataex_client_core.CONFIG import GET_NETCDF_SUBSET_URL
 
 
 parameters = [
