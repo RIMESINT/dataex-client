@@ -4,7 +4,7 @@ import os
 import getpass
 import json
 import requests
-from dataex_client import CONFIG
+from dataex_client_core import CONFIG
 
 
 class auth():
