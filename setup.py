@@ -8,7 +8,7 @@ base_path = os.path.dirname(os.path.realpath(__file__))
 readme_contents = open('README.md', 'r').read()
 
 scripts_list = [ 
-                x for x in os.listdir(f'{base_path}/scripts/') \
+                f'scripts/{x}' for x in os.listdir(f'./scripts/') \
                 if x.startswith('dataex') and x.endswith('.py')
             ]
 
