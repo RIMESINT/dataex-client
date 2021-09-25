@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+dataex_client.egg-info/PKG-INFO
+dataex_client.egg-info/SOURCES.txt
+dataex_client.egg-info/dependency_links.txt
+dataex_client.egg-info/requires.txt
+dataex_client.egg-info/top_level.txt
+dataex_client_core/CONFIG.py
+dataex_client_core/__init__.py
+dataex_client_core/auth.py

@@ -8,10 +8,8 @@ A client API for using dataex services such as:
 #### Installation
 
 dataex-client can be installed using the following commands
-```
-$ git clone https://github.com/nzahasan/dataex-client.git
-$ cd dataex-client
-$ python3 setup.py install
+``` bash
+$ pip install https://github.com/nzahasan/dataex-client/zipball/master
 ```
 
 #### Using get_netcdf_subset_ecmwf_hres.py and get_netcdf_subset_ecmwf_ens.py
