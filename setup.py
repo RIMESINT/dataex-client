@@ -8,9 +8,14 @@ base_path = os.path.dirname(os.path.realpath(__file__))
 readme_contents = open('README.md', 'r').read()
 
 scripts_list = [ 
-                f'scripts/{x}' for x in os.listdir(f'./scripts/') \
-                if x.startswith('dataex') and x.endswith('.py')
-            ]
+        'scripts/dataex_fetch_obs_summary.py',             
+        'scripts/dataex_get_obs_data.py',
+        'scripts/dataex_get_country_info.py',              
+        'scripts/dataex_get_station_list.py',
+        'scripts/dataex_get_netcdf_subset_ecmwf_ens.py',   
+        'scripts/dataex_insert_obs_data.py',
+        'scripts/dataex_get_netcdf_subset_ecmwf_hres.py'
+    ]
 
 setup(
     name = "dataex-client",
