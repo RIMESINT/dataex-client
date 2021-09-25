@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-"""Fetch observation data summary CLI
+"""Fetch observation data summary
 
-This script allows the user to fetch summary of observation data statistics from Dataex server. 
+This script allows the user to fetch summary of observation data statistics from Dataex. 
 
 Usage:
 
-$ fetch_obs_summary.py --out <str> --output_type <str>
+$ fetch_obs_summary.py --out <str> --output-format <str>
 
 Options:
-    out : str
+    out: str
           name of output file      
-    output_type: str
+    output-format: str
                  json or csv      
 
 """
@@ -24,16 +24,25 @@ import click
 import pandas as pd
 from yaspin import yaspin
 from dataex_client_core.auth import auth
+from tabulate import tabulate
 from dataex_client_core.CONFIG import FETCH_OBS_SUMMARY_URL
 
 
 @click.command()
-@click.option('--out', required=True, help='output filename')
-@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
-
-
-
-def main(out, output_type):
+@click.option(
+    '--output', '-o',
+    required=False,
+    default=None,
+    help = 'output filename'
+)
+@click.option(
+    '--output_format', '-of', 
+    required=False,
+    type=click.Choice(['json', 'table', 'csv'], case_sensitive=False),
+    default='table',
+    help= 'output file format'
+)
+def main(output,output_format):
 
     auth_obj = auth()
     try:
@@ -54,47 +63,48 @@ def main(out, output_type):
 
         response = requests.post(FETCH_OBS_SUMMARY_URL, headers=headers)
         data = response.json()
+        
         if response.status_code == 200:
 
             if 'error' in data:
                 if data['error'] is None:
-                    print(data['message'])
-                    spinner.text = "Done"
+                    spinner.text = "Data fetched successfully"
                     spinner.ok("✅")
                 else:
                     print(data['message'])
                     spinner.fail("💥 ")
 
-            if output_type=='json':
-                with open(f'{out}.json', 'w') as f:
-                    json.dump(data, f)
-            elif output_type=='csv':
-                json_to_csv(data, out)
+            if output_format == 'json':
+                
+                if output is not None:
+                    with open(output,'w') as outfile:
+                        json.dump(data['countries'], outfile)
+                else:
+                    print(data['countries'])
+            
+            elif output_format in ['table','csv']:
+
+                df = pd.DataFrame( data['countries'] )
+                
+                if output_format == 'table':
+                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
+
+                    if output is not None: 
+
+                        with open(output, 'w') as outfile:
+                            outfile.write(table)
+                        
+                    else:
+                        print(table)
+                
+                elif output_format == 'csv':
+
+                    csv = df.to_csv( output, index=False)
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
-
-
-          
-def json_to_csv(data, name):
-
-    row = []
-    values = []
-
-    for obs in data['countries']:
-        row.append(obs['name'])
-        row.append(obs['stn_num'])
-        row.append(obs['time_period'])
-        row.append(obs['total'])
-        row.append(obs['miss_ptg'])
-        values.append(row)
-        row = []
-    df = pd.DataFrame(values,columns=['name', 'stn_num', 'miss_ptg', 'total', 'time_period'])
-    df.to_csv(f'{name}.csv', index=False)
-
-
+        
 
 if __name__=="__main__":
     main()

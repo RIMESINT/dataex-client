@@ -7,14 +7,14 @@ This tool can download in either csv or json file.
 
 Usage:
 
-$ dataex_get_country_info.py --country <str> --output_type <str> --out <str>
+$ dataex_get_country_info.py --country <str> --output_format <str> --out <str>
 
 Options:
 
     country : str
               name of country      
 
-    output_type : str
+    output_format : str
                   json or csv       
 
     out : str
@@ -30,16 +30,17 @@ from dataex_client_core.CONFIG import GET_COUNTRY_INFO_URL
 import requests
 import click
 from yaspin import yaspin
+from tabulate import tabulate
 
 
 
 @click.command()
-@click.option('--country', help='optional - either give country name or just leave it from command line', type=click.STRING)
-@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
-@click.option('--out', required=True, help='output filename or path with filename')
+@click.option('--country', '-c', help='optional - either give country name or just leave it from command line', type=click.STRING)
+@click.option('--output_format', '-of' ,required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
+@click.option('--out', '-o' ,required=True, help='output filename or path with filename')
 
 
-def main(country, output_type, out):
+def main(country, output_format, out):
     
 
     payload = dict()
@@ -82,10 +83,10 @@ def main(country, output_type, out):
                     print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
-            if output_type=='json':
+            if output_format=='json':
                 with open(f'{out}.json', 'w') as f:
                     json.dump(data['info'], f)
-            elif output_type=='csv':
+            elif output_format=='csv':
                 json_to_csv(data, out)
 
         else:

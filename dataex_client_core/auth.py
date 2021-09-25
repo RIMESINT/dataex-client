@@ -6,6 +6,9 @@ import json
 import requests
 from dataex_client_core import CONFIG
 
+'''
+
+'''
 
 class auth():
 
@@ -119,4 +122,9 @@ class auth():
             return response_dict['token']
         except:
             print(response_dict['message'])
+
+
+    def get_token_with_refresh_token(self):
+
+        pass
   
