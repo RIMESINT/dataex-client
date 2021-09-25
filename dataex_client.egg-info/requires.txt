@@ -1,5 +1,0 @@
-pandas
-yaspin
-click
-openpyxl
-requests
