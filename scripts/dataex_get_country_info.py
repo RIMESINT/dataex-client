@@ -25,8 +25,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from dataex_client_core.auth import auth
-from dataex_client_core.CONFIG import GET_COUNTRY_INFO_URL
+from dataexclient.auth import auth
+from dataexclient.config import GET_COUNTRY_INFO_URL
 import requests
 import click
 from yaspin import yaspin
@@ -35,9 +35,21 @@ from tabulate import tabulate
 
 
 @click.command()
-@click.option('--country', '-c', help='optional - either give country name or just leave it from command line', type=click.STRING)
-@click.option('--output_format', '-of' ,required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
-@click.option('--out', '-o' ,required=True, help='output filename or path with filename')
+@click.option(
+    '--country', '-c', 
+    type=click.STRING,
+    help='optional - either give country name or just leave it from command line', 
+)
+@click.option(
+    '--output_format', '-of', 
+    required=True, 
+    type=click.Choice(['json', 'csv', 'table'], case_sensitive=False)
+)
+@click.option(
+    '--out', '-o',
+    required=True, 
+    help='output filename or path with filename'
+)
 
 
 def main(country, output_format, out):

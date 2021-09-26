@@ -4,7 +4,7 @@ import os
 import getpass
 import json
 import requests
-from dataex_client_core import CONFIG
+from . import config
 
 '''
 
@@ -49,7 +49,7 @@ class auth():
             'Content-Type': 'application/json',
             'Authorization': data['token']
         }
-        response = requests.post(CONFIG.CHECK_TOKEN_URL, headers=headers)
+        response = requests.post(config.CHECK_TOKEN_URL, headers=headers)
         
         res_dict  = json.loads(response.text)
         
@@ -107,7 +107,7 @@ class auth():
         data = dict()
         data['username'] = self.auth['username']
         data['password'] = self.auth['password']
-        token_response = requests.post(CONFIG.GET_TOKEN_URL, data=data)
+        token_response = requests.post(config.GET_TOKEN_URL, data=data)
         response_dict = token_response.json()
         if response_dict['error'] is None:
             print(response_dict['message'])

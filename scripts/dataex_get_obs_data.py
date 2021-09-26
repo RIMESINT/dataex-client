@@ -32,8 +32,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from dataex_client_core.auth import auth
-from dataex_client_core.auth import GET_OBS_DATA_URL
+from dataexclient.auth import auth
+from dataexclient.config import GET_OBS_DATA_URL
 import requests
 import click
 from yaspin import yaspin
