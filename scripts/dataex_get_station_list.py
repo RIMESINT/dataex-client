@@ -7,7 +7,7 @@ This tool can download in either csv or json file.
 
 Usage:
 
-$ dataex_get_station_info.py --country_id <int> --output_type <str> --out <str>
+$ dataex_get_station_info.py --country_id <int> --output_type <str> --output <str>
 
 Options:
 
@@ -17,7 +17,7 @@ Options:
     output_type : str
                   json or csv       
 
-    out : str
+    output : str
           output filename
 
 """
@@ -28,19 +28,20 @@ import pandas as pd
 from dataex_client_core.auth import auth
 from dataex_client_core.CONFIG import GET_STATION_INFO_URL
 import requests
+from tabulate import tabulate
 import click
 from yaspin import yaspin
 
 
 
 @click.command()
-@click.option('--country_id', required=True, help='Id number of country', type=click.STRING)
-@click.option('--not_empty/--empty', help='Option to filter stations that are empty', default=False)
-@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
-@click.option('--out', required=True, help='output filename or path with filename')
+@click.option('--country_id', '-cid',required=True, help='Id number of country', type=click.STRING)
+@click.option('--not_empty/--empty', required=False,help='Option to choose either stations that are empty or not', default=False)
+@click.option('--output_format', '-of',required=False, default='table',type=click.Choice(['json', 'table' ,'csv'], case_sensitive=False))
+@click.option('--output', '-o',required=False, help='output filename')
 
 
-def main(country_id, not_empty, output_type, out):
+def main(country_id, not_empty, output_format, output):
     
 
     payload = dict()
@@ -69,7 +70,7 @@ def main(country_id, not_empty, output_type, out):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.get(GET_STATION_INFO_URL, headers=headers, data=payload)
+        response = requests.post(GET_STATION_INFO_URL, headers=headers, data=json.dumps(payload))
         
         if response.status_code == 200:
 
@@ -84,38 +85,45 @@ def main(country_id, not_empty, output_type, out):
                     print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
-            if output_type=='json':
-                with open(f'{out}.json', 'w') as f:
-                    json.dump(data['data'], f)
-            elif output_type=='csv':
-                json_to_csv(data, out)
+            if output_format == 'json':
+
+                if output is not None:
+
+                    if not output.endswith('.json'):
+                        output += '.json'
+
+                    with open(f'{output}', 'w') as f:
+                        json.dump(data['data'], f)
+
+                else:
+                    print(data['data'])        
+
+            elif output_format in ['csv','table']:
+
+                df = pd.DataFrame( data['data'] )
+
+                if output_format == 'table':
+                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
+                    if output is not None:
+                        
+                        with open(output, 'w') as outfile:
+                            outfile.write(table)
+                    else:
+                        print(table)        
+
+                elif output_format == 'csv':
+
+                    if output is not None:
+
+                        if not output.endswith('.csv'):
+                            output += '.csv'
+                            
+                        df.to_csv(output, index=False)
+
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
-
-def json_to_csv(data, name):
-
-    row = []
-    values = []
-
-    for obs in data['data']:
-        row.append(obs['id'])
-        row.append(obs['name'])
-        row.append(obs['lat'])
-        row.append(obs['lon'])
-        row.append(obs['country__name'])
-        row.append(obs['wmo_id'])
-        row.append(obs['station_type'])
-        row.append(obs['maintainer__name'])
-        row.append(obs['maintainer__website'])
-        values.append(row)
-        row = []
-    
-    df = pd.DataFrame(values,columns=['id', 'name', 'lat', 'lon', 'country_name', 'wmo_id', 'station_type', 'maintainer__name', 'maintainer__website'])
-    df.to_csv(f'{name}.csv', index=False)
-
 
 
 if __name__=='__main__':

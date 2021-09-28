@@ -6,10 +6,10 @@ This script allows the user to fetch summary of observation data statistics from
 
 Usage:
 
-$ fetch_obs_summary.py --out <str> --output-format <str>
+$ dataex_fetch_obs_summary.py --output <str> --output-format <str>
 
 Options:
-    out: str
+    output: str
           name of output file      
     output-format: str
                  json or csv      

@@ -38,12 +38,12 @@ parameters = [
 ]
 
 @click.command()
-@click.option('--params', is_flag=False, default=','.join(parameters), show_default=True, metavar='<columns>', type=click.STRING, help='Select parameters')
-@click.option('--latbounds', required=True, nargs=2, type=float, help='Enter bottom lat and then top lat; seperate values with space')
-@click.option('--lonbounds', required=True, nargs=2, type=float, help='Enter left lon and then right lon; sepearate values with space')
-@click.option('--out', required=True, help='output filename or full path with filename')
+@click.option('--params', '-p', is_flag=False, default=','.join(parameters), show_default=True, metavar='<columns>', type=click.STRING, help='Select parameters')
+@click.option('--latbounds', '-lat', required=True, nargs=2, type=float, help='Enter bottom lat and then top lat with space in between')
+@click.option('--lonbounds', '-lon', required=True, nargs=2, type=float, help='Enter left lon and then right lon wuth space in between')
+@click.option('--output', '-o', required=True, help='output filename')
 
-def main(params, latbounds, lonbounds, out):
+def main(params, latbounds, lonbounds, output):
 
 
 
@@ -87,7 +87,9 @@ def main(params, latbounds, lonbounds, out):
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-                with open(f'{out}.nc', 'wb') as f:
+                if not output.endswith('.nc'):
+                    output += '.nc' 
+                with open(f'{output}', 'wb') as f:
                     f.write(response.content)
 
         else:

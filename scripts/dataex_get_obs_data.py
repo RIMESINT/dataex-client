@@ -7,7 +7,7 @@ This tool downloads the desired observation data in the selected format.
 
 Usage:
 
-$ dataex_get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- stn_id <int> --p_id <int> --output_type <str> --out <str>
+$ dataex_get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- station_id <int> --parameter_id <int> --output_type <str> --output <str>
 
 Options:
     start_date : DateTime
@@ -15,16 +15,16 @@ Options:
         
     end_date : DateTime
               Date in YYYY-MM-DD format
-    stn_id : int
+    station_id : int
              station id
             
-    p_id : int 
+    parameter_id : int 
            parameter id     
 
     output_type : str
                   json or csv       
 
-    out : str
+    output : str
           output filename
 
 """
@@ -33,23 +33,24 @@ import sys
 import json
 import pandas as pd
 from dataex_client_core.auth import auth
-from dataex_client_core.auth import GET_OBS_DATA_URL
+from dataex_client_core.CONFIG import GET_OBS_DATA_URL
 import requests
+from tabulate import tabulate
 import click
 from yaspin import yaspin
 
 
 
 @click.command()
-@click.option('--start_date', required=True, help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--end_date', required=True, help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
-@click.option('--stn_id', required=True, help='Id of desired station',type=int)
-@click.option('--p_id', required=True, help='Id of desired parameter', type=int)
-@click.option('--output_type', required=True, type=click.Choice(['json', 'csv'], case_sensitive=False))
-@click.option('--out', required=True, help='output filename or path with filename')
+@click.option('--start_date','-sd',required=True, help='Start date of obs data', type=click.DateTime(formats=["%Y-%m-%d"]))
+@click.option('--end_date', '-ed', required=True, help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
+@click.option('--station_id', '-si', required=True, help='Id of desired station',type=int)
+@click.option('--parameter_id', '-pi', required=True, help='Id of desired parameter', type=int)
+@click.option('--output_format', '-ot', required=False, default='table' , help='output file format',type=click.Choice(['json','table','csv'], case_sensitive=False))
+@click.option('--output', '-o', required=False, default=None, help='output filename')
 
 
-def main(start_date, end_date, stn_id, p_id, output_type, out):
+def main(start_date, end_date, station_id, parameter_id, output_format, output):
     
     if start_date > end_date:
         print("date range is invalid:start date is greater")
@@ -58,8 +59,8 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
     payload = {}
     payload['start_date'] = start_date.strftime('%Y-%m-%d')
     payload['end_date'] = end_date.strftime('%Y-%m-%d')
-    payload['station_id'] = stn_id
-    payload['param_id'] = p_id
+    payload['station_id'] = station_id
+    payload['param_id'] = parameter_id
 
     auth_obj = auth()
     try:
@@ -93,41 +94,46 @@ def main(start_date, end_date, stn_id, p_id, output_type, out):
                     spinner.fail("💥 ")
 
             
-            if output_type=='json':
-                with open(f'{out}.json', 'w') as f:
-                    json.dump(data['data'], f)
+            if output_format == 'json':
+                if output is not None:
+                    if not output.endswith('.json'):
+                        output += '.json'
 
-            elif output_type=='csv':
-                json_to_csv(data, out)
+                    with open(f'{output}', 'w') as f:
+                        json.dump(data['data'], f)
+                else:
+                    print(data['data'])
+    
+            elif output_format in ['csv','table']:
+
+                df = pd.DataFrame(data['data'])
+
+                if output_format == 'table':
+
+                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
+
+                    if output is not None:
+
+                        with open(output, 'w') as outfile:
+                            outfile.write(table)
+                    else:
+                        print(table)
+
+                
+                elif output_format == 'csv':
+
+                    if not output.endswith('.csv'):
+                        output += '.csv'
+
+                    df.to_csv(output, index=False)
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
 
 
-
-
-def json_to_csv(data, name):
-
-    row = []
-    values = []
-
-    for obs in data['data']:
-        row.append(obs['start_time'])
-        row.append(obs['end_time'])
-        row.append(obs['value'])
-        values.append(row)
-        row = []
-    
-    df = pd.DataFrame(values,columns=['start_time', 'end_time', 'value'])
-    df.to_csv(f'{name}.csv', index=False)
-
- 
-
 if __name__=='__main__':
     main()
-
-
 
 
 """
