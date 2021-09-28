@@ -23,9 +23,9 @@ import requests
 import click
 import pandas as pd
 from yaspin import yaspin
-from dataex_client_core.auth import auth
 from tabulate import tabulate
-from dataex_client_core.CONFIG import FETCH_OBS_SUMMARY_URL
+from dataexclient.auth import auth
+from dataexclient.config import FETCH_OBS_SUMMARY_URL
 
 
 @click.command()

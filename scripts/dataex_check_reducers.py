@@ -21,8 +21,8 @@ Options:
 import sys
 import json
 import pandas as pd
-from dataex_client_core.auth import auth
-from dataex_client_core.CONFIG import CHECK_REDUCERS_URL
+from dataexclient.auth import auth
+from dataexclient.config import CHECK_REDUCERS_URL
 import requests
 from tabulate import tabulate
 import click

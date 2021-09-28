@@ -1,5 +1,5 @@
 from setuptools import setup
-from dataex_client_core.CONFIG import VERSION
+from dataexclient import __version__
 
 readme_contents = open('README.md', 'r').read()
 
@@ -16,11 +16,11 @@ scripts_list = [
 
 setup(
     name = "dataex-client",
-    version = VERSION,
+    version = __version__,
     python_requires = '>=3.6',
     author = 'nzahasan, anubinda',
     author_email = 'nzahasan@gmail.com, grg.jomle@gmail.com',
-    packages = ['dataex_client_core'],
+    packages = ['dataexclient'],
     include_package_data = True,
     url = "https://github.com/nzahasan/dataex-client",
     license = "MIT",
