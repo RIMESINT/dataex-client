@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""Get ecmwf ens region data CLI
+"""Get ecmwf hres region data analysis CLI
 
-This script allows the user to download analysis of ecmwf ens region data.
+This script allows the user to download analysis of ecmwf hres region data.
 
 Usage:
 
-$ dataex_get_ecmwf_ens_region_data.py --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --out <str>
+$ dataex_get_ecmwf_hres_region_data_analysis.py --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --out <str>
 
 Options:
    
@@ -31,18 +31,18 @@ import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth
-from dataexclient.config import GET_ECMWF_ENS_REGION_DATA_URL
+from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL
 import requests
 import click
 from yaspin import yaspin
 
 
 @click.command()
-@click.option('--reducer', '-r', required=True, help='name of reducer', type=click.STRING)
-@click.option('--asset_identifier', '-ai', required=True, help='unique identifier for asset', type=click.STRING)
-@click.option('--unique_field', '-uf', required=True, help='unique fields in asset', type=click.STRING)
-@click.option('--output_format', '-of' , required=True, type=click.Choice(['json', 'xlsx'], case_sensitive=False))
-@click.option('--output', '-o' , required=True, help='output filename')
+@click.option('--reducer', '-r', help='name of reducer', type=click.STRING)
+@click.option('--asset_identifier', '-ai', help='unique identifier for asset', type=click.STRING)
+@click.option('--unique_field', '-uf', help='unique fields in asset', type=click.STRING)
+@click.option('--output_format', '-of' ,required=True, type=click.Choice(['json', 'xlsx'], case_sensitive=False))
+@click.option('--output', '-o' ,required=False, help='output filename')
 
 
 def main(reducer, asset_identifier, unique_field, output_format, output):
@@ -70,22 +70,18 @@ def main(reducer, asset_identifier, unique_field, output_format, output):
     payload['unique_field'] = unique_field
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_ECMWF_ENS_REGION_DATA_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(GET_ECMWF_HRES_REGION_DATA_URL, headers=headers, data=json.dumps(payload))
         
         if response.status_code == 200:
 
             data = response.json()
 
             if 'error' in data: 
-
                 if data['error'] is None:
-
                     print(data['message'])    
                     spinner.text = "Done"
                     spinner.ok("✅")
-
                 else:
-
                     print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
@@ -98,6 +94,10 @@ def main(reducer, asset_identifier, unique_field, output_format, output):
                     json.dump(data['data'], f)
 
             elif output_format=='xlsx':
+
+                if not output.endswith('.xlsx'):
+                    output += '.xlsx'
+                
                 json_to_excel(data['r_data'], output)
 
         else:
@@ -139,21 +139,9 @@ def json_to_excel(data, name):
     writer.close()
 
 
-
 if __name__=='__main__':
     main()
 
 
 
-
-"""
-payload = {
-            'params': [ 'ssr', 't2m'],
-            'domain': {
-                    'left-lon': 100.0,   
-                    'right-lon': 150.0,
-                    'top-lat': 40.0,
-                    'bottom-lat': 9.0
-    }
-}
 """

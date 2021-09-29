@@ -112,14 +112,3 @@ if __name__=='__main__':
 
 
 
-"""
-payload = {
-            'params': [ 'ssr', 't2m'],
-            'domain': {
-                    'left-lon': 100.0,   
-                    'right-lon': 150.0,
-                    'top-lat': 40.0,
-                    'bottom-lat': 9.0
-    }
-}
-"""
