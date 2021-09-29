@@ -98,7 +98,7 @@ def main(reducer, asset_identifier, unique_field, output_format, output):
                 if not output.endswith('.xlsx'):
                     output += '.xlsx'
                 
-                json_to_csv(data['r_data'], output)
+                json_to_excel(data['r_data'], output)
 
         else:
             print(response.status_code)
@@ -106,7 +106,7 @@ def main(reducer, asset_identifier, unique_field, output_format, output):
 
 
 
-def json_to_csv(data, name):
+def json_to_excel(data, name):
     
     writer = pd.ExcelWriter(name)
     start_dates = []
