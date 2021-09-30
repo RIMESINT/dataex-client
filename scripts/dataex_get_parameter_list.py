@@ -23,7 +23,6 @@ Options:
 """
 
 import sys
-sys.path.append('/home/anubinda/dataex-client')
 import json
 import pandas as pd
 from dataexclient.auth import auth
