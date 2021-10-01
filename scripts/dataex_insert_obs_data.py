@@ -7,13 +7,13 @@ It can takes as input either csv or excel file containing the observations along
 
 Usage:
 
-$ insert_obs_data.py --country_id <int> --obs_data <str> 
+$ dataex_insert_obs_data.py --country_id <int> --obs_data <str> 
 
 Options:
     country_id : int
                  id number of country
     obs_data : str
-               input filename either csv or excel   
+               input csv or excel file   
 """
 
 import sys

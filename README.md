@@ -4,6 +4,7 @@ A client API for using dataex services such as:
 - Insert observation data into dataex.
 - Getting netcdf subset files of HRES and ENS forecasts.
 - Getting summary information of observation data.
+- Getting HRES and ENS forecast analysis data.
 
 #### Installation
 
@@ -12,26 +13,26 @@ dataex-client can be installed using the following commands
 $ pip install https://github.com/nzahasan/dataex-client/zipball/master
 ```
 
-#### Using get_netcdf_subset_ecmwf_hres.py and get_netcdf_subset_ecmwf_ens.py
+#### Using dataex_get_netcdf_subset_ecmwf_hres.py and dataex_get_netcdf_subset_ecmwf_ens.py
 
-This package contains `get_netcdf_subset_ecmwf_hres.py` and `get_netcdf_subset_ecmwf_ens.py` scripts. Command line tools for getting a netcdf file subset of ecmwf hres and ens forecasts respectively.
+This package contains `dataex_get_netcdf_subset_ecmwf_hres.py` and `dataex_get_netcdf_subset_ecmwf_ens.py` scripts. Command line tools for getting a netcdf file subset of ecmwf hres and ens forecasts respectively.
 
 ```
-$ get_netcdf_subset_ecmwf_hres.py --params u10 --latbounds 20 40 --lonbounds 80 120 --out filename
+$ dataex_get_netcdf_subset_ecmwf_hres.py --params u10,cp --latbounds 20 40 --lonbounds 80 120 --out filename
 
-$ get_netcdf_subset_ecmwf_ens.py --params t2m_q50 --latbounds 20 40 --lonbounds 80 120 --out filename
+$ dataex_get_netcdf_subset_ecmwf_ens.py --params t2m_q50,lsp_25 --latbounds 20 40 --lonbounds 80 120 --out filename
 ```
 
 Options:
 ```
---params : str or list of str
-           Single or comma seperated parameter short names 
+--params -p : str or list of str (e.g. u10,ssr,cp)
+              Single or comma seperated parameter short names 
              
---latbounds : first float is for south and second float is for north
-              South and North latitude values space seperated 
+--latbounds -lat : two float values (e.g. 20.2, 60.5)
+                   South and North latitude float values space seperated 
              
---lonbounds : first float is for south and second float is for north 
-              West and East latitude values space seperated 
+--lonbounds -lon : two float values (e.g. 100.0, 150.24)
+                   West and East latitude float values space seperated 
              
 --out : str
         output filename
@@ -58,12 +59,12 @@ The following parameters are available for subsetting in `ECMWF ENS`,
     lsp_q5, lsp_q25, lsp_q50, lsp_q75, lsp_q95
 ```
 
-### Using insert_obs_data.py 
+### Using dataex_insert_obs_data.py 
 
 This script is for inserting observation data into dataex. It takes as input a json file and country id.
 
 ```
-$ insert_obs_data.py --country_id 1 --obs_data filename
+$ dataex_insert_obs_data.py --country_id 1 --obs_data filename
 ```
 Options:
 ```
@@ -71,7 +72,7 @@ country_id : int
              id number of country
              
 obs_data : str
-           file either csv or excel  
+           input csv or excel file
 ```
 Format of csv and excel
 
@@ -85,11 +86,11 @@ start_time,end_time,value,level_id,parameter_id,station_id
 The time values must be in `YYYY-MM-DD HH:MM` format for both csv and excel files.
 
 
-### Using get_obs_data.py
+### Using dataex_get_obs_data.py
 This script is for getting observation data from dataex. The data can be downloaded in either csv or json format.
 
 ```
-$ get_obs_data.py --start_date 1993-01-91 --end_date 1993-02-01 -- stn_id 12 --p_id 7 --output_type csv --out filename 
+$ dataex_get_obs_data.py --start_date 1993-01-91 --end_date 1993-02-01 -- station_id 12 --p_id 7 --output_type csv --output filename 
 ```
 Options:
 ```
@@ -99,37 +100,71 @@ start_date : DateTime
 end_date : DateTime
            Date in YYYY-MM-DD format
            
-stn_id : int
+station_id : int
          station id
             
-p_id : int 
+parameter_id : int 
        parameter id     
 
 output_type : str
-              csv or json
+              csv, table or json
               
-out : str
+output : str
       output filename
 
 ```
 
-### Using fetch_obs_summary.py
+### Using dataex_fetch_obs_summary.py
 This script is for fetching a summary information of the observation data stored in dataex. This data can be downloaded in either json or csv.
 
 ```
-$ fetch_obs_summary.py --out filename --output_type csv
+$ dataex_fetch_obs_summary.py --out filename --output_type csv
 ```
 Options:
 ```
 out : str
-      name of output file 
+      output file
       
 output_type: str
              json or csv    
 
 ```
+### Using dataex_get_ecmwf_hres_region_data_analysis.py and dataex_get_ecmwf_ens_region_data_analysis.py
 
+These scripts allow users to download ecmwf hres and ens forecast analysis region data directly from dataex. 
 
+For HRES region data:
+
+```
+$ dataex_get_ecmwf_hres_region_data_analysis.py --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --out <str>
+
+```
+
+For ENS region data:
+
+```
+$ dataex_get_ecmwf_ens_region_data_analysis.py --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --out <str>
+```
+
+Both have same options for usage:
+
+Options:
+```
+    reducer : str
+              name of reducer to use
+
+    asset_identifier : str
+                       identifier for asset
+    
+    unique_field : str
+                   unique fields in asset
+
+    output_format : str
+                  json or xlsx   
+
+    out : str
+          output file
+```
  
 
 
