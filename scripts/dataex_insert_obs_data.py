@@ -27,8 +27,8 @@ from dataexclient.config import INSERT_OBS_DATA_URL
 
 
 @click.command()
-@click.option('--obs_data', required=True, help='filename or path to file with filename')
-@click.option('--country_id', required=True ,type=int, help='id of country')
+@click.option('--obs_data', '-obs', required=True, help='filename or path to file with filename')
+@click.option('--country_id','-cid', required=True ,type=int, help='id of country')
 
 def main(obs_data, country_id):
 

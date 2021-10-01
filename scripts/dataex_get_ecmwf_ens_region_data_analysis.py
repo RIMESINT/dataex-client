@@ -20,7 +20,7 @@ Options:
                    unique fields in asset
 
     output_format : str
-                  json or csv       
+                  json or xlsx     
 
     out : str
           output filename

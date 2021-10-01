@@ -20,7 +20,7 @@ Options:
                    unique fields in asset
 
     output_format : str
-                  json or csv       
+                  json or xlsx       
 
     out : str
           output filename
@@ -42,7 +42,7 @@ from yaspin import yaspin
 @click.option('--asset_identifier', '-ai', help='unique identifier for asset', type=click.STRING)
 @click.option('--unique_field', '-uf', help='unique fields in asset', type=click.STRING)
 @click.option('--output_format', '-of' ,required=True, type=click.Choice(['json', 'xlsx'], case_sensitive=False))
-@click.option('--output', '-o' ,required=False, help='output filename')
+@click.option('--output', '-o' ,required=True, help='output filename')
 
 
 def main(reducer, asset_identifier, unique_field, output_format, output):
@@ -144,4 +144,4 @@ if __name__=='__main__':
 
 
 
-"""
+
