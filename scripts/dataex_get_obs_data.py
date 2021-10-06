@@ -14,22 +14,22 @@ Options:
                  Date in YYYY-MM-DD format
         
     end_date : DateTime
-              Date in YYYY-MM-DD format
+               Date in YYYY-MM-DD format
+    
     station_id : int
-             station id
+                 station id
             
     parameter_id : int 
-           parameter id     
+                   parameter id     
 
     output_type : str
                   json or csv       
 
     output : str
-          output filename
+             output filename
 
 """
 
-import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth
@@ -134,5 +134,6 @@ def main(start_date, end_date, station_id, parameter_id, output_format, output):
 
 if __name__=='__main__':
     main()
+
 
 

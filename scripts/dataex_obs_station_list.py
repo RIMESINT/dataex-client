@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 
-"""Get Country Info CLI
+"""Get Station Info CLI
 
-This script allows the user to get country information such as ID number and name from Dataex server. 
+This script allows the user to get country's station information such as ID number and name from Dataex server. 
 This tool can download in either csv or json file.
 
 Usage:
 
-$ dataex_get_country_info.py --country <str> --output_format <str> --output <str>
+$ dataex_get_station_list.py --country_id <int> --not_empty --output_type <str> --output <str>
 
 Options:
 
-    country : str
-              name of country      
+    country_id : int
+                 country id     
+                 
+    not_empty : include in command in order to only get some stations with data
+    
+    empty : include in command to get any station even if they are empty    
 
-    output_format : str
+    output_type : str
                   json or csv       
 
     output : str
-          output filename
+             output filename
 
 """
 
@@ -26,42 +30,33 @@ import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth
-from dataexclient.config import GET_COUNTRY_INFO_URL
+from dataexclient.config import GET_STATION_INFO_URL
 import requests
+from tabulate import tabulate
 import click
 from yaspin import yaspin
-from tabulate import tabulate
 
 
 
 @click.command()
-@click.option(
-    '--country', '-c', 
-    type=click.STRING,
-    help='optional - either give country name or just leave it from command line', 
-)
-@click.option(
-    '--output_format', '-of', 
-    required=True, 
-    type=click.Choice(['json', 'csv', 'table'], case_sensitive=False)
-)
-@click.option(
-    '--output', '-o',
-    required=True, 
-    help='output filename or path with filename'
-)
+@click.option('--country_id', '-cid',required=True, help='Id number of country', type=click.STRING)
+@click.option('--not_empty/--empty', required=False,help='Option to choose either stations that are empty or not', default=False)
+@click.option('--output_format', '-of',required=False, default='table',type=click.Choice(['json', 'table' ,'csv'], case_sensitive=False))
+@click.option('--output', '-o',required=False, help='output filename')
 
 
-def main(country, output_format, output):
+def main(country_id, not_empty, output_format, output):
     
 
     payload = dict()
+    payload['country_id'] = country_id
 
-    if country is None:
-        payload['country'] = None
+    if not_empty:
+        payload['not_empty'] = True
     else:
-        payload['country'] = country.lower()
+        payload['not_empty'] = None
 
+    
     auth_obj = auth()
     try:
         is_token_valid = auth_obj.check_token()
@@ -79,7 +74,7 @@ def main(country, output_format, output):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_COUNTRY_INFO_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(GET_STATION_INFO_URL, headers=headers, data=json.dumps(payload))
         
         if response.status_code == 200:
 
@@ -98,29 +93,27 @@ def main(country, output_format, output):
 
                 if output is not None:
 
-                    if output.endswith('.json'):
+                    if not output.endswith('.json'):
+                        output += '.json'
 
-                        with open(f'{output}', 'w') as f:
-                            json.dump(data['info'], f)
+                    with open(f'{output}', 'w') as f:
+                        json.dump(data['data'], f)
 
                 else:
-                    print(data['info'])
+                    print(data['data'])        
 
-            elif output_format in ['table','csv']:
+            elif output_format in ['csv','table']:
 
-                df = pd.DataFrame(data['info'])
+                df = pd.DataFrame( data['data'] )
 
                 if output_format == 'table':
-
                     table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-                    
                     if output is not None:
-
+                        
                         with open(output, 'w') as outfile:
                             outfile.write(table)
-
                     else:
-                        print(table)
+                        print(table)        
 
                 elif output_format == 'csv':
 
@@ -128,7 +121,7 @@ def main(country, output_format, output):
 
                         if not output.endswith('.csv'):
                             output += '.csv'
-
+                            
                         df.to_csv(output, index=False)
 
 
@@ -137,10 +130,9 @@ def main(country, output_format, output):
             spinner.fail("💥 ")
 
 
-
-
 if __name__=='__main__':
     main()
+
 
 
 

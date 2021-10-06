@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-"""Get Station Info CLI
+"""Get Parameter Info CLI
 
-This script allows the user to get country's station information such as ID number and name from Dataex server. 
+This script allows the user to get station's parameter information such as ID number and name from Dataex server. 
 This tool can download in either csv or json file.
 
 Usage:
 
-$ dataex_get_station_list.py --country_id <int> --output_type <str> --output <str>
+$ dataex_obs_parameter_list.py --station_id <int> --output_type <str> --output <str>
 
 Options:
 
-    country_id : int
-              country id     
+    station_id : int
+              station id     
 
     output_type : str
                   json or csv       
@@ -26,7 +26,7 @@ import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth
-from dataexclient.config import GET_STATION_INFO_URL
+from dataexclient.config import GET_PARAMETER_INFO_URL
 import requests
 from tabulate import tabulate
 import click
@@ -35,24 +35,17 @@ from yaspin import yaspin
 
 
 @click.command()
-@click.option('--country_id', '-cid',required=True, help='Id number of country', type=click.STRING)
-@click.option('--not_empty/--empty', required=False,help='Option to choose either stations that are empty or not', default=False)
+@click.option('--station_id', '-sid',required=True, help='Id number of station', type=click.STRING)
 @click.option('--output_format', '-of',required=False, default='table',type=click.Choice(['json', 'table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o',required=False, help='output filename')
 
 
-def main(country_id, not_empty, output_format, output):
+def main(station_id, output_format, output):
     
-
     payload = dict()
-    payload['country_id'] = country_id
+    payload['station_id'] = station_id
+    print(payload)
 
-    if not_empty:
-        payload['not_empty'] = True
-    else:
-        payload['not_empty'] = None
-
-    
     auth_obj = auth()
     try:
         is_token_valid = auth_obj.check_token()
@@ -70,7 +63,7 @@ def main(country_id, not_empty, output_format, output):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_STATION_INFO_URL, headers=headers, data=json.dumps(payload))
+        response = requests.get(GET_PARAMETER_INFO_URL, headers=headers, params=payload)
         
         if response.status_code == 200:
 
@@ -128,7 +121,3 @@ def main(country_id, not_empty, output_format, output):
 
 if __name__=='__main__':
     main()
-
-
-
-

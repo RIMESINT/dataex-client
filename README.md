@@ -17,9 +17,12 @@ $ pip install https://github.com/nzahasan/dataex-client/zipball/master
 
 This package contains `dataex_get_netcdf_subset_ecmwf_hres.py` and `dataex_get_netcdf_subset_ecmwf_ens.py` scripts. Command line tools for getting a netcdf file subset of ecmwf hres and ens forecasts respectively.
 
+For HRES:
 ```
 $ dataex_get_netcdf_subset_ecmwf_hres.py --params u10,cp --latbounds 20 40 --lonbounds 80 120 --out filename
-
+```
+For ENS:
+```
 $ dataex_get_netcdf_subset_ecmwf_ens.py --params t2m_q50,lsp_25 --latbounds 20 40 --lonbounds 80 120 --out filename
 ```
 
