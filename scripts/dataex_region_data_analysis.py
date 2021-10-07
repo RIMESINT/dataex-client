@@ -6,9 +6,12 @@ This script allows the user to download analysis of hres/ens region data.
 
 Usage:
 
-$ dataex_region_data_analysis.py --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --output <str>
+$ dataex_region_data_analysis.py --model_type <str> --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --output <str>
 
 Options:
+
+    model_type : str
+                 ens or hres(default)
    
     reducer : str
               name of reducer to use
@@ -20,10 +23,10 @@ Options:
                    unique fields in asset
 
     output_format : str
-                  json or xlsx       
+                    json or xlsx       
 
     output : str
-          output filename
+             output filename
 
 """
 

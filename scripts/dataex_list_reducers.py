@@ -6,9 +6,12 @@ This script allows the user to check the available reducer names for forecast an
 
 Usage:
 
-$ dataex_list_reducers.py --output_format <str> --output <str>
+$ dataex_list_reducers.py --model_type <str> --output_format <str> --output <str>
 
 Options:
+
+    model_type : str
+                 ens or hres
    
     output_format : str
                     json, table or csv       

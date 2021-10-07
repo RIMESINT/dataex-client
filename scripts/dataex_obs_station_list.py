@@ -26,7 +26,6 @@ Options:
 
 """
 
-import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth

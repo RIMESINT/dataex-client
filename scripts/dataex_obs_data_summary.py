@@ -10,9 +10,10 @@ $ dataex_obs_data_summary.py --output <str> --output-format <str>
 
 Options:
     output: str
-          name of output file      
+            name of output file 
+
     output-format: str
-                 json or csv      
+                   json, table or csv      
 
 """
 
