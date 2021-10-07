@@ -20,7 +20,6 @@ It can be used to create the `.dataex_auth.json` file which is required for auth
 
 ```
 $ dataex_init.py
-
 ```
 
 #### Using dataex_netcdf_subset.py
@@ -47,7 +46,7 @@ Options:
                    West and East latitude float values space seperated 
              
 --output : str
-        output filename
+           output filename
 
 ```
 
