@@ -1,3 +1,6 @@
+
+<img alt="Dataex" src="img/dataex_logo.svg" width="800px" style="display: block; margin: 0 auto 0 auto">
+
 # Welcome to Dataex Client API 
 
 A client API for using dataex services such as:
