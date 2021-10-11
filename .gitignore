@@ -5,3 +5,4 @@ dist/
 *.pyc 
 *.pyo
 .venv/
+.DS_Store
