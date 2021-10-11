@@ -1,23 +1,32 @@
-# Insert observation data CLI
+## Insert observation data CLI
 
 This script allows the user to upload observation data into Dataex server. 
 It takes as input either a csv or excel file containing the observations along with the country id number as the command arguments.
 
-Usage:
+To get the country id numbers, you can use `dataex_list_country_info.py` command.
+
+###Usage
 ```
 $ dataex_insert_obs_data.py --country_id <int> --obs_data <str> 
 ```
 
-Options:
+###Options
 
 ```
     country_id : int
                  id number of country
+                 
     obs_data : str
                input file either csv or excel   
-               
-```            
-## Input file details
+```          
+###Example
+
+```
+$ dataex_insert_obs_data.py --country_id 5 --obs_data ./input.csv
+```
+Here, the input observation data is provided in csv format using `--obs_data` option.
+
+###Input file details
 
 The column headers in both csv and excels must be:
 
@@ -32,7 +41,7 @@ The column headers in both csv and excels must be:
 
 The time values must be in `YYYY-MM-DD HH:MM` format for both csv and excel files.
 
-## CSV file format
+###CSV file format
 
 ```
 start_time,end_time,value,level_id,parameter_id,station_id
@@ -41,10 +50,14 @@ start_time,end_time,value,level_id,parameter_id,station_id
 ```
 
 
-## Excel file format
+###Excel file format
 
 |start_time| end_time | value | level_id | parameter_id | station_id |
 |----------|----------|-------|----------|--------------|------------|
 |1995-01-01 00:00 | 1995-01-02 00:00 | 30.2 | 2 | 3 | 54
 |1996-01-01 00:00| 1996-01-02 00:00| 28.2 | 2 | 3 | 54
+
+###Important 
+Please adhere strictly to the above sample including the values used in the examples for successful execution of the command.
+
 
