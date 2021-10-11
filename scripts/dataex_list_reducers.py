@@ -2,7 +2,7 @@
 
 """List reducers CLI
 
-This script allows the user to check the available reducer names for forecast analysis.
+This script allows the user to check the available reducer names for forecast analysis depending on the model type.
 
 Usage:
 
