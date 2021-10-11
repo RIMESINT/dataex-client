@@ -1,0 +1,27 @@
+site_name: Dataex Client API
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: small_logo.svg
+  favicon: favicon.png
+  palette:
+    primary: white
+    accent: light blue
+
+
+    
+
+nav:
+ - Home: 'index.md'
+ - Guide:
+   - 'Create dataex auth json file' : 'user-guide/dataex_init.md'
+   - 'Upload observation data': 'user-guide/dataex_insert_obs_data.md'
+   - 'Download observation data': 'user-guide/dataex_get_obs_data.md'
+   - 'Fetch summary of observation data': 'user-guide/dataex_obs_data_summary.md'
+   - 'Download netcdf subset of ECMWF HRES/ENS/SEAS models': 'user-guide/dataex_netcdf_subset.md'
+   - 'List country data': 'user-guide/dataex_list_country_info.md'
+   - 'List station information': 'user-guide/dataex_obs_station_list.md'
+   - 'Download parameter information': 'user-guide/dataex_obs_parameter_list.md'
+   - 'List Reducer names': 'user-guide/dataex_list_reducers.md'
+   - 'List forecast analysis user assets information': 'user-guide/dataex_list_user_assets.md'
