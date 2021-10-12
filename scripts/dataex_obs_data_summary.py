@@ -77,6 +77,8 @@ def main(output,output_format):
             if output_format == 'json':
                 
                 if output is not None:
+                    if not output.endswith('.json'):
+                        output += '.json'
                     with open(output,'w') as outfile:
                         json.dump(data['countries'], outfile)
                 else:
@@ -98,6 +100,8 @@ def main(output,output_format):
                         print(table)
                 
                 elif output_format == 'csv':
+                    if not output.endswith('.csv'):
+                        output += '.csv'
 
                     csv = df.to_csv( output, index=False)
 
