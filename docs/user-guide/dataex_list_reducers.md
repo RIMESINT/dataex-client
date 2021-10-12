@@ -11,6 +11,10 @@ This script allows the user to list all the available reducer names that can be 
 ```
 $ dataex_list_reducers.py --model_type <str> --output_format <str> --output <str>
 ```
+
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
 ###Options
 ```
 model_type : str

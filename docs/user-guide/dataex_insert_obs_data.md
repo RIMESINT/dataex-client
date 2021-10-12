@@ -11,6 +11,10 @@ It takes as input either a csv or excel file containing the observations along w
 $ dataex_insert_obs_data.py --country_id <int> --obs_data <str> 
 ```
 
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
+
 ###Options
 
 ```

@@ -10,6 +10,9 @@ This script allows the user to get country's station information such as ID numb
 $ dataex_obs_station_list.py --country_id <int> --not_empty --output_type <str> --output <str>
 ```
 
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
 ###Options
 ```
 country_id : int

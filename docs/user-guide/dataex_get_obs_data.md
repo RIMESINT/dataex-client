@@ -7,6 +7,9 @@ Users can get the desired observation data in the selected format for a specific
 ```
 $ dataex_get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- station_id <int> --parameter_id <int> --output_type <str> --output <str>
 ```
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
 
 ###Options
 ```

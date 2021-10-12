@@ -14,6 +14,11 @@ A sample of the information that is retrieved from the dataex server can be seen
 ```
 $ dataex_obs_data_summary.py --output <str> --output_type <str>
 ```
+
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
+
 ###Options
 ```
 output : str

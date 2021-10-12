@@ -6,18 +6,21 @@ It can be used to retrieve information such as Id number related to a specific c
 ```
 $ dataex_list_country_info.py --country <str> --output_format <str> --output <str>
 ```
-
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
 Options:
+```
+country : str
+          name of country      
 
-    country : str
-              name of country      
+output_format : str
+                json, table or csv       
 
-    output_format : str
-                    json, table(default),csv       
-
-    output : str
-             output filename
-             
+output : str
+         output filename
+```      
+   
 The default output format is `table`. Hence, leaving this option out from the command is not a problem. The `output` option is not required as well.
 
 ###Example

@@ -12,10 +12,13 @@ This script allows the user to get a netCDF subset of model type:
 $ dataex_netcdf_subset.py --model_type <str> --params <str>,<str> --latbounds <float> <float> --lonbounds <float> <float> --output <str>
 
 ```
-
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
+    
 ###Options
-```
 
+```
 model_type : str
              model name
                  
@@ -30,8 +33,10 @@ lonbounds : float values
                 
 output : str
          output filename
- 
 ```
+
+ 
+
 !!! warning
     Latitude and longitude values outside the available dataset boundaries will return an error. 
 

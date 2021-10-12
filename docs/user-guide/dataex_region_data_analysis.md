@@ -14,6 +14,10 @@ This script allows the user to download region data analysis of following models
 $ dataex_region_data_analysis.py --model_type <str> --reducer <str> --asset_identifier <str> --unique_field <str> --output_format <str> --output <str>
 ```
 
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
+
 ###Options
 ```
 model_type : str

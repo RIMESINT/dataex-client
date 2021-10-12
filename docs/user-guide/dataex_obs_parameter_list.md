@@ -10,6 +10,10 @@ This tool can download in either csv or json file.
 ```
 $ dataex_obs_parameter_list.py --station_id <int> --output_type <str> --output <str>
 ```
+!!! Tip
+    Option names too long, you can always use their short forms. Check using `--help`
+    
+    
 ###Options
 ```
 station_id : int
