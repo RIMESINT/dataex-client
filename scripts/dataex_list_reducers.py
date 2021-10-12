@@ -1,42 +1,47 @@
 #!/usr/bin/env python3
 
-"""Get user fcst asset info CLI
+"""List reducers CLI
 
-This script allows the user to get forecast asset information.
+This script allows the user to check the available reducer names for forecast analysis.
 
 Usage:
 
-$ dataex_get_user_assets.py --output_format <str> --out <str>
+$ dataex_list_reducers.py --model_type <str> --output_format <str> --output <str>
 
 Options:
+
+    model_type : str
+                 ens or hres
    
     output_format : str
-                  json or csv       
+                    json, table or csv       
 
-    out : str
-          output filename
+    output : str
+             output filename
 
 """
 
-import sys
 import json
 import pandas as pd
 from dataexclient.auth import auth
-from dataexclient.config import GET_USER_ASSETS_URL
+from dataexclient.config import CHECK_REDUCERS_URL
 import requests
 from tabulate import tabulate
 import click
 from yaspin import yaspin
 
 
+
 @click.command()
-@click.option('--output_format', '-of' ,required=False, default='table', type=click.Choice(['json','table','csv'], case_sensitive=False))
+@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
+@click.option('--output_format', '-of' ,required=False, default='table' ,type=click.Choice(['json','table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o' ,required=False, help='output filename')
 
 
-def main(output_format, output):
-    
+def main(model_type, output_format, output):
+
     payload = dict()
+    payload['forecast_type'] = model_type
     auth_obj = auth()
     try:
         is_token_valid = auth_obj.check_token()
@@ -53,11 +58,10 @@ def main(output_format, output):
         'Authorization': token
     }
 
-    cred = auth_obj.get_auth()
-    payload['username'] = cred['username']
-
+    
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_USER_ASSETS_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(CHECK_REDUCERS_URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
         
         if response.status_code == 200:
 
@@ -73,39 +77,30 @@ def main(output_format, output):
                     spinner.fail("💥 ")
 
             if output_format=='json':
-
                 if output is not None:
-
                     if not output.endswith('.json'):
                         output += '.json'
-
                     with open(f'{output}', 'w') as f:
-                        json.dump(data['user_assets'], f)
-
+                        json.dump(data['reducers'], f)
                 else:
-                    print(data['user_assets'])
+                    print(data['reducers'])
 
             elif output_format in ['csv','table']:
-
-                df = pd.DataFrame(data['user_assets'])
-
+                
+                df = pd.DataFrame(data['reducers'])
                 if output_format == 'table':
-
                     table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-
                     if output is not None:
-                        with open(output,' w') as outfile:
+                        with open(output, 'w') as outfile:
                             outfile.write(table)
-
                     else:
                         print(table)
-
+                
                 elif output_format == 'csv':
-
                     if not output.endswith('.csv'):
                         output += '.csv'
+                    df.to_csv(output, index=False)
 
-                    df.to_csv(output, index=False)    
 
         else:
             print(response.status_code)
@@ -114,6 +109,7 @@ def main(output_format, output):
 
 if __name__=='__main__':
     main()
+
 
 
 

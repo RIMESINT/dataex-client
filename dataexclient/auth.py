@@ -6,9 +6,6 @@ import json
 import requests
 from . import config
 
-'''
-
-'''
 
 class auth():
 
