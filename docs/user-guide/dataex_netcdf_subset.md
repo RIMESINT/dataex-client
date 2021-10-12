@@ -1,6 +1,10 @@
 ## Get NetCDF Subset CLI
 
-This script allows the user to get a netCDF subset of ECMWF HRES/ENS/SEAS model data. 
+This script allows the user to get a netCDF subset of model type:
+
+* [X] HRES
+* [X] ENS
+* [ ] SEAS 
 
 
 ###Usage
@@ -12,23 +16,24 @@ $ dataex_netcdf_subset.py --model_type <str> --params <str>,<str> --latbounds <f
 ###Options
 ```
 
-    model_type, mt : str
-                 ENS/HRES(default)/SEAS model
+model_type : str
+             model name
                  
-    params, p : str or list of str
-                Single or comma seperated parameter short names 
+params : str or list of str
+         Single or comma seperated parameter short names 
              
-    latbounds, lat : float values
-                     South and North latitutde values space seperated 
+latbounds : float values
+            South and North latitutde values space seperated 
                 
-    lonbounds, lon : float values 
-                     West and East longitude values space seperated 
+lonbounds : float values 
+            West and East longitude values space seperated 
                 
-    output, o : str
-                output filename
+output : str
+         output filename
  
 ```
-
+!!! warning
+    Latitude and longitude values outside the available dataset boundaries will return an error. 
 
 ### List of parameters in ECMWF HRES
 

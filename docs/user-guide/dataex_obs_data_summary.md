@@ -16,21 +16,26 @@ $ dataex_obs_data_summary.py --output <str> --output_type <str>
 ```
 ###Options
 ```
-    output : str
-             name of output file  
+output : str
+         name of output file  
               
-    output_type: str 
-                 json, table(default), csv   
+output_type: str 
+             json, table or csv   
 ```
 
 The default output type is `table` format. The two options are not required and can be ignored unless the user prefers csv or json.
 
 ### Example
+
+!!! tip
+    There is no need for `.csv` or `.json` extension in the file name, it is appended by the program. 
+
 ```
 $ dataex_obs_data_summary.py --output ./summary.csv --output_type csv
 
 ```
-Here, the observation summary data is downloaded in `csv` format. The file is saved as `summary.csv` in the current directory. If no .csv extension is provided, it is appended by the program.  
+Here, the observation summary data is downloaded in `csv` format. The file is saved as `summary.csv` in the current directory. 
+
 
 ```
 $ dataex_obs_data_summary.py

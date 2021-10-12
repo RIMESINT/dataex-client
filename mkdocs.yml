@@ -8,7 +8,20 @@ theme:
   palette:
     primary: white
     accent: light blue
+  icon:
+   admonition: 
+     warning: octicons/alert-16
 
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      
+      
 nav:
  - Home: 'index.md'
  - Guide:
