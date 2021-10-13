@@ -1,4 +1,6 @@
 site_name: Dataex Client API
+repo_url: https://github.com/nzahasan/dataex-client/tree/master
+copyright: Copyright &copy; 2021 RIMES
 
 theme:
   name: material
@@ -11,6 +13,7 @@ theme:
   icon:
    admonition: 
      warning: octicons/alert-16
+   repo: fontawesome/brands/github
 
 
 markdown_extensions:
