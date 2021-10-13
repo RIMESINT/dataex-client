@@ -21,21 +21,20 @@ $ dataex_netcdf_subset.py --model_type <str> --params <str>,<str> --latbounds <f
 ```
 model_type : str
              model name
-                 
-params : str or list of str
-         Single or comma seperated parameter short names 
              
-latbounds : float values
-            South and North latitutde values space seperated 
+latbounds  : float values
+             South and North latitutde values space seperated 
                 
-lonbounds : float values 
-            West and East longitude values space seperated 
+lonbounds  : float values 
+             West and East longitude values space seperated 
                 
-output : str
-         output filename
+params     : str or list of str
+             Single or comma seperated parameter short names 
+           
+output     : str
+             output filename
 ```
 
- 
 
 !!! warning
     Latitude and longitude values outside the available dataset boundaries will return an error. 

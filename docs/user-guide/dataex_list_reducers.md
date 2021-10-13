@@ -17,14 +17,15 @@ $ dataex_list_reducers.py --model_type <str> --output_format <str> --output <str
     
 ###Options
 ```
-model_type : str
-             model name
-    
-output_format : str
-                json, table, csv       
 
-output : str
-         output filename
+output_format : str
+                json, table, csv 
+                
+model_type    : str
+                model name  
+
+output        : str
+                output filename
 
 ```
 

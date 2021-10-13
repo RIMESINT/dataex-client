@@ -16,14 +16,15 @@ $ dataex_obs_parameter_list.py --station_id <int> --output_type <str> --output <
     
 ###Options
 ```
-station_id : int
-             station id     
 
 output_type : str
-              json, table(default), csv       
-
-output : str
-         output filename
+              json, table or csv  
+              
+station_id  : int
+              station id     
+              
+output      : str
+              output filename
 
 ```
 If `output_type` is not specified then it defaults to `table`. Further, in this case, if output is also not specified, the data is displayed in tabular form in the terminal.

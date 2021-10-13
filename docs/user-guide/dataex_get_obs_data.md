@@ -13,23 +13,24 @@ $ dataex_get_obs_data.py --start_date <YYYY-MM-DD> --end_date <YYYY-MM-DD> -- st
 
 ###Options
 ```
-start_date : DateTime
-             Date in YYYY-MM-DD format
-        
-end_date : DateTime
-           Date in YYYY-MM-DD format
-               
-station_id : int
-             station id
-            
+
 parameter_id : int 
-               parameter id     
-
-output_type : str
-              json, table or csv       
-
-output : str
-         output filename
+               parameter id   
+               
+start_date   : DateTime
+               Date in YYYY-MM-DD format
+        
+end_date     : DateTime
+               Date in YYYY-MM-DD format
+               
+station_id   : int
+               station id
+           
+output_type  : str
+               json, table or csv       
+               
+output       : str
+               output filename
 ```
 
 Output type and output options are not required. The default output type is `table`. 

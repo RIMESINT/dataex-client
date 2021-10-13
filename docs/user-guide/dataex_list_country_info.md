@@ -11,14 +11,14 @@ $ dataex_list_country_info.py --country <str> --output_format <str> --output <st
     
 Options:
 ```
-country : str
-          name of country      
-
 output_format : str
-                json, table or csv       
+                json, table or csv  
 
-output : str
-         output filename
+country       : str
+                name of country      
+
+output        : str
+                output filename
 ```      
    
 The default output format is `table`. Hence, leaving this option out from the command is not a problem. The `output` option is not required as well.

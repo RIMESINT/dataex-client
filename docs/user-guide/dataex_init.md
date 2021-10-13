@@ -2,7 +2,7 @@
 
 It is a script to be used for creating the `.dataex_auth.json` file. The user is prompted to enter dataex username and password in the terminal after running this command.
 
-##Usage
+###Usage
 
 ```
 $ dataex_init.py

@@ -20,24 +20,28 @@ $ dataex_region_data_analysis.py --model_type <str> --reducer <str> --asset_iden
 
 ###Options
 ```
-model_type : str
-             Model names
-   
-reducer : str
-          name of reducer to use
 
 asset_identifier : str
                    identifier for asset
-    
-unique_field : str
-               unique fields in asset
+                   
+unique_field     : str
+                   unique fields in asset
 
-output_format : str
-                json or xlsx       
-
-output : str
-         output filename
+output_format    : str
+                   json or xlsx      
+                   
+model_type       : str
+                   Model names
+   
+reducer          : str
+                   name of reducer to use
+                   
+output           : str
+                   output filename
+                   
 ```
+          
+The model type input is case-insensitive. Hence, ENS or ens are both valid.
           
 !!! Info 
     User asset information such as asset identifier and unique field can obtained from `dataex_list_user_assets.py`. 

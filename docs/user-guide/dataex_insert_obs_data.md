@@ -21,8 +21,8 @@ $ dataex_insert_obs_data.py --country_id <int> --obs_data <str>
 country_id : int
              id number of country
                  
-obs_data : str
-           input file either csv or excel   
+obs_data   : str
+             input file either csv or excel   
 ```          
 ###Example
 

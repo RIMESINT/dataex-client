@@ -21,11 +21,14 @@ $ dataex_obs_data_summary.py --output <str> --output_type <str>
 
 ###Options
 ```
-output : str
-         name of output file  
+
+output_type : str 
+             json, table or csv  
+             
+output      : str
+              name of output file  
               
-output_type: str 
-             json, table or csv   
+ 
 ```
 
 The default output type is `table` format. The two options are not required and can be ignored unless the user prefers csv or json.

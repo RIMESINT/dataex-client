@@ -15,18 +15,16 @@ $ dataex_obs_station_list.py --country_id <int> --not_empty --output_type <str> 
     
 ###Options
 ```
-country_id : int
-             country id     
+not_empty/empty   : flag to get only those stations with data or all 
 
-output_type : str
-              json, table(default), csv    
-                  
-not_empty : use to only get only those stations with data
-    
-empty : use to get any station even if they are empty      
+output_type       : str
+                    json, table or csv  
+              
+country_id        : int
+                    country id     
 
-output : str
-         output filename
+output            : str
+                    output filename
 
 ```
 
