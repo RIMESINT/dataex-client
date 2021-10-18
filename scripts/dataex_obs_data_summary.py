@@ -24,7 +24,7 @@ import click
 import pandas as pd
 from yaspin import yaspin
 from tabulate import tabulate
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import FETCH_OBS_SUMMARY_URL
 
 
@@ -44,19 +44,9 @@ from dataexclient.config import FETCH_OBS_SUMMARY_URL
 )
 def main(output,output_format):
 
-    auth_obj = auth()
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
-
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     with yaspin(text="Fetching...", color="yellow") as spinner:

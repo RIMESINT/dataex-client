@@ -17,13 +17,12 @@ Options:
                input csv or excel file   
 """
 
-import sys
 import json
 import requests
 import click
 from yaspin import yaspin
 import pandas as pd
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import INSERT_OBS_DATA_URL
 
 
@@ -40,21 +39,9 @@ def main(obs_data, country_id):
 
     payload = create_json(file, country_id)
 
-    auth_obj = auth()
-    
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False   
-    
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
-
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     with yaspin(text="Inserting...", color="yellow") as spinner:

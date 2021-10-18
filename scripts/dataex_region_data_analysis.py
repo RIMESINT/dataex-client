@@ -32,7 +32,7 @@ Options:
 
 import json
 import pandas as pd
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL, GET_ECMWF_ENS_REGION_DATA_URL
 import requests
 import click
@@ -55,22 +55,10 @@ def main(model_type, reducer, asset_identifier, unique_field, output_format, out
     else:
         URL = GET_ECMWF_HRES_REGION_DATA_URL
 
-
     payload = dict()
-    auth_obj = auth()
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False   
-    
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
-    
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     payload['reducer'] = reducer
