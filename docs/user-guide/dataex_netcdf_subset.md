@@ -9,7 +9,9 @@ This script allows the user to get a netCDF subset of model type:
 
 ###Usage
 ```
-$ dataex_netcdf_subset.py --model_type <str> --params <str>,<str> --latbounds <float> <float> --lonbounds <float> <float> --output <str>
+$ dataex_netcdf_subset.py --model_type <str> --hres_params <str>,<str> --latbounds <float> <float> --lonbounds <float> <float> --output <str>
+
+$ dataex_netcdf_subset.py --model_type <str> --ens_params <str> --latbounds <float> <float> --lonbounds <float> <float> --output <str>
 
 ```
 !!! Tip
@@ -19,20 +21,26 @@ $ dataex_netcdf_subset.py --model_type <str> --params <str>,<str> --latbounds <f
 ###Options
 
 ```
-model_type : str
-             model name
+hres_params : str
+              Use for single or comma seperated HRES parameter short names
+              
+ens_params  : str
+              Use for single or comma seperated ENS parameter short names
+              
+model_type  : str
+              model name
              
-latbounds  : float values
-             South and North latitutde values space seperated 
+latbounds   : float values
+              South and North latitutde values space seperated 
                 
-lonbounds  : float values 
-             West and East longitude values space seperated 
+lonbounds   : float values 
+              West and East longitude values space seperated 
                 
-params     : str or list of str
-             Single or comma seperated parameter short names 
+params      : str or list of str
+              Single or comma seperated parameter short names 
            
-output     : str
-             output filename
+output      : str
+              output filename
 ```
 
 
@@ -63,12 +71,15 @@ There are five quantiles available for each parameter in `ECMWF ENS`.
 
 ### Example
 ```
-$ dataex_netcdf_subset.py --model_type hres --params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
+$ dataex_netcdf_subset.py --model_type hres --hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
 ```
-The model type input is case-insensitive. Here, only three parameters are provided. If model_type was not provided then it defaults to `HRES` model. So, it is important to provide the correct parameter list or name to avoid failure. 
+The model type input is case-insensitive. Here, only three parameters are provided. The `hres_params` denotes the parameters are intended for `hres` model. If the parameters are not provided then all model parameters are placed in the request.
 
 ```
-$ dataex_netcdf_subset.py --model_type ens --params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
+$ dataex_netcdf_subset.py --model_type ens --ens_params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
 ```
-Just one parameter related data is requested above.
+This one is for requesting netcdf data of model `ens`. Here,`ens_params` denotes the parameters are for model `ens`. 
+
+!!! Info
+    Don't fret if you make a mistake by using the incorrect parameter option, the command refers to the model type selected and uses the related parameters. 
 

@@ -29,7 +29,7 @@ nav:
  - Home: 'index.md'
  - Quick Start: 'quick_start.md'
  - Guide:
-   - Initilization:
+   - Initilize dataex auth:
       - 'Create dataex auth json file' : 'user-guide/dataex_init.md'  
    - Countries:
       - 'List countries': 'user-guide/dataex_list_country_info.md'
@@ -42,9 +42,9 @@ nav:
       - 'Get observation data summary': 'user-guide/dataex_obs_data_summary.md'
 
    - Forecasts:
-      - 'Download raw netcdf': 'user-guide/dataex_netcdf_subset.md'
+      - 'Download netcdf data': 'user-guide/dataex_netcdf_subset.md'
    - Analysis:
-      - 'List Reducer names': 'user-guide/dataex_list_reducers.md'
+      - 'List reducer names': 'user-guide/dataex_list_reducers.md'
       - 'List forecast analysis user assets': 'user-guide/dataex_list_user_assets.md'
       - 'Download region specific forecast time series': 'user-guide/dataex_region_data_analysis.md'
    
