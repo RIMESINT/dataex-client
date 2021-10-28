@@ -2,7 +2,7 @@
 
 """List reducers CLI
 
-This script allows the user to check the available reducer names for forecast analysis.
+This script allows the user to check the available reducer names for forecast analysis depending on the model type.
 
 Usage:
 
@@ -23,7 +23,7 @@ Options:
 
 import json
 import pandas as pd
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import CHECK_REDUCERS_URL
 import requests
 from tabulate import tabulate
@@ -37,25 +37,14 @@ from yaspin import yaspin
 @click.option('--output_format', '-of' ,required=False, default='table' ,type=click.Choice(['json','table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o' ,required=False, help='output filename')
 
-
 def main(model_type, output_format, output):
 
     payload = dict()
     payload['forecast_type'] = model_type
-    auth_obj = auth()
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False   
-    
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
     
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     

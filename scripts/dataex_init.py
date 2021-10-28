@@ -1,7 +1,9 @@
+
 import os
 import getpass
 import json
 
+from dataexclient.auth import auth
 
 def main():
         home_dir = os.environ['HOME']
@@ -14,6 +16,9 @@ def main():
 
         with open(f'{home_dir}/.dataex_auth.json','w') as f:
             json.dump(auth_json, f)
+            
+        auth_obj = auth()
+        auth_obj.get_new_token_from_dataex()
 
 
 

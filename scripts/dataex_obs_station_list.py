@@ -28,7 +28,7 @@ Options:
 
 import json
 import pandas as pd
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import GET_STATION_INFO_URL
 import requests
 from tabulate import tabulate
@@ -46,7 +46,6 @@ from yaspin import yaspin
 
 def main(country_id, not_empty, output_format, output):
     
-
     payload = dict()
     payload['country_id'] = country_id
 
@@ -54,22 +53,10 @@ def main(country_id, not_empty, output_format, output):
         payload['not_empty'] = True
     else:
         payload['not_empty'] = None
-
-    
-    auth_obj = auth()
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False   
-    
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
     
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:

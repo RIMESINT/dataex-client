@@ -24,7 +24,7 @@ import click
 import pandas as pd
 from yaspin import yaspin
 from tabulate import tabulate
-from dataexclient.auth import auth
+from dataexclient import auth_helper
 from dataexclient.config import FETCH_OBS_SUMMARY_URL
 
 
@@ -44,19 +44,9 @@ from dataexclient.config import FETCH_OBS_SUMMARY_URL
 )
 def main(output,output_format):
 
-    auth_obj = auth()
-    try:
-        is_token_valid = auth_obj.check_token()
-    except:
-        is_token_valid = False
-    if not is_token_valid:
-        token = auth_obj.get_new_token_from_dataex()
-    else:
-        token = auth_obj.get_token()
-
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': auth_helper.get_token()
     }
 
     with yaspin(text="Fetching...", color="yellow") as spinner:
@@ -77,6 +67,8 @@ def main(output,output_format):
             if output_format == 'json':
                 
                 if output is not None:
+                    if not output.endswith('.json'):
+                        output += '.json'
                     with open(output,'w') as outfile:
                         json.dump(data['countries'], outfile)
                 else:
@@ -98,6 +90,8 @@ def main(output,output_format):
                         print(table)
                 
                 elif output_format == 'csv':
+                    if not output.endswith('.csv'):
+                        output += '.csv'
 
                     csv = df.to_csv( output, index=False)
 
