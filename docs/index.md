@@ -1,7 +1,7 @@
 
 <img alt="Dataex" src="img/dataex_logo.svg" width="500px" style="display: block; margin: 0 auto 0 auto">
 
-# Dataex API client 
+# Dataex API 
 
 A dataex API client library for:
 
