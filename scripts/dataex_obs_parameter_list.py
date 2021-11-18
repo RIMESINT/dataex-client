@@ -15,7 +15,7 @@ Options:
               station id     
 
     output_type : str
-                  json or csv       
+                  json, table or csv       
 
     output : str
           output filename

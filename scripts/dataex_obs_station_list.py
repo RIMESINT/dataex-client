@@ -19,7 +19,7 @@ Options:
     empty : include in command to get any station even if they are empty    
 
     output_type : str
-                  json or csv       
+                  json, table or csv       
 
     output : str
              output filename

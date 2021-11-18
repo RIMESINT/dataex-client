@@ -15,7 +15,7 @@ Options:
               name of country      
 
     output_format : str
-                  json or csv       
+                  json, table or csv       
 
     output : str
           output filename
@@ -61,7 +61,7 @@ def main(country, output_format, output):
         payload['country'] = None
     else:
         payload['country'] = country.lower()
-    
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': auth_helper.get_token()
@@ -73,7 +73,7 @@ def main(country, output_format, output):
         if response.status_code == 200:
 
             data = response.json()
-
+            print(data)
             if 'error' in data: 
                 if data['error'] is None:
                     print(data['message'])    
