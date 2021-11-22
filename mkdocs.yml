@@ -29,7 +29,7 @@ nav:
  - Home: 'index.md'
  - Quick Start: 'quick_start.md'
  - Guide:
-   - Initialize dataex auth:
+   - Initialize login to dataex:
       - 'Create dataex auth json file' : 'user-guide/dataex_init.md'  
    - Observations: 
       - 'List countries': 'user-guide/dataex_list_country_info.md'
