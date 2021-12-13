@@ -34,7 +34,7 @@ from yaspin import yaspin
 
 
 @click.command()
-@click.option('--station_id', '-sid',required=True, help='Id number of station', type=click.STRING)
+@click.option('--station_id', '-sid',required=False, help='Id number of station', type=click.STRING)
 @click.option('--output_format', '-of',required=False, default='table',type=click.Choice(['json', 'table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o',required=False, help='output filename')
 
