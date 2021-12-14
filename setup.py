@@ -4,13 +4,17 @@ from dataexclient import __version__
 readme_contents = open('README.md', 'r').read()
 
 scripts_list = [ 
-    "scripts/dataex_fetch_obs_summary.py" ,             
-    "scripts/dataex_get_obs_data.py" ,
-    "scripts/dataex_get_country_info.py" ,              
-    "scripts/dataex_get_station_list.py" ,
-    "scripts/dataex_get_netcdf_subset_ecmwf_ens.py" ,   
-    "scripts/dataex_insert_obs_data.py" ,
-    "scripts/dataex_get_netcdf_subset_ecmwf_hres.py"
+    "scripts/dataex_init.py",
+    "scripts/dataex_get_obs_data.py",
+    "scripts/dataex_list_reducers.py",
+    "scripts/dataex_netcdf_subset.py",
+    "scripts/dataex_insert_obs_data.py",
+    "scripts/dataex_obs_station_list.py",
+    "scripts/dataex_list_user_assets.py",
+    "scripts/dataex_obs_data_summary.py",
+    "scripts/dataex_list_country_info.py",
+    "scripts/dataex_obs_parameter_list.py",
+    "scripts/dataex_region_data_analysis.py",
 ]
 
 
