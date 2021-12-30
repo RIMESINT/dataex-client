@@ -3,7 +3,7 @@
 - In DataeEx visit <a href="{{ interwiki.subset }}">Forecast > Subset netCDF</a>. 
 - Select forecast source, parameter and region values and proceed to download netCDF as shown in the image below:
  
- ![Download subset netCDF](/img/download_netcdf_subset.png){ align=centre, width=800 }
+ ![Download subset netCDF](../img/download_netcdf_subset.png){ align=centre, width=800 }
  
  
 ### Plotting with GRADS
@@ -25,7 +25,7 @@
 
 You should see plots like the following:-
 
-![Grad plots](/img/grad_plots.png){ align=centre, width=800 }
+![Grad plots](../img/grad_plots.png){ align=centre, width=800 }
 
 ### Example Grads Script for plotting rainfall
 
