@@ -21,9 +21,22 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - def_list
+  - attr_list
+  - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
-      
+
+plugins:
+  - search
+  - markdownextradata
+  
+extra:
+  interwiki:
+      mapshaper: https://mapshaper.org/
+      subset: https://dataex.rimes.int/forecast_sub/subset/
+      grads_man: http://cola.gmu.edu/grads/gadoc/users.html
+      grads_down: https://sourceforge.net/projects/opengrads/files/grads2/2.2.1.oga.1/
+      dataex: https://dataex.rimes.int/user_auth/profile_view/
       
 nav:
  - Home: 'index.md'
@@ -43,6 +56,11 @@ nav:
       - 'List reducer names': 'user-guide/dataex_list_reducers.md'
       - 'List forecast analysis user assets': 'user-guide/dataex_list_user_assets.md'
       - 'Download region specific forecast time series': 'user-guide/dataex_region_data_analysis.md'
+   - User assets:
+      - 'Uploading shape files like GeoJson': 'user-guide/upload_user_asset.md'
+   - Plotting with grads:
+      - 'Plotting subset netCDF with grads': 'user-guide/plot_netcdf_grads.md'
+   
    
   
 
