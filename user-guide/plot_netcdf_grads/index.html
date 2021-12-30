@@ -14,7 +14,7 @@
     
     
       
-        <title>List stations - Dataex API</title>
+        <title>Plotting subset netCDF with grads - Dataex API</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-station-list-cli" class="md-skip">
+        <a href="#download-subset-netcdf-from-dataex" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              List stations
+              Plotting subset netCDF with grads
             
           </span>
         </div>
@@ -311,14 +311,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       
       
@@ -353,74 +351,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          List stations
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../dataex_obs_station_list/" class="md-nav__link">
         List stations
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-station-list-cli" class="md-nav__link">
-    Get Station List CLI
-  </a>
-  
-    <nav class="md-nav" aria-label="Get Station List CLI">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -629,12 +564,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" checked>
       
       
       
@@ -655,11 +592,61 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../plot_netcdf_grads/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Plotting subset netCDF with grads
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Plotting subset netCDF with grads
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-subset-netcdf-from-dataex" class="md-nav__link">
+    Download subset netCDF from DataEx
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-with-grads" class="md-nav__link">
+    Plotting with GRADS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-grads-script-for-plotting-rainfall" class="md-nav__link">
+    Example Grads Script for plotting rainfall
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -702,36 +689,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-station-list-cli" class="md-nav__link">
-    Get Station List CLI
-  </a>
-  
-    <nav class="md-nav" aria-label="Get Station List CLI">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#download-subset-netcdf-from-dataex" class="md-nav__link">
+    Download subset netCDF from DataEx
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
+      
+        <li class="md-nav__item">
+  <a href="#plotting-with-grads" class="md-nav__link">
+    Plotting with GRADS
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+      
+        <li class="md-nav__item">
+  <a href="#example-grads-script-for-plotting-rainfall" class="md-nav__link">
+    Example Grads Script for plotting rainfall
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -747,47 +721,171 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/nzahasan/dataex-client/tree/master/edit/master/docs/user-guide/dataex_obs_station_list.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/nzahasan/dataex-client/tree/master/edit/master/docs/user-guide/plot_netcdf_grads.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>List stations</h1>
+                  <h1>Plotting subset netCDF with grads</h1>
                 
-                <h2 id="get-station-list-cli">Get Station List CLI</h2>
-<p>This script allows the user to get country's station information such as ID number and name from Dataex server. This tool can download output in either csv or json file or show it in tabular form.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>To get a list of country Id numbers, you can use <code>dataex_list_country_info.py</code>. This will help you know about the countries available in dataex. </p>
-</div>
-<h3 id="usage">Usage</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_obs_station_list.py --country_id &lt;int&gt; --not_empty --output_type &lt;str&gt; --output &lt;str&gt;
+                <h3 id="download-subset-netcdf-from-dataex">Download subset netCDF from DataEx</h3>
+<ul>
+<li>In DataeEx visit <a href="https://dataex.rimes.int/forecast_sub/subset/">Forecast &gt; Subset netCDF</a>. </li>
+<li>Select forecast source, parameter and region values and proceed to download netCDF as shown in the image below:</li>
+</ul>
+<p><img align="centre," alt="Download subset netCDF" src="/img/download_netcdf_subset.png" width="800" /></p>
+<h3 id="plotting-with-grads">Plotting with GRADS</h3>
+<ul>
+<li>
+<p>Install Grads in windows or Linux. <a href="http://cola.gmu.edu/grads/gadoc/users.html">Manual</a> | <a href="https://sourceforge.net/projects/opengrads/files/grads2/2.2.1.oga.1/">Download</a></p>
+</li>
+<li>
+<p>Ensure you have the following files in the folder where you are running the scripts:</p>
+<ul>
+<li>netCDF file containing forecast data downloaded from DataEx.</li>
+<li>Grads scripts (sample script provided for rainfall to customize as required for other parameters)</li>
+<li>Color bar file (cbar.gs) - also provided to download</li>
+<li>Shape file for overlay (for district or other layers)</li>
+<li>Sample file. (Copy the script and put in a file Plotgrads_pcp.gs or any preferred name). Or you can use your own script files.</li>
+</ul>
+</li>
+<li>A sample code is shown in below. (Copy the code and put in a file Plotgrads_pcp.gs or any preferred name).</li>
+<li>To plot run command (use pbc or pbc depending on the mode of plotting (p=portrait or l=landscape)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>       grads -pbc Plotgrads_pcp.gs
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Option names too long, you can always use their short forms. Check using <code>--help</code></p>
-</div>
-<h3 id="options">Options</h3>
-<div class="highlight"><pre><span></span><code>not_empty/empty   : flag to get only those stations with data or all 
+<p>You should see plots like the following:-</p>
+<p><img align="centre," alt="Grad plots" src="/img/grad_plots.png" width="800" /></p>
+<h3 id="example-grads-script-for-plotting-rainfall">Example Grads Script for plotting rainfall</h3>
+<div class="highlight"><pre><span></span><code>****************************************************************
+** This script plots downloaded subset of ECMWF HRES data 
+** RIMES **
+****************************************************************
 
-output_type       : str
-                    json, table or csv  
+reinit
 
-country_id        : int
-                    country id     
+**Provide the NC file downloaded from the DataEx.
 
-output            : str
-                    output filename
+&#39;sdfopen ECMWF_HRES_NC_28.78N_25.85S_92.74E_88.2W.nc&#39;
+
+
+**** DATA loop for plotting for daily accumulated****
+
+i=1
+
+k=1
+
+day=24
+
+while (i&lt;41)
+
+j=i+4
+
+** SET the color bar and map
+
+&#39;set clopts 1 2 .10&#39;
+
+&#39;set clevs 0.1 1 5 10 15 20 25 30 50 75 100 125 150 175&#39;
+
+&#39;set ccols 0 5 13 3 10 7 12 8 2 6 9 14 4&#39;
+
+&#39;set grads off&#39;
+
+*&#39;set mpdraw off&#39;
+
+&#39;set gxout shaded&#39;
+
+&#39;set mpdset hires&#39;
+
+***Plotting parameter.. for total precipitation (CP and LSP)
+
+if(i=1)
+
+&#39;d ((cp(t=&#39;j&#39;)-cp(t=2))+(lsp(t=&#39;j&#39;)-lsp(t=2)))*1000&#39;
+
+
+*************
+
+**Put the Shape file that you want to overlay here...
+
+**Only put the file name and no extension like .shp.
+
+**Ensure the location of the file is correct
+
+*************
+
+*&#39;set line 4 1 2&#39;
+
+*&#39;draw shp bhu_adm1&#39;
+
+*******************
+
+else
+
+&#39;d ((cp(t=&#39;j&#39;)-cp(t=&#39;i&#39;))+(lsp(t=&#39;j&#39;)-lsp(t=&#39;i&#39;)))*1000&#39;
+
+*******************
+
+
+*&#39;set line 4 1 2&#39;
+
+*&#39;draw shp bhu_adm1&#39;
+
+*******************
+
+
+endif
+
+*******************
+
+*Plot cbar and add titles
+
+*******************
+
+&#39;run cbar 1.1 0 4.3 2.0&#39;
+
+&#39;set font 2&#39;
+
+&#39;set strsiz .14&#39;
+
+&#39;draw string 1.5 10.5 NHMS/INIT:ECM_00UTC&#39;
+
+&#39;set font 1&#39;
+
+&#39;draw string 4.4 8.99 Daily (24 Hrs) Accumulated Precipitation
+Forecast&#39;
+
+&#39;draw string 4.5 8.69 Valid at: 20210702 + &#39;day&#39; Hr (UTC)&#39;
+
+&#39;set string 2 9 2 1&#39;
+
+&#39;set strsiz .15&#39;
+
+&#39;draw string 4.2 8.35 ********** DAY &#39;k&#39; **********&#39;
+
+&#39;draw string 4.2 2.55 (mm)&#39;
+
+&#39;set font 2&#39;
+
+&#39;set strsiz .10&#39;
+
+&#39;draw string 2.2 1.75 Forecast initialized with 20210702 00 UTC
+data&#39;
+
+day=day+24
+
+&#39;gxprint rain&#39;k&#39;.png png white&#39;
+
+&#39;clear&#39;
+
+k=k+1
+
+i=i+4
+
+endwhile
+
+quit
 </code></pre></div>
-<p>Each country has a number of stations with their own distinct id numbers. Using the empty/not_empty option, one can choose if they want to download information of stations having related observations or not. </p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The <code>empty</code> and <code>non-empty</code> options are boolean flags which can be enabled or disabled. <code>empty</code> is the default state. </p>
-</div>
-<h3 id="example">Example</h3>
-<p><div class="highlight"><pre><span></span><code>$ dataex_obs_station_list.py --country_id 3 --non_empty --output_type csv --output ./station_info.csv
-</code></pre></div>
-This will download a list of observation stations and their related information for country with <code>id</code> number 3 and since output type is <code>csv</code>, the data will be stored in a csv file with name <code>station_info.csv</code> in the current directory. Since, <code>non_empty</code> flag is set, only those stations with observations are retrieved. </p>
                 
               
               
@@ -807,7 +905,7 @@ This will download a list of observation stations and their related information 
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../dataex_list_country_info/" class="md-footer__link md-footer__link--prev" aria-label="Previous: List countries" rel="prev">
+        <a href="../upload_user_asset/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Uploading shape files like GeoJson" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -816,26 +914,11 @@ This will download a list of observation stations and their related information 
               <span class="md-footer__direction">
                 Previous
               </span>
-              List countries
+              Uploading shape files like GeoJson
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../dataex_obs_parameter_list/" class="md-footer__link md-footer__link--next" aria-label="Next: Download parameter list" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Download parameter list
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
