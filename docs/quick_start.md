@@ -1,4 +1,4 @@
-We are going to set up environment to use the dataex client.
+We are going to set up a vitual environment to use the dataex client.
 
 ## Installation
 

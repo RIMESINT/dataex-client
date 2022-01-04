@@ -38,30 +38,31 @@ extra:
       grads_man: http://cola.gmu.edu/grads/gadoc/users.html
       grads_down: https://sourceforge.net/projects/opengrads/files/grads2/2.2.1.oga.1/
       dataex: https://dataex.rimes.int/user_auth/profile_view/
-      
+      home: https://dataex.rimes.int/
 nav:
  - Home: 'index.md'
- - Quick Start: 'quick_start.md'
- - Guide:
-   - Initialize login to dataex:
-      - 'Create dataex auth json file' : 'user-guide/dataex_init.md'  
-   - Observations: 
-      - 'List countries': 'user-guide/dataex_list_country_info.md'
-      - 'List stations': 'user-guide/dataex_obs_station_list.md'
-      - 'Download parameter list': 'user-guide/dataex_obs_parameter_list.md'
-      - 'Upload observation data': 'user-guide/dataex_insert_obs_data.md'
-      - 'Download observation data': 'user-guide/dataex_get_obs_data.md'
-      - 'Get observation data summary': 'user-guide/dataex_obs_data_summary.md'
-   - Forecasts:
-      - 'Download netcdf data': 'user-guide/dataex_netcdf_subset.md'
-      - 'List reducer names': 'user-guide/dataex_list_reducers.md'
-      - 'List forecast analysis user assets': 'user-guide/dataex_list_user_assets.md'
-      - 'Download region specific forecast time series': 'user-guide/dataex_region_data_analysis.md'
-   - User assets:
-      - 'Uploading shape files like GeoJson': 'user-guide/upload_user_asset.md'
-   - Plotting with grads:
-      - 'Plotting subset netCDF with grads': 'user-guide/plot_netcdf_grads.md'
-   
+ - Quick setup:
+     - 'Using virtual environment': 'quick_start.md'
+     - 'How to initialize dataex': 'user-guide/dataex_init.md'  
+ - Observation data: 
+     - 'List countries': 'user-guide/dataex_list_country_info.md'
+     - 'List stations': 'user-guide/dataex_obs_station_list.md'
+     - 'Download parameter list': 'user-guide/dataex_obs_parameter_list.md'
+     - 'Upload observation data': 'user-guide/dataex_insert_obs_data.md'
+     - 'Download observation data': 'user-guide/dataex_get_obs_data.md'
+     - 'Get observation data summary': 'user-guide/dataex_obs_data_summary.md'
+ - Forecast data:
+     - 'Download NetCDF': 'user-guide/dataex_netcdf_subset.md'
+ - Analysis:
+     - 'List reducers': 'user-guide/dataex_list_reducers.md'
+     - 'List user assets': 'user-guide/dataex_list_user_assets.md'
+     - 'Download region specific forecast time series': 'user-guide/dataex_region_data_analysis.md'
+     - 'Upload user asset': 'user-guide/upload_user_asset.md'
+     - 'Delete user asset': 'user-guide/delete_user_asset.md'
+ - Guides:
+     - 'Plotting subset netCDF with grads': 'user-guide/plot_netcdf_grads.md'
+     - 'Removing error from shapefiles': 'user-guide/remove_error.md'
+      
    
   
 
