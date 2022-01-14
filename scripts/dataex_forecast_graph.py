@@ -27,10 +27,16 @@ from dataexclient.config import GET_HRES_GRAPH_URL, GET_ENS_GRAPH_URL
                help='Type one ens parameter name'
 )
 
+@click.option('--quantile', '-q',  required=False,
+               type=click.Choice(['q5', 'q25', 'q50', 'q75', 'q95'], case_sensitive=False),
+               help='Choose a quantile with ens parameters'
+)
+
 @click.option('--day', '-d', required=True, 
                type=click.Choice(['1', '2', '3', '4', '5', 
                '6', '7', '8', '9', '10', '11', '12', '13', 
-               '14', '15'], case_sensitive=False)
+               '14', '15'], case_sensitive=False),
+               help='Choose the day of forecast you want'
 )
 
 @click.option('--latbounds', '-lat', 
@@ -50,7 +56,7 @@ from dataexclient.config import GET_HRES_GRAPH_URL, GET_ENS_GRAPH_URL
                help='output filename'
 )
 
-def main(model_type, hres_param, ens_param, day, latbounds, lonbounds, output):
+def main(model_type, hres_param, ens_param, quantile, day, latbounds, lonbounds, output):
 
     payload = {}
     coords = {}
@@ -65,7 +71,7 @@ def main(model_type, hres_param, ens_param, day, latbounds, lonbounds, output):
                 return 
             if hres_param is None:
                 print("Please provide a parameter from HRES")
-                spinner.text = "request failed..."
+                spinner.text = "request failed...select a parameter"
                 spinner.fail("💥 ")
                 return    
             else:
@@ -73,9 +79,17 @@ def main(model_type, hres_param, ens_param, day, latbounds, lonbounds, output):
 
         elif model_type == 'ens':
             URL = GET_ENS_GRAPH_URL
+            if quantile is None:
+                print("Please select a quantile with parameter from ENS")
+                spinner.text = "request failed...select a quantile"
+                spinner.fail("💥 ")
+                return
+            else:
+                payload['quantile'] = quantile
+                
             if ens_param is None:
                 print("Please provide a parameter from ENS")
-                spinner.text = "request failed..."
+                spinner.text = "request failed...select a parameter"
                 spinner.fail("💥 ")
                 return
             else:
@@ -85,7 +99,7 @@ def main(model_type, hres_param, ens_param, day, latbounds, lonbounds, output):
     coords['left-lon'],coords['right-lon'] = lonbounds
     payload['param'] = param
     payload['domain'] = coords
-    payload['indx'] = int(day)
+    payload['indx'] = int(day) - 1
 
     headers = {
         'Content-Type': 'application/json',
