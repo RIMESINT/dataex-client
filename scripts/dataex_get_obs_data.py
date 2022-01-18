@@ -110,11 +110,13 @@ def main(start_date, end_date, station_id, parameter_id, output_format, output):
 
                 
                 elif output_format == 'csv':
+                    if output is not None:
+                        if not output.endswith('.csv'):
+                            output += '.csv'
 
-                    if not output.endswith('.csv'):
-                        output += '.csv'
-
-                    df.to_csv(output, index=False)
+                        df.to_csv(output, index=False)
+                    else:
+                        print(data['data'])
 
         else:
             print(response.status_code)

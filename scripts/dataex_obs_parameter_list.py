@@ -99,6 +99,8 @@ def main(station_id, output_format, output):
                             output += '.csv'
                             
                         df.to_csv(output, index=False)
+                    else:
+                        print(data['data'])
 
 
         else:

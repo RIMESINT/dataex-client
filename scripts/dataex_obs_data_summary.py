@@ -90,10 +90,13 @@ def main(output,output_format):
                         print(table)
                 
                 elif output_format == 'csv':
-                    if not output.endswith('.csv'):
-                        output += '.csv'
+                    if output is not None:
+                        if not output.endswith('.csv'):
+                            output += '.csv'
 
-                    csv = df.to_csv( output, index=False)
+                        df.to_csv( output, index=False)
+                    else:
+                        print(data['countries'])
 
         else:
             print(response.status_code)

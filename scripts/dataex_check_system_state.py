@@ -40,16 +40,14 @@ def main(state_name, output_format, output):
                     print(data['error'],'-> ',data['message'])
                     spinner.fail("💥 ")
 
+            if output is not None:
+                if not output.endswith('.json'):
+                    output += '.json'
 
-            if output_format == 'json':
-                if output is not None:
-                    if not output.endswith('.json'):
-                        output += '.json'
-
-                    with open(f'{output}', 'w') as f:
-                        json.dump(data['data'], f)
-                else:
-                    print(data['data'])
+                with open(f'{output}', 'w') as f:
+                    json.dump(data['data'], f)
+            else:
+                print(data['data'])
 
         else:
             print(response.status_code)
