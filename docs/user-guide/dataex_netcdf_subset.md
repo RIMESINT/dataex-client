@@ -35,9 +35,6 @@ latbounds   : float values
                 
 lonbounds   : float values 
               West and East longitude values space seperated 
-                
-params      : str or list of str
-              Single or comma seperated parameter short names 
            
 output      : str
               output filename

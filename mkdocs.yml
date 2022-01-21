@@ -53,12 +53,20 @@ nav:
      - 'Get observation data summary': 'user-guide/dataex_obs_data_summary.md'
  - Forecast data:
      - 'Download NetCDF': 'user-guide/dataex_netcdf_subset.md'
+     - 'List System States': 'user-guide/dataex_list_system_states.md'
+     - 'Check System States': 'user-guide/dataex_check_system_state.md'
+ - Forecast Graphics:
+     - 'Download Forecast Graph Params': 'user-guide/dataex_forecast_graph_params.md'
+     - 'Download Forecast Graph': 'user-guide/dataex_forecast_graph.md'
+     - 'Download Forecast Animation': 'user-guide/dataex_forecast_animation.md'
+
  - Analysis:
      - 'List reducers': 'user-guide/dataex_list_reducers.md'
      - 'List user assets': 'user-guide/dataex_list_user_assets.md'
      - 'Download region specific forecast time series': 'user-guide/dataex_region_data_analysis.md'
      - 'Upload user asset': 'user-guide/upload_user_asset.md'
      - 'Delete user asset': 'user-guide/delete_user_asset.md'
+
  - Guides:
      - 'Plotting subset netCDF with grads': 'user-guide/plot_netcdf_grads.md'
      - 'Removing error from shapefiles': 'user-guide/remove_error.md'
