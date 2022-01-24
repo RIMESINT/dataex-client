@@ -12,6 +12,9 @@ $ dataex_netcdf_subset.py --model_type <str> --ens_params <str> --latbounds <flo
 Options:
     model_type : str
                  type of model - ens or hres
+                 
+    hres_params : str
+                  Single or comma seperated parameter short names
         
     ens_params : str or list of str
                  Single or comma seperated parameter short names 

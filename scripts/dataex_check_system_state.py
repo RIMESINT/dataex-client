@@ -16,7 +16,7 @@ from yaspin import yaspin
 
 
 
-def main(state_name, output_format, output):
+def main(state_name, output):
     payload = dict()
 
     headers = {
