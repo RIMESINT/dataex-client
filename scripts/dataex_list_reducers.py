@@ -86,9 +86,13 @@ def main(model_type, output_format, output):
                         print(table)
                 
                 elif output_format == 'csv':
-                    if not output.endswith('.csv'):
-                        output += '.csv'
-                    df.to_csv(output, index=False)
+                    if output is not None:
+                        if not output.endswith('.csv'):
+                            output += '.csv'
+                        df.to_csv(output, index=False)
+
+                    else:
+                        print(data['reducers'])
 
 
         else:

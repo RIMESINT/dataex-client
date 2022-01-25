@@ -15,7 +15,7 @@ Options:
               station id     
 
     output_type : str
-                  json or csv       
+                  json, table or csv       
 
     output : str
           output filename
@@ -34,7 +34,7 @@ from yaspin import yaspin
 
 
 @click.command()
-@click.option('--station_id', '-sid',required=True, help='Id number of station', type=click.STRING)
+@click.option('--station_id', '-sid',required=False, help='Id number of station', type=click.STRING)
 @click.option('--output_format', '-of',required=False, default='table',type=click.Choice(['json', 'table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o',required=False, help='output filename')
 
@@ -99,6 +99,8 @@ def main(station_id, output_format, output):
                             output += '.csv'
                             
                         df.to_csv(output, index=False)
+                    else:
+                        print(data['data'])
 
 
         else:

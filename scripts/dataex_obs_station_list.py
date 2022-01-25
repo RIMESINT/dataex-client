@@ -19,7 +19,7 @@ Options:
     empty : include in command to get any station even if they are empty    
 
     output_type : str
-                  json or csv       
+                  json, table or csv       
 
     output : str
              output filename
@@ -109,6 +109,8 @@ def main(country_id, not_empty, output_format, output):
                             output += '.csv'
                             
                         df.to_csv(output, index=False)
+                    else:
+                        print(data['data'])
 
 
         else:

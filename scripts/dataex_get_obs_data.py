@@ -46,7 +46,7 @@ from yaspin import yaspin
 @click.option('--end_date', '-ed', required=True, help='End date of obs data ', type=click.DateTime(formats=["%Y-%m-%d"]))
 @click.option('--station_id', '-si', required=True, help='Id of desired station',type=int)
 @click.option('--parameter_id', '-pi', required=True, help='Id of desired parameter', type=int)
-@click.option('--output_format', '-ot', required=False, default='table' , help='output file format',type=click.Choice(['json','table','csv'], case_sensitive=False))
+@click.option('--output_format', '-of', required=False, default='table' , help='output file format',type=click.Choice(['json','table','csv'], case_sensitive=False))
 @click.option('--output', '-o', required=False, default=None, help='output filename')
 
 
@@ -110,11 +110,13 @@ def main(start_date, end_date, station_id, parameter_id, output_format, output):
 
                 
                 elif output_format == 'csv':
+                    if output is not None:
+                        if not output.endswith('.csv'):
+                            output += '.csv'
 
-                    if not output.endswith('.csv'):
-                        output += '.csv'
-
-                    df.to_csv(output, index=False)
+                        df.to_csv(output, index=False)
+                    else:
+                        print(data['data'])
 
         else:
             print(response.status_code)

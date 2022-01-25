@@ -12,6 +12,9 @@ $ dataex_netcdf_subset.py --model_type <str> --ens_params <str> --latbounds <flo
 Options:
     model_type : str
                  type of model - ens or hres
+                 
+    hres_params : str
+                  Single or comma seperated parameter short names
         
     ens_params : str or list of str
                  Single or comma seperated parameter short names 
@@ -30,7 +33,7 @@ Options:
 
 import json
 import requests
-import click
+import click 
 from yaspin import yaspin
 from dataexclient import auth_helper
 from dataexclient.config import GET_NETCDF_SUBSET_URL, GET_NETCDF_SUBSET_ENS_URL
@@ -87,10 +90,10 @@ def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
     coords['left-lon'],coords['right-lon'] = lonbounds
     payload['params'] = param_list
     payload['domain'] = coords
-     
+
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': auth_helper.get_token()
+        'Authorization': auth_helper.get_token(),
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
@@ -118,4 +121,3 @@ def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
 
 if __name__=='__main__':
     main()
-
