@@ -29,15 +29,15 @@ Options:
              output filename
 
 """
-
 import json
-import pandas as pd
-from dataexclient import auth_helper
-from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL, GET_ECMWF_ENS_REGION_DATA_URL
-import requests
 import click
+import requests
+
 from yaspin import yaspin
 
+from dataexclient import auth_helper
+from dataexclient.utils import check_error, check_output_format
+from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL, GET_ECMWF_ENS_REGION_DATA_URL
 
 @click.command()
 @click.option('--model_type', '-mt', required=True, default='hres', type=click.Choice(['hres', 'ens'], case_sensitive=False))
@@ -67,73 +67,19 @@ def main(model_type, reducer, asset_identifier, unique_field, output_format, out
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
         
         if response.status_code == 200:
-
             data = response.json()
-
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-            if output_format=='json':
-
-                if not output.endswith('.json'):
-                    output += '.json'
-
-                with open(f'{output}', 'w') as f:
-                    json.dump(data['data'], f)
-
-            elif output_format=='xlsx':
-
-                if not output.endswith('.xlsx'):
-                    output += '.xlsx'
-
-                json_to_excel(data['data']['r_data'], output)
-
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+            check_output_format(data['data'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
-
-
-def json_to_excel(data, name):
-    
-    writer = pd.ExcelWriter(name)
-    start_dates = []
-    end_dates = []
-    _values= []
-
-    for key, val in data.items():
-        for inner_key, inner_val in val.items():
-            
-            if inner_key=='time':
-                for dates in inner_val:
-                    start_dates.append(dates[0])
-                    end_dates.append(dates[1])
-                    
-            
-            if inner_key=='value':
-                for value in inner_val:
-                    _values.append(value)
-        
-            
-        df_start_dates = pd.DataFrame(start_dates, columns=['start_date'])
-        df_end_dates = pd.DataFrame(end_dates, columns=['end_date'])
-        df_values = pd.DataFrame(_values, columns=['values'])
-        df = pd.concat([df_start_dates, df_end_dates, df_values],axis=1)
-        df.to_excel(writer, sheet_name=key, index=False)
-        _values = []
-        start_dates = []
-        end_dates = []
-    
-    writer.close()
-
 
 if __name__=='__main__':
     main()

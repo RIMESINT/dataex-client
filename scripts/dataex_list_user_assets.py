@@ -11,14 +11,15 @@ $ dataex_list_user_assets.py
 """
 
 import json
-import pandas as pd
+import requests
+
+from yaspin import yaspin
+from tabulate import tabulate
+
 from dataexclient.auth import auth
 from dataexclient import auth_helper
 from dataexclient.config import GET_USER_ASSETS_URL
-import requests
-from tabulate import tabulate
-import click
-from yaspin import yaspin
+from dataexclient.utils import check_error, check_output_format
 
 
 
@@ -36,30 +37,19 @@ def main():
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(GET_USER_ASSETS_URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
         
         if response.status_code == 200:
-
             data = response.json()
-
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-
-                df = pd.DataFrame(data['user_assets'])
-                table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-
-                print(table)
- 
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+            check_output_format(data['user_assets'], output_format='table')
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
 
 if __name__=='__main__':
     main()

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-
+"""CLI to get forecast graph"""
 import json
-import requests
-import click 
-import os
-from pathlib import Path
+import click
+import requests 
+
 from yaspin import yaspin
+
 from dataexclient import auth_helper
 from dataexclient.config import GET_HRES_GRAPH_URL, GET_ENS_GRAPH_URL
+from dataexclient.utils import export_graph, is_response_okay
 
 
 @click.command()
@@ -68,7 +69,9 @@ def main(model_type, hres_param, ens_param, quantile, day, latbounds, lonbounds,
             if int(day) > 10:
                 spinner.text = "request failed...hres is 10 lead days only"
                 spinner.fail("💥 ")
-                return 
+                return
+            if quantile:
+                print("Ignoring quantile parameter for HRES")
             if hres_param is None:
                 print("Please provide a parameter from HRES")
                 spinner.text = "request failed...select a parameter"
@@ -111,26 +114,18 @@ def main(model_type, hres_param, ens_param, quantile, day, latbounds, lonbounds,
         response = requests.post(URL, stream=True, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
 
-            if response.headers['content-type'] == "application/json":
-                data = response.json()
-                print(data['error'], data['message'])
-                spinner.fail("💥 ")
-            else:
-                if not output.endswith('.png'):
-                    output += '.png'
-              
-                with open(f'{output}', 'wb') as f:
-                    
-                    f.write(response.content)
-
-
+            if is_response_okay(response):
+                export_graph(response.content, output)
                 spinner.text = "Done"    
                 spinner.ok("✅")
+            else:
+                spinner.fail("💥 ")   
+
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-           
+
 
 if __name__=='__main__':
     main()

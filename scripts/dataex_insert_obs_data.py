@@ -18,12 +18,15 @@ Options:
 """
 
 import json
-import requests
 import click
-from yaspin import yaspin
+import requests
+
 import pandas as pd
+from yaspin import yaspin
+
 from dataexclient import auth_helper
 from dataexclient.config import INSERT_OBS_DATA_URL
+from dataexclient.utils import check_error, create_json
 
 
 @click.command()
@@ -47,61 +50,20 @@ def main(obs_data, country_id):
     with yaspin(text="Inserting...", color="yellow") as spinner:
 
         response = requests.post(INSERT_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
 
         if response.status_code == 200:
             data = response.json()
-            if data['error'] is None:
-                print(data['message'])
-                spinner.text = "Done"
-                spinner.ok("✅")
-            else:
-                print(data['error'], data['message'])
+            if check_error(data):
                 spinner.fail("💥 ")
-            
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")            
         else:
             print(response.status_code)
             data = response.json()
             print(data['error'], data['message'])
             spinner.fail("💥 ")
-
-
-def create_json(file, country_id):
-    """Creates a json file
-    
-    Parameters
-    ----------
-    file : object
-           dataframe
-    country_id: str
-                Id of country entered by the user
-   
-    Returns
-    --------
-    json 
-          a json file containing rows of observation data
-        
-    """ 
-    
-    obs_data_json = {}
-    data = []
-    row = {}
-    for i in range(len(file)):
-        row['station_id'] = int(file.iloc[i]['station_id'])
-        row['parameter_id'] = int(file.iloc[i]['parameter_id'])
-        row['level_id'] = int(file.iloc[i]['level_id'])
-        row['start_time'] = file.iloc[i]['start_time'] + 'Z'
-        row['end_time'] = file.iloc[i]['end_time'] + 'Z'
-        row['value'] = int(file.iloc[i]['value'])
-        data.append(row)
-        row = {}
-
-    obs_data_json['country_id'] = country_id
-
-    obs_data_json['data'] = data    
-
-    return obs_data_json
-
-
 
 if __name__=="__main__":
     main()

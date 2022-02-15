@@ -23,13 +23,17 @@ Options:
 """
 
 import json
-import pandas as pd
-from dataexclient import auth_helper
-from dataexclient.config import GET_COUNTRY_INFO_URL
-import requests
 import click
+import requests
+
+import pandas as pd
+
 from yaspin import yaspin
 from tabulate import tabulate
+
+from dataexclient import auth_helper
+from dataexclient.config import GET_COUNTRY_INFO_URL
+from dataexclient.utils import check_error, check_output_format
 
 
 
@@ -69,69 +73,20 @@ def main(country, output_format, output):
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(GET_COUNTRY_INFO_URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
         
         if response.status_code == 200:
-
             data = response.json()
-            print(data)
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-            if output_format == 'json':
-
-                if output is not None:
-
-                    if output.endswith('.json'):
-
-                        with open(f'{output}', 'w') as f:
-                            json.dump(data['info'], f)
-
-                else:
-                    print(data['info'])
-
-            elif output_format in ['table','csv']:
-
-                df = pd.DataFrame(data['info'])
-
-                if output_format == 'table':
-
-                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-                    
-                    if output is not None:
-
-                        with open(output, 'w') as outfile:
-                            outfile.write(table)
-
-                    else:
-                        print(table)
-
-                elif output_format == 'csv':
-
-                    if output is not None:
-
-                        if not output.endswith('.csv'):
-                            output += '.csv'
-
-                        df.to_csv(output, index=False)
-                    else:
-                        print(data['info'])
-
-
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+            check_output_format(data['info'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
 
 
-
-
 if __name__=='__main__':
     main()
-
-
-

@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-
-
+"""CLI to get dataex system states"""
 import json
-import pandas as pd
+import click
+import requests
+
+from yaspin import yaspin
+from tabulate import tabulate
+
 from dataexclient import auth_helper
 from dataexclient.config import CHECK_SYSTEM_STATE_URL
-import requests
-from tabulate import tabulate
-import click
-from yaspin import yaspin
+from dataexclient.utils import check_error, check_output_format
 
 @click.command()
 @click.option('--state_name', '-sn', required=True, help='name of system state',type=str)
 @click.option('--output', '-o', required=False, default=None, help='output filename')
-
 
 
 def main(state_name, output):
@@ -27,32 +27,19 @@ def main(state_name, output):
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(CHECK_SYSTEM_STATE_URL, headers=headers, data=json.dumps(payload))
+        print(response.url)
         
         if response.status_code == 200:
             data = response.json()
-
-            if 'error' in data:
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-            if output is not None:
-                if not output.endswith('.json'):
-                    output += '.json'
-
-                with open(f'{output}', 'w') as f:
-                    json.dump(data['data'], f)
+            if check_error(data):
+                spinner.fail("💥 ")
             else:
-                print(data['data'])
-
+                spinner.text = "Done"
+                spinner.ok("✅")
+            check_output_format(data['data'], output)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
 
 if __name__=='__main__':
     main()

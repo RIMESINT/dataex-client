@@ -30,12 +30,14 @@ Options:
       
 
 """
-
 import json
-import requests
 import click 
+import requests
+
 from yaspin import yaspin
+
 from dataexclient import auth_helper
+from dataexclient.utils import export_nc, is_response_okay
 from dataexclient.config import GET_NETCDF_SUBSET_URL, GET_NETCDF_SUBSET_ENS_URL
 
 
@@ -52,6 +54,7 @@ ens_parameters = [
     'lsp_q95', 'cp_q5', 'cp_q25', 
     'cp_q50', 'cp_q75', 'cp_q95'
 ]
+
 
 @click.command()
 @click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
@@ -99,25 +102,17 @@ def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
-
-            if response.headers['content-type'] == "application/json":
-                data = response.json()
-                print(data['error'], data['message'])
-                spinner.fail("💥 ")
+            if is_response_okay(response):
+                export_nc(response.content, output)
+                spinner.text = "Done"
+                spinner.ok("✅")                
             else:
-                if not output.endswith('.nc'):
-                    output += '.nc'
-
-                with open(f'{output}', 'wb') as f:
-                    f.write(response.content)
-                spinner.text = "Done"    
-                spinner.ok("✅")
+                spinner.fail("💥 ")
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
            
-
 
 if __name__=='__main__':
     main()

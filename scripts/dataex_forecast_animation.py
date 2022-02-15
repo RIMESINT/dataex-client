@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-
+"""CLI to get forecast video"""
 import json
-import requests
 import click 
-import os
-from pathlib import Path
+import requests
+
 from yaspin import yaspin
+
 from dataexclient import auth_helper
 from dataexclient.config import GET_HRES_ANIMATED_GRAPH_URL, GET_ENS_ANIMATED_GRAPH_URL
+from dataexclient.utils import export_html_video, is_response_okay
 
 
 @click.command()
@@ -91,26 +92,15 @@ def main(model_type, hres_param, ens_param, quantile, latbounds, lonbounds, outp
         'Authorization': auth_helper.get_token(),
     }
 
-
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(URL, stream=True, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
-
-            if response.headers['content-type'] == "application/json":
-                data = response.json()
-                print(data['error'], data['message'])
-                spinner.fail("💥 ")
-            else:
-                if not output.endswith('.html'):
-                    output += '.html'
-              
-                with open(f'{output}', 'wb') as f:
-                    
-                    f.write(response.content)
-
-
+            if is_response_okay:
+                export_html_video(response.content, output)
                 spinner.text = "Done"    
                 spinner.ok("✅")
+            else:
+                spinner.fail("💥 ")
 
         else:
             print(response.status_code)
