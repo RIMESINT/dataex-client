@@ -71,7 +71,7 @@ def main(model_type, hres_param, ens_param, quantile, day, latbounds, lonbounds,
                 spinner.fail("💥 ")
                 return
             if quantile:
-                print("Ignoring quantile parameter for HRES")
+                print("Ignoring quantile parameter as HRES has no quantile data")
             if hres_param is None:
                 print("Please provide a parameter from HRES")
                 spinner.text = "request failed...select a parameter"
@@ -120,7 +120,6 @@ def main(model_type, hres_param, ens_param, quantile, day, latbounds, lonbounds,
                 spinner.ok("✅")
             else:
                 spinner.fail("💥 ")   
-
 
         else:
             print(response.status_code)

@@ -98,7 +98,7 @@ def check_output_format(data, output=None, output_format='json'):
 def create_json(file, country_id):
     """
     Creates a json file for inserting
-    observation data
+    observation data to Dataex
     
     Parameters
     ----------
@@ -111,7 +111,6 @@ def create_json(file, country_id):
     --------
     json 
           a json file containing rows of observation data
-        
     """ 
     
     obs_data_json = {}

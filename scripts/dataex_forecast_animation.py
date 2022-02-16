@@ -56,6 +56,8 @@ def main(model_type, hres_param, ens_param, quantile, latbounds, lonbounds, outp
     with yaspin(text="Initializing...", color="yellow") as spinner:
         if model_type == 'hres':
             URL = GET_HRES_ANIMATED_GRAPH_URL
+            if quantile:
+                print("Ignoring quantile parameter as HRES has no quantile data")
             if hres_param is None:
                 print("Please provide a parameter from HRES")
                 spinner.text = "Input incomplete"
