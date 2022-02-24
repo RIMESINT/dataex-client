@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """CLI to get available parameters for forecast graphs and animation"""
 import json
 import click
@@ -39,7 +40,7 @@ def main(model_type):
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-            check_output_format(data['params'], output_format='table')
+                check_output_format(data['params'], output_format='table')
         else:
             print(response.status_code)
             spinner.fail("💥 ")

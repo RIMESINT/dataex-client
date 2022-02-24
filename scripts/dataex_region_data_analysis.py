@@ -40,7 +40,7 @@ from dataexclient.utils import check_error, check_output_format
 from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL, GET_ECMWF_ENS_REGION_DATA_URL
 
 @click.command()
-@click.option('--model_type', '-mt', required=True, default='hres', type=click.Choice(['hres', 'ens'], case_sensitive=False))
+@click.option('--model_type', '-mt', required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False))
 @click.option('--reducer', '-r', required=True, help='name of reducer', type=click.STRING)
 @click.option('--asset_identifier', '-ai', required=True, help='unique identifier for asset', type=click.STRING)
 @click.option('--unique_field', '-uf', required=True, help='unique fields in asset', type=click.STRING)
@@ -50,9 +50,9 @@ from dataexclient.config import GET_ECMWF_HRES_REGION_DATA_URL, GET_ECMWF_ENS_RE
 
 def main(model_type, reducer, asset_identifier, unique_field, output_format, output):
     
-    if model_type == 'ens':
+    if model_type == 'ecmwf_ens':
         URL = GET_ECMWF_ENS_REGION_DATA_URL
-    else:
+    elif model_type == 'ecmwf_hres':
         URL = GET_ECMWF_HRES_REGION_DATA_URL
 
     payload = dict()
@@ -76,7 +76,7 @@ def main(model_type, reducer, asset_identifier, unique_field, output_format, out
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-            check_output_format(data['data'], output, output_format)
+                check_output_format(data['data'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")

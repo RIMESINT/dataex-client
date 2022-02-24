@@ -28,7 +28,7 @@ def main(state_name, output):
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(CHECK_SYSTEM_STATE_URL, headers=headers, data=json.dumps(payload))
         print(response.url)
-        
+
         if response.status_code == 200:
             data = response.json()
             if check_error(data):

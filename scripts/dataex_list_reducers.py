@@ -34,7 +34,7 @@ from dataexclient.utils import check_error, check_output_format
 
 
 @click.command()
-@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
+@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False))
 @click.option('--output_format', '-of' ,required=False, default='table' ,type=click.Choice(['json','table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o' ,required=False, help='output filename')
 

@@ -7,7 +7,7 @@ This tool can download in either csv or json file.
 
 Usage:
 
-$ dataex_get_station_list.py --country_id <int> --not_empty --output_type <str> --output <str>
+$ dataex_get_station_list.py --country_id <int> --not_empty --output_format <str> --output <str>
 
 Options:
 
