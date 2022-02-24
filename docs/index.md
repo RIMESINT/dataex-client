@@ -3,13 +3,14 @@
 
 # Dataex API 
 
-A dataex API client library for:
+A dataex API client library to:
 
-- Download and insertion of observation data.
-- Download summary of observation data.
+- Download and insert station specific observation data.
+- Download summary of available observation data for every member country.
 - Download raw netcdf data of ECMWF HRES/ENS/SEAS forecasts for specific region and parameter.
-- List reducer names and user assets available for forecast data analysis.
+- List reducer names and user assets available for forecast analysis.
 - Download region specific forecast timeseries of ECMWF ENS/HRES/SEAS model forecasts.
+- Download forecast graph and animation.
 
 ### Installation
 
@@ -34,10 +35,10 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 
 ### Example
 
-Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model `hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
+Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model `ecmwf-hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
 
 ```
-$ dataex_netcdf_subset.py --model_type hres --params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
+$ dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/emwf_hres_subset.nc
 
 ``` 
 Alternatively, you can use short forms of the option names used in the above command. 

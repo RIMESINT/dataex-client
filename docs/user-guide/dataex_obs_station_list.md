@@ -7,7 +7,7 @@ This script allows the user to get country's station information such as ID numb
 
 ###Usage
 ```
-$ dataex_obs_station_list.py --country_id <int> --not_empty --output_type <str> --output <str>
+$ dataex_obs_station_list.py --country_id <int> --not_empty --output_format <str> --output <str>
 ```
 
 !!! Tip
@@ -17,7 +17,7 @@ $ dataex_obs_station_list.py --country_id <int> --not_empty --output_type <str> 
 ```
 not_empty/empty   : flag to get only those stations with data or all 
 
-output_type       : str
+output_format     : str
                     json, table or csv  
               
 country_id        : int
@@ -28,7 +28,7 @@ output            : str
 
 ```
 
-Each country has a number of stations with their own distinct id numbers. Using the empty/not_empty option, one can choose if they want to download information of stations having related observations or not. 
+Each country has a number of stations with their own distinct id numbers. Using the empty/not_empty option, one can choose if they want to download information of only those stations with observations or all.
 
 !!! info
     The `empty` and `non-empty` options are boolean flags which can be enabled or disabled. `empty` is the default state. 
@@ -37,8 +37,6 @@ Each country has a number of stations with their own distinct id numbers. Using 
 
 ### Example
 ```
-$ dataex_obs_station_list.py --country_id 3 --non_empty --output_type csv --output ./station_info.csv
+$ dataex_obs_station_list.py --country_id 3 --non_empty --output_format csv --output ./station_info.csv
 ```
-This will download a list of observation stations and their related information for country with `id` number 3 and since output type is `csv`, the data will be stored in a csv file with name `station_info.csv` in the current directory. Since, `non_empty` flag is set, only those stations with observations are retrieved. 
-
-
+This will download a list of observation stations and their related information for country with `id` number 3 and since output type is `csv`, the data will be stored in a csv file with name `station_info.csv` in the current directory. Since, `non_empty` flag is set, only those stations with observations are retrieved.

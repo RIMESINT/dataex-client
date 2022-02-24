@@ -1,10 +1,10 @@
-##Check reducers CLI
+##List reducers CLI
 
 This script allows the user to list all the available reducer names that can be used in forecast analysis depending on the model type:
 
-- [X] HRES
-- [X] ENS
-- [ ] SEAS
+- [X] ECMWF HRES
+- [X] ECMWF ENS
+- [ ] ECMWF SEAS
 
 
 ###Usage
@@ -29,20 +29,23 @@ output        : str
 
 ```
 
-For model types, `HRES` is the default. `--output_format` option if not used, defaults to `table` and then the downloaded data is displayed on terminal in case `output` option is also left out. 
+For model types, the name is case insensitive but you must stick to the provided choices which are `ecmwf_ens`, `ecmwf_hres` and `ecmwf_seas`.
+
+ `--output_format` option if not used, defaults to `table` and then the downloaded data is displayed in the terminal when case `output` option is also left out. 
 
 !!! Info
-    The model type names are case-insensitive. For instance, hres or HRES are both valid. 
+    The model type names are case-insensitive. For instance, ecmwf_hres or ECMWF_HRES are both valid. 
 
 
 ### Example
 
 ```
-$ dataex_check_reducers.py --output_format json --output ./reducers.json
+$ dataex_list_reducers.py --model_type ecmwf_hres --output_format json --output ./reducers.json
 ```
-Here, a json file stores the downloaded data. The model type is `HRES` since it is the default.
+Here, a json file is used to store the downloaded data. The model type is `ecmwf_hres`.
 
 ```
-$ dataex_check_reducers.py --model_type ENS 
+$ dataex_list_reducers.py --model_type ECMWF_ENS 
 ```
-Model type is specified as `ENS`. The output format is `table` which is the default. 
+
+Model type is specified as `ECMWF ENS`. The output format is `table` which is the default. 

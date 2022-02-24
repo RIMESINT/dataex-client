@@ -1,6 +1,6 @@
 ## Get user fcst asset info CLI
 
-This script enables the user to list all the available forecast analysis user assets.
+This script helps the user to list the user's assets for used in forecast analysis engine.
 
 ###Usage
 ```

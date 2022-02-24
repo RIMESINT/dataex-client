@@ -1,6 +1,6 @@
 ## Get List of System States CLI
 
-This script allows to look at the available system states in dataex. 
+This script allows to look at the details of system states such as initialization time of models and their last time of update. 
 
 
 ###Usage
@@ -8,5 +8,5 @@ This script allows to look at the available system states in dataex.
 $ dataex_list_system_states.py
 ```
 
-It is a simple command that just prints a list of system states in a tabular format in your terminal.
+It is a simple command that prints a list of system states in a tabular format in your terminal.
 

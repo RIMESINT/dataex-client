@@ -2,6 +2,7 @@ site_name: Dataex API
 repo_url: https://github.com/RIMESINT/dataex-client/tree/master
 site_url: https://rimesint.github.io/dataex-client/
 copyright: Copyright &copy; 2021 RIMES
+dev_addr: 127.0.0.1:5000
 
 theme:
   name: material

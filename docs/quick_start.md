@@ -49,6 +49,6 @@ Finally, run the above `pip` install command while activating the virtual enviro
 ### Running a command
 
 ```
-(env)$ dataex_obs_data_summary.py --output ./summary.csv --output_type csv
+(env)$ dataex_obs_data_summary.py --output_format csv --output ./summary.csv
 ```
 There is no difference in the way a command is used. But now you have the advantage of running it inside its own isolated environment.  

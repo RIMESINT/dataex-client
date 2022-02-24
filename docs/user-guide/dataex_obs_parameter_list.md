@@ -8,7 +8,7 @@ This tool can download in either csv or json file.
 
 ###Usage
 ```
-$ dataex_obs_parameter_list.py --station_id <int> --output_type <str> --output <str>
+$ dataex_obs_parameter_list.py --station_id <int> --output_format <str> --output <str>
 ```
 !!! Tip
     Option names too long, you can always use their short forms. Check using `--help`
@@ -17,7 +17,7 @@ $ dataex_obs_parameter_list.py --station_id <int> --output_type <str> --output <
 ###Options
 ```
 
-output_type : str
+output_format : str
               json, table or csv  
               
 station_id  : int
@@ -32,7 +32,7 @@ If `output_type` is not specified then it defaults to `table`. Further, in this 
 ### Example
 
 ```
-$ dataex_obs_parameter_list.py --station_id 53 --output_type csv --output ./param_info.csv
+$ dataex_obs_parameter_list.py --station_id 53 --output_format csv --output ./param_info.csv
 ```
 Here, data is downloaded in a `csv` file named as `param_info.csv` in the current directory.
 

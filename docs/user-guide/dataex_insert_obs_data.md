@@ -1,6 +1,6 @@
 ## Insert observation data CLI
 
-This script allows the user to upload observation data into Dataex server. 
+This script allows the user to upload station specific observation data into Dataex server. 
 It takes as input either a csv or excel file containing the observations along with the country id number as the command arguments.
 
 !!! info
@@ -22,7 +22,7 @@ country_id : int
              id number of country
                  
 obs_data   : str
-             input file either csv or excel   
+             input file is either csv or excel
 ```          
 ###Example
 
