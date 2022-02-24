@@ -41,13 +41,13 @@ from dataexclient.utils import export_nc, is_response_okay
 from dataexclient.config import GET_NETCDF_SUBSET_URL, GET_NETCDF_SUBSET_ENS_URL
 
 
-hres_parameters = [
+ecmwf_hres_parameters = [
     'u10', 'swvl1','swvl2', 'swvl3', 'swvl4', 
     'd2m', 'v10', 't2m', 'cp', 'lsp',
     'ssr', 'str', 'sshf', 'slhf'
 ]
 
-ens_parameters = [
+ecmwf_ens_parameters = [
     't2m_q5', 't2m_q25', 't2m_q50', 
     't2m_q75', 't2m_q95', 'lsp_q5',
     'lsp_q25', 'lsp_q50', 'lsp_q75', 
@@ -57,30 +57,30 @@ ens_parameters = [
 
 
 @click.command()
-@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
-@click.option('--hres_params', '-hp', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select hres parameters')
-@click.option('--ens_params', '-ep', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ens parameters')
+@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False))
+@click.option('--ecmwf_hres_params', '-hp', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ecmwf hres parameters')
+@click.option('--ecmwf_ens_params', '-ep', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ecmwf ens parameters')
 @click.option('--latbounds', '-lat', required=True, nargs=2, type=float, help='Enter bottom lat and then top lat with space in between')
 @click.option('--lonbounds', '-lon', required=True, nargs=2, type=float, help='Enter left lon and then right lon with space in between')
 @click.option('--output', '-o', required=True, help='output filename')
 
-def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
+def main(model_type, ecmwf_hres_params, ecmwf_ens_params, latbounds, lonbounds, output):
 
     params = []
 
-    if model_type == 'hres':
+    if model_type == 'ecmwf_hres':
         URL = GET_NETCDF_SUBSET_URL
-        if hres_params is None:
-            params = hres_parameters
+        if ecmwf_hres_params is None:
+            params = ecmwf_hres_parameters
         else:
-            params = [param.strip() for param in hres_params.split(',')]
+            params = [param.strip() for param in ecmwf_hres_params.split(',')]
 
-    elif model_type == 'ens':
+    elif model_type == 'ecmwf_ens':
         URL = GET_NETCDF_SUBSET_ENS_URL
-        if ens_params is None:
-            params = ens_parameters
+        if ecmwf_ens_params is None:
+            params = ecmwf_ens_parameters
         else:
-            params = [param.strip() for param in ens_params.split(',')]
+            params = [param.strip() for param in ecmwf_ens_params.split(',')]
 
     
     payload = {}

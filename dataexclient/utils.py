@@ -10,8 +10,8 @@ def export_json(data, output=None):
     if output is not None:
         if not output.endswith('.json'):
             output += '.json'
-            with open(f'{output}', 'w') as f:
-                json.dump(data, f)
+        with open(f'{output}', 'w') as f:
+            json.dump(data, f)
     else:
         print(data)
     
@@ -22,7 +22,7 @@ def export_csv(data, output=None):
     if output is not None:
         if not output.endswith('.csv'):
             output += '.csv'
-            df.to_csv(output, index=False)
+        df.to_csv(output, index=False)
     else:
         print(data)
 

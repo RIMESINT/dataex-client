@@ -14,15 +14,15 @@ from dataexclient.utils import export_html_video, is_response_okay
 @click.command()
 @click.option('--model_type', '-mt' ,
                required=True, 
-               type=click.Choice(['hres', 'ens'], case_sensitive=False)
+               type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False)
 )
 
-@click.option('--hres_param', '-hp',
+@click.option('--ecmwf_hres_param', '-hp',
                required=False, 
                help='Type one hres parameter name'
 )
 
-@click.option('--ens_param', '-ep', 
+@click.option('--ecmwf_ens_param', '-ep', 
                required=False, 
                help='Type one ens parameter name'
 )
@@ -30,7 +30,7 @@ from dataexclient.utils import export_html_video, is_response_okay
 @click.option('--quantile', '-q',  
                required=False,
                type=click.Choice(['q5', 'q25', 'q50', 'q75', 'q95'], case_sensitive=False),
-               help='Choose a quantile with ens parameters'
+               help='Choose a quantile with ECMWF ENS parameters'
 )
 @click.option('--latbounds', '-lat', 
                required=True, nargs=2, type=float, 
@@ -47,26 +47,26 @@ from dataexclient.utils import export_html_video, is_response_okay
                help='output filename'
 )
 
-def main(model_type, hres_param, ens_param, quantile, latbounds, lonbounds, output):
+def main(model_type, ecmwf_hres_param, ecmwf_ens_param, quantile, latbounds, lonbounds, output):
 
     payload = {}
     coords = {}
     param = ''
 
     with yaspin(text="Initializing...", color="yellow") as spinner:
-        if model_type == 'hres':
+        if model_type == 'ecmwf_hres':
             URL = GET_HRES_ANIMATED_GRAPH_URL
             if quantile:
                 print("Ignoring quantile parameter as HRES has no quantile data")
-            if hres_param is None:
+            if ecmwf_hres_param is None:
                 print("Please provide a parameter from HRES")
                 spinner.text = "Input incomplete"
                 spinner.fail("💥 ")
                 return
             else:
-                param = hres_param
+                param = ecmwf_hres_param
 
-        elif model_type == 'ens':
+        elif model_type == 'ecmwf_ens':
             URL = GET_ENS_ANIMATED_GRAPH_URL
             if quantile is None:
                 print("Please select a quantile with parameter from ENS")
@@ -76,7 +76,7 @@ def main(model_type, hres_param, ens_param, quantile, latbounds, lonbounds, outp
             else:
                 payload['quantile'] = quantile
                 
-            if ens_param is None:
+            if ecmwf_ens_param is None:
                 print("Please provide a parameter from ENS")
                 spinner.text = "request failed"
                 spinner.fail("💥 ")

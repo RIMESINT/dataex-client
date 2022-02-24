@@ -15,7 +15,7 @@ from dataexclient.utils import check_error, check_output_format
 @click.option(
     '--model_type', '-mt' ,
     required=True, 
-    type=click.Choice(['hres', 'ens'], case_sensitive=False), 
+    type=click.Choice(['ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'], case_sensitive=False), 
     help='choose model type'
 )
 
@@ -47,4 +47,3 @@ def main(model_type):
 
 if __name__=='__main__':
     main()
-
