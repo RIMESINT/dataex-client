@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#check-reducers-cli" class="md-skip">
+        <a href="#list-reducers-cli" class="md-skip">
           Skip to content
         </a>
       
@@ -614,11 +614,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-reducers-cli" class="md-nav__link">
-    Check reducers CLI
+  <a href="#list-reducers-cli" class="md-nav__link">
+    List reducers CLI
   </a>
   
-    <nav class="md-nav" aria-label="Check reducers CLI">
+    <nav class="md-nav" aria-label="List reducers CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -804,11 +804,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-reducers-cli" class="md-nav__link">
-    Check reducers CLI
+  <a href="#list-reducers-cli" class="md-nav__link">
+    List reducers CLI
   </a>
   
-    <nav class="md-nav" aria-label="Check reducers CLI">
+    <nav class="md-nav" aria-label="List reducers CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -856,12 +856,12 @@
                 
                   <h1>List reducers</h1>
                 
-                <h2 id="check-reducers-cli">Check reducers CLI</h2>
+                <h2 id="list-reducers-cli">List reducers CLI</h2>
 <p>This script allows the user to list all the available reducer names that can be used in forecast analysis depending on the model type:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> HRES</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ENS</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SEAS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF HRES</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF ENS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ECMWF SEAS</li>
 </ul>
 <h3 id="usage">Usage</h3>
 <div class="highlight"><pre><span></span><code>$ dataex_list_reducers.py --model_type &lt;str&gt; --output_format &lt;str&gt; --output &lt;str&gt;
@@ -880,18 +880,19 @@ model_type    : str
 output        : str
                 output filename
 </code></pre></div>
-<p>For model types, <code>HRES</code> is the default. <code>--output_format</code> option if not used, defaults to <code>table</code> and then the downloaded data is displayed on terminal in case <code>output</code> option is also left out. </p>
+<p>For model types, the name is case insensitive but you must stick to the provided choices which are <code>ecmwf_ens</code>, <code>ecmwf_hres</code> and <code>ecmwf_seas</code>.</p>
+<p><code>--output_format</code> option if not used, defaults to <code>table</code> and then the downloaded data is displayed in the terminal when case <code>output</code> option is also left out. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The model type names are case-insensitive. For instance, hres or HRES are both valid. </p>
+<p>The model type names are case-insensitive. For instance, ecmwf_hres or ECMWF_HRES are both valid. </p>
 </div>
 <h3 id="example">Example</h3>
-<p><div class="highlight"><pre><span></span><code>$ dataex_check_reducers.py --output_format json --output ./reducers.json
+<p><div class="highlight"><pre><span></span><code>$ dataex_list_reducers.py --model_type ecmwf_hres --output_format json --output ./reducers.json
 </code></pre></div>
-Here, a json file stores the downloaded data. The model type is <code>HRES</code> since it is the default.</p>
-<p><div class="highlight"><pre><span></span><code>$ dataex_check_reducers.py --model_type ENS 
+Here, a json file is used to store the downloaded data. The model type is <code>ecmwf_hres</code>.</p>
+<div class="highlight"><pre><span></span><code>$ dataex_list_reducers.py --model_type ECMWF_ENS 
 </code></pre></div>
-Model type is specified as <code>ENS</code>. The output format is <code>table</code> which is the default. </p>
+<p>Model type is specified as <code>ECMWF ENS</code>. The output format is <code>table</code> which is the default. </p>
                 
               
               

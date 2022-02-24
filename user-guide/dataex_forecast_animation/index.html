@@ -587,6 +587,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -818,6 +825,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -845,14 +859,16 @@
                 <h2 id="forecast-graphics-engine-cli">Forecast Graphics Engine CLI</h2>
 <p>This script allows to download animated graphs for the following models -</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> HRES</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ENS</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SEAS </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF HRES</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF ENS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF SEAS </li>
 </ul>
 <h3 id="usage">Usage</h3>
 <div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py --model_type &lt;str&gt; --hres_params &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
 
 $ dataex_forecast_animation.py --model_type &lt;str&gt; --ens_params &lt;str&gt; --quantile &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
+
+$ dataex_forecast_animation.py --model_type &lt;str&gt; --seas_params &lt;str&gt; --quantile &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
 </code></pre></div>
 <p>Unlike single graphs, animation comprises all forecast dates.</p>
 <div class="admonition tip">
@@ -861,16 +877,19 @@ $ dataex_forecast_animation.py --model_type &lt;str&gt; --ens_params &lt;str&gt;
 </div>
 <h3 id="options">Options</h3>
 <div class="highlight"><pre><span></span><code>model_type  : str
-              model name (hres, ens or seas)
+              model name (ecmwf hres, ens or seas)
 
-hres_params : str
-              name of hres parameter
+ecmwf_hres_params : str
+                    name of ecmwf hres parameter
 
-ens_params  : str
-              name of ens parameter
+ecmwf_ens_params  : str
+                    name of ecmwf ens parameter
+
+ecmwf_seas_params : str
+                    name of ecmwf seas parameter
 
 quantile    : str
-              For ens parameters, there are five quantile values to choose,
+              For ecmwf ens or seas parameters, there are five quantile values to choose,
               &#39;q5&#39;, &#39;q25&#39;, &#39;q50&#39;, &#39;q75&#39;, &#39;q95&#39;
 
 latbounds   : float values
@@ -886,14 +905,21 @@ output      : str
 <p class="admonition-title">Warning</p>
 <ul>
 <li>Latitude and longitude values outside the available dataset boundaries will return an error. </li>
-<li>Only ens parameters can use quantiles option.</li>
+<li>Only ecmwf ens or seas parameters can use quantiles option.</li>
 </ul>
 </div>
 <p>The output of this command is a <code>html</code> video file which means it can be opened in the web browser. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The lead days for <code>hres</code> is 10 days while for <code>ens</code> is 15 days.</p>
+<p>The lead days for <code>ecmwf hres</code> is 10 days while for <code>ecmwf ens</code> is 15 days. And for <code>ecmwf seas</code> is 7 months.</p>
 </div>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_hres -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o hres_anime
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_ens -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o ens_anime
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_seas -sp total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o seas_anime
+</code></pre></div>
                 
               
               

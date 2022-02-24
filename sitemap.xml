@@ -2,112 +2,112 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rimesint.github.io/dataex-client/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/quick_start/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_check_system_state/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_forecast_animation/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_forecast_graph/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_forecast_graph_params/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_get_obs_data/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_init/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_insert_obs_data/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_list_country_info/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_list_reducers/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_list_system_states/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_list_user_assets/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_netcdf_subset/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_obs_data_summary/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_obs_parameter_list/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_obs_station_list/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/dataex_region_data_analysis/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/delete_user_asset/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/plot_netcdf_grads/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/remove_error/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rimesint.github.io/dataex-client/user-guide/upload_user_asset/</loc>
-         <lastmod>2022-01-21</lastmod>
+         <lastmod>2022-02-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

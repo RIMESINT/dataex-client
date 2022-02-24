@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#check-a-system-state-cli" class="md-skip">
+        <a href="#check-system-states-cli" class="md-skip">
           Skip to content
         </a>
       
@@ -490,16 +490,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-a-system-state-cli" class="md-nav__link">
-    Check a System State CLI
+  <a href="#check-system-states-cli" class="md-nav__link">
+    Check System States CLI
   </a>
   
-    <nav class="md-nav" aria-label="Check a System State CLI">
+    <nav class="md-nav" aria-label="Check System States CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -790,16 +797,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-a-system-state-cli" class="md-nav__link">
-    Check a System State CLI
+  <a href="#check-system-states-cli" class="md-nav__link">
+    Check System States CLI
   </a>
   
-    <nav class="md-nav" aria-label="Check a System State CLI">
+    <nav class="md-nav" aria-label="Check System States CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
   
 </li>
@@ -828,12 +842,15 @@
                 
                   <h1>Check System States</h1>
                 
-                <h2 id="check-a-system-state-cli">Check a System State CLI</h2>
-<p>This script allows to explore the details of a system state. </p>
+                <h2 id="check-system-states-cli">Check System States CLI</h2>
+<p>This script allows to view the information on available parameters for a specific system state.</p>
 <h3 id="usage">Usage</h3>
 <div class="highlight"><pre><span></span><code>$ dataex_check_system_state.py --state_name &lt;str&gt; --output &lt;str&gt;
 </code></pre></div>
-<p>This will download a json file containing information related to the desired system state. </p>
+<p>This will download a json file related to the desired system state's information on available parameters. </p>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre><span></span><code>$ python dataex_check_system_state.py --state_name ECMWF_HRES_NC --output $HOME/system_state_params.json
+</code></pre></div>
                 
               
               

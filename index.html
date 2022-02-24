@@ -876,13 +876,14 @@
                 
                 <p><img alt="Dataex" src="img/dataex_logo.svg" width="500px" style="display: block; margin: 0 auto 0 auto"></p>
 <h1 id="dataex-api">Dataex API</h1>
-<p>A dataex API client library for:</p>
+<p>A dataex API client library to:</p>
 <ul>
-<li>Download and insertion of observation data.</li>
-<li>Download summary of observation data.</li>
+<li>Download and insert station specific observation data.</li>
+<li>Download summary of available observation data for every member country.</li>
 <li>Download raw netcdf data of ECMWF HRES/ENS/SEAS forecasts for specific region and parameter.</li>
-<li>List reducer names and user assets available for forecast data analysis.</li>
+<li>List reducer names and user assets available for forecast analysis.</li>
 <li>Download region specific forecast timeseries of ECMWF ENS/HRES/SEAS model forecasts.</li>
+<li>Download forecast graph and animation.</li>
 </ul>
 <h3 id="installation">Installation</h3>
 <p>Dataex API client can be installed using the following command,
@@ -903,8 +904,8 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>dataex_region_data_analysis.py</code> - Download region specific forecast time series of ECMWF HRES/ENS/SEAS model forecasts.</li>
 </ul>
 <h3 id="example">Example</h3>
-<p>Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model <code>hres</code> for parameters <code>u10, swvl1, t2m</code>. We can use the following command, </p>
-<p><div class="highlight"><pre><span></span><code>$ dataex_netcdf_subset.py --model_type hres --params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output /home/user/hres_subset.nc
+<p>Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model <code>ecmwf-hres</code> for parameters <code>u10, swvl1, t2m</code>. We can use the following command, </p>
+<p><div class="highlight"><pre><span></span><code>$ dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/emwf_hres_subset.nc
 </code></pre></div>
 Alternatively, you can use short forms of the option names used in the above command. </p>
 <h3 id="support">Support</h3>

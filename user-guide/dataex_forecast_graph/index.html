@@ -573,6 +573,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -818,6 +825,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -845,36 +859,44 @@
                 <h2 id="forecast-graphics-engine-cli">Forecast Graphics Engine CLI</h2>
 <p>This script allows to download single day forecast graphs for the following models -</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> HRES</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ENS</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SEAS </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF HRES</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF ENS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF SEAS </li>
 </ul>
 <h3 id="usage">Usage</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_forecast_graph.py --model_type &lt;str&gt; --hres_params &lt;str&gt; --day &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_graph.py --model_type &lt;str&gt; --ecmwf_hres_params &lt;str&gt; --day &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
 
-$ dataex_forecast_graph.py --model_type &lt;str&gt; --ens_params &lt;str&gt; --quantile &lt;str&gt; --day &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
+$ dataex_forecast_graph.py --model_type &lt;str&gt; --ecmwf_ens_params &lt;str&gt; --quantile &lt;str&gt; --day &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
+
+$ dataex_forecast_graph.py --model_type &lt;str&gt; --ecmwf_seas_params &lt;str&gt; --quantile &lt;str&gt; --month &lt;str&gt; --latbounds &lt;float&gt; &lt;float&gt; --lonbounds &lt;float&gt; &lt;float&gt; --output &lt;str&gt;
 </code></pre></div>
-<p>Get the names of available parameters using <code>dataex_forecast_graph_params.py</code>. Check the documentation on <a href="../dataex_forecast_graph_params/">dataex_forecast_graph</a> for further details. </p>
+<p>Get the names of available parameters using <code>dataex_forecast_graph_params.py</code>. Check the documentation on <a href="../dataex_forecast_graph_params/">dataex_forecast_graph_params</a> for further details. </p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Option names too long, you can always use their short forms. Check using <code>--help</code></p>
 </div>
 <h3 id="options">Options</h3>
 <div class="highlight"><pre><span></span><code>model_type  : str
-              model name (hres, ens or seas)
+              model name (ecmwf_hres, ecmwf_ens or ecmwf_seas)
 
-hres_params : str
-              name of hres parameter
+ecmwf_hres_params : str
+                    name of ecmwf hres parameter
 
-ens_params  : str
-              name of ens parameter
+ecmwf_ens_params  : str
+                    name of ecwmf ens parameter
+
+ecmwf_seas_params : str
+                    name of ecmwf seas parameter
 
 quantile    : str
-              For ens parameters, there are five quantile values to choose,
+              For both ecmwf ens and seas parameters, there are five quantile values to choose,
               &#39;q5&#39;, &#39;q25&#39;, &#39;q50&#39;, &#39;q75&#39;, &#39;q95&#39;
 
 day         : str
-              This represents the day of forecast with &#39;1&#39; being for first day and so on.  
+              This represents the day of forecast with &#39;1&#39; being for first day and so on. 
+
+month       : str
+              This represents the month of forecast with &#39;1&#39; being for first month and so on. Only applies to ECMWF SEAS
 
 latbounds   : float values
               South and North latitude values space seperated 
@@ -889,14 +911,21 @@ output      : str
 <p class="admonition-title">Warning</p>
 <ul>
 <li>Latitude and longitude values outside the available dataset boundaries will return an error. </li>
-<li>Only ens parameters can use quantiles option.</li>
+<li>Only <code>ecmwf_ens</code> and <code>ecmwf_seas</code> parameters can use quantiles option.</li>
 </ul>
 </div>
-<p>The output is a <code>png</code> image file. Choosing the day of the forecast gives you the graph for the desired parameter of that day.   </p>
+<p>The output is a <code>png</code> image file. Choosing the day of the forecast gives you the graph for the desired parameter of that day.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The lead days for <code>hres</code> is 10 days while for <code>ens</code> is 15 days.</p>
+<p>The lead days for <code>ecmwf hres</code> is 10 days while for <code>ecmwf ens</code> is 15 days and <code>ecmwf_seas</code> is 7 months.</p>
 </div>
+<h3 id="example">Example:</h3>
+<p><div class="highlight"><pre><span></span><code>$ dataex_forecast_graph.py -mt ecmwf_ens -ep temperature_max -q q25 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_ens
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_graph.py -mt ecmwf_hres -hp temperature_max -q q5 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_hres
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ dataex_forecast_graph.py -mt ecmwf_seas -sp total_daily_rainfall -m 1 -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_seas
+</code></pre></div></p>
                 
               
               

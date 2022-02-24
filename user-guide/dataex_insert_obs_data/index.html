@@ -899,7 +899,7 @@
                   <h1>Upload observation data</h1>
                 
                 <h2 id="insert-observation-data-cli">Insert observation data CLI</h2>
-<p>This script allows the user to upload observation data into Dataex server. 
+<p>This script allows the user to upload station specific observation data into Dataex server. 
 It takes as input either a csv or excel file containing the observations along with the country id number as the command arguments.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -917,7 +917,7 @@ It takes as input either a csv or excel file containing the observations along w
              id number of country
 
 obs_data   : str
-             input file either csv or excel   
+             input file is either csv or excel
 </code></pre></div>
 <h3 id="example">Example</h3>
 <p><div class="highlight"><pre><span></span><code>$ dataex_insert_obs_data.py --country_id 5 --obs_data ./input.csv

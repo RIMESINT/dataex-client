@@ -864,14 +864,14 @@ This tool can download in either csv or json file.</p>
 <p>Observation station Id numbers can be obtained by executing <code>dataex_obs_station_list.py</code>.</p>
 </div>
 <h3 id="usage">Usage</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_obs_parameter_list.py --station_id &lt;int&gt; --output_type &lt;str&gt; --output &lt;str&gt;
+<div class="highlight"><pre><span></span><code>$ dataex_obs_parameter_list.py --station_id &lt;int&gt; --output_format &lt;str&gt; --output &lt;str&gt;
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Option names too long, you can always use their short forms. Check using <code>--help</code></p>
 </div>
 <h3 id="options">Options</h3>
-<p><div class="highlight"><pre><span></span><code>output_type : str
+<p><div class="highlight"><pre><span></span><code>output_format : str
               json, table or csv  
 
 station_id  : int
@@ -882,7 +882,7 @@ output      : str
 </code></pre></div>
 If <code>output_type</code> is not specified then it defaults to <code>table</code>. Further, in this case, if output is also not specified, the data is displayed in tabular form in the terminal.</p>
 <h3 id="example">Example</h3>
-<p><div class="highlight"><pre><span></span><code>$ dataex_obs_parameter_list.py --station_id 53 --output_type csv --output ./param_info.csv
+<p><div class="highlight"><pre><span></span><code>$ dataex_obs_parameter_list.py --station_id 53 --output_format csv --output ./param_info.csv
 </code></pre></div>
 Here, data is downloaded in a <code>csv</code> file named as <code>param_info.csv</code> in the current directory.</p>
 <p><div class="highlight"><pre><span></span><code>$ dataex_obs_parameter_list.py --station_id 53

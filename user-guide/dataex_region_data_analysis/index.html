@@ -859,9 +859,9 @@
                 <h2 id="get-region-data-analysis-cli">Get region data analysis CLI</h2>
 <p>This script allows the user to download region data analysis of following models.</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> HRES</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ENS</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SEAS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF HRES</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ECMWF ENS</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ECMWF SEAS</li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -893,15 +893,15 @@ reducer          : str
 output           : str
                    output filename
 </code></pre></div>
-<p>The model type input is case-insensitive. Hence, ENS or ens are both valid.</p>
+<p>The model type input is case-insensitive. Hence, ECMWF_ENS or ecmwf_ens are both valid.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>User asset information such as asset identifier and unique field can obtained from <code>dataex_list_user_assets.py</code>. </p>
 </div>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_get_ecmwf_hres_region_data.py -r rainfall_daily_weighted_average -ai e02d7063-7b91-4bfd-00cb099860a0 -uf ADM2_EN -of xlsx -o ./hres_region_data.xlsx
+<div class="highlight"><pre><span></span><code>$ dataex_region_data_analysis.py -mt ecmwf_hres -r rainfall_daily_weighted_average -ai e02d7063-7b91-4bfd-00cb099860a0 -uf ADM2_EN -of xlsx -o ./hres_region_data.xlsx
 </code></pre></div>
-<p>Here, the short option names are utilized. Since, model type is not explicitly specified, it defaults to <code>HRES</code>. The output is an excel file which will contain province wise data in different sheets. </p>
+<p>Here, the short option names are utilized. The output is an excel file.</p>
                 
               
               

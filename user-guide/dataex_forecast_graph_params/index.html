@@ -552,6 +552,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -804,6 +811,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -829,11 +843,14 @@
                   <h1>Download Forecast Graph Params</h1>
                 
                 <h2 id="get-parameters-for-forecast-graphics-cli">Get parameters for forecast graphics CLI</h2>
-<p>The forecast graphics engine provides single or animated graphs for three model types - HRES, ENS &amp; SEAS. This command helps to find the parameters which are available for these models. After getting the parameter names, you can use them to download graphs or animation with <code>dataex_forecast_graph.py</code> or <code>dataex_forecast_animation.py</code> commands respectively.</p>
+<p>The forecast graphics engine provides single or animated graphs for three model types - ECMWF HRES, ECMWF ENS &amp; ECMWF SEAS. This command helps to find the parameters which are available for these three models. After obtaining the parameter names, you can use them to download graphs or animation with <code>dataex_forecast_graph.py</code> or <code>dataex_forecast_animation.py</code> commands respectively.</p>
 <h3 id="usage">Usage</h3>
 <div class="highlight"><pre><span></span><code>$ dataex_forecast_graph_params.py --model_type &lt;str&gt;
 </code></pre></div>
 <p>Running this command will print a table in terminal containing the parameters for the desired model type.</p>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre><span></span><code>python dataex_forecast_graph_params.py -mt ecmwf_seas
+</code></pre></div>
                 
               
               
