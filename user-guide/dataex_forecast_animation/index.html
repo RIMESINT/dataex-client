@@ -914,12 +914,15 @@ output      : str
 <p>The lead days for <code>ecmwf hres</code> is 10 days while for <code>ecmwf ens</code> is 15 days. And for <code>ecmwf seas</code> is 7 months.</p>
 </div>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_hres -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o hres_anime
+<p>For ECMWF HRES,
+<div class="highlight"><pre><span></span><code>python dataex_forecast_animation.py -mt ecmwf_hres -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o hres_anime
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_ens -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o ens_anime
+For ECMWF ENS,
+<div class="highlight"><pre><span></span><code>python dataex_forecast_animation.py -mt ecmwf_ens -ep total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o ens_anime
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ dataex_forecast_animation.py -mt ecmwf_seas -sp total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o seas_anime
-</code></pre></div>
+For ECMWF SEAS,
+<div class="highlight"><pre><span></span><code>python dataex_forecast_animation.py -mt ecmwf_seas -sp total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o seas_anime
+</code></pre></div></p>
                 
               
               
@@ -976,7 +979,7 @@ output      : str
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 RIMES
+            Copyright &copy; 2022 RIMES
           </div>
         
         

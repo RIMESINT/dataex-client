@@ -887,7 +887,7 @@ output            : str
 <p>The <code>empty</code> and <code>non-empty</code> options are boolean flags which can be enabled or disabled. <code>empty</code> is the default state. </p>
 </div>
 <h3 id="example">Example</h3>
-<p><div class="highlight"><pre><span></span><code>$ dataex_obs_station_list.py --country_id 3 --non_empty --output_format csv --output ./station_info.csv
+<p><div class="highlight"><pre><span></span><code>python dataex_obs_station_list.py --country_id 3 --not_empty --output_format csv --output ./station_info.csv
 </code></pre></div>
 This will download a list of observation stations and their related information for country with <code>id</code> number 3 and since output type is <code>csv</code>, the data will be stored in a csv file with name <code>station_info.csv</code> in the current directory. Since, <code>non_empty</code> flag is set, only those stations with observations are retrieved.</p>
                 
@@ -946,7 +946,7 @@ This will download a list of observation stations and their related information 
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 RIMES
+            Copyright &copy; 2022 RIMES
           </div>
         
         

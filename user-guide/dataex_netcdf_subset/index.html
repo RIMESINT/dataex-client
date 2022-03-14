@@ -942,10 +942,10 @@ output      : str
 </code></pre></div>
 There are five quantiles available for each parameter in both <code>ECMWF ENS</code> and <code>ECMWF SEAS</code>. </p>
 <h3 id="example">Example</h3>
-<p><div class="highlight"><pre><span></span><code>$ dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/hres_subset.nc
+<p><div class="highlight"><pre><span></span><code>python dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/hres_subset.nc
 </code></pre></div>
 The model type input is case-insensitive. Here, only three parameters are provided. The <code>ecwmf_hres_params</code> denotes that the parameters are intended for <code>ecmwf hres</code> model. If the parameters are not provided then all model parameters are placed in the request.</p>
-<p><div class="highlight"><pre><span></span><code>$ dataex_netcdf_subset.py --model_type ecmwf_ens --ecmwf_ens_params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ens_subset.nc
+<p><div class="highlight"><pre><span></span><code>python dataex_netcdf_subset.py --model_type ecmwf_ens --ecmwf_ens_params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ens_subset.nc
 </code></pre></div>
 This one is for requesting netcdf data of model <code>ecmwf ens</code>. Here,<code>ecmwf_ens_params</code> denotes that the parameters are for model <code>ecmwf ens</code>. </p>
 <div class="admonition info">
@@ -1008,7 +1008,7 @@ This one is for requesting netcdf data of model <code>ecmwf ens</code>. Here,<co
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 RIMES
+            Copyright &copy; 2022 RIMES
           </div>
         
         

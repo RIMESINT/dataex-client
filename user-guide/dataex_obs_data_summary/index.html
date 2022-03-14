@@ -894,7 +894,7 @@ A sample of the information that is retrieved from the dataex server can be seen
 <p>Option names too long, you can always use their short forms. Check using <code>--help</code></p>
 </div>
 <h3 id="options">Options</h3>
-<div class="highlight"><pre><span></span><code>output_type : str 
+<div class="highlight"><pre><span></span><code>output_format : str 
              json, table or csv  
 
 output      : str
@@ -906,10 +906,10 @@ output      : str
 <p class="admonition-title">Tip</p>
 <p>There is no need for <code>.csv</code> or <code>.json</code> extension in the file name, it is appended by the program. </p>
 </div>
-<p><div class="highlight"><pre><span></span><code>$ dataex_obs_data_summary.py --output ./summary.csv --output_type csv
+<p><div class="highlight"><pre><span></span><code>python dataex_obs_data_summary.py --output ./summary.csv --output_format csv
 </code></pre></div>
 Here, the observation summary data is downloaded in <code>csv</code> format. The file is saved as <code>summary.csv</code> in the current directory. </p>
-<div class="highlight"><pre><span></span><code>$ dataex_obs_data_summary.py
+<div class="highlight"><pre><span></span><code>python dataex_obs_data_summary.py
 </code></pre></div>
 <p>This would download the data in <code>table</code> format and display in that form on the terminal itself.</p>
                 
@@ -968,7 +968,7 @@ Here, the observation summary data is downloaded in <code>csv</code> format. The
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 RIMES
+            Copyright &copy; 2022 RIMES
           </div>
         
         
