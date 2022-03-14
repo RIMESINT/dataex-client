@@ -32,12 +32,12 @@ If `output_type` is not specified then it defaults to `table`. Further, in this 
 ### Example
 
 ```
-$ dataex_obs_parameter_list.py --station_id 53 --output_format csv --output ./param_info.csv
+python dataex_obs_parameter_list.py --station_id 53 --output_format csv --output ./param_info.csv
 ```
 Here, data is downloaded in a `csv` file named as `param_info.csv` in the current directory.
 
 
 ```
-$ dataex_obs_parameter_list.py --station_id 53
+python dataex_obs_parameter_list.py --station_id 53
 ```
 Here, `table` is default and tabular data is displayed in the terminal. 

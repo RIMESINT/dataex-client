@@ -23,15 +23,18 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 
 * [x] `dataex_init.py` - Create `.dataex_auth.json` file for dataex user authentication
 * [x] `dataex_netcdf_subset.py` - Download raw netcdf subset of ECMWF HRES/ENS/SEAS model forecasts.
-* [x] `dataex_list_country_info.py` - List information of countries
-* [x] `dataex_obs_station_list.py` - List station(s) information of a specific country
+* [x] `dataex_list_country_info.py` - List information of countries.
+* [x] `dataex_obs_station_list.py` - List station(s) information of a specific country.
 * [x] `dataex_get_obs_data.py` - Download observation data.
 * [x] `dataex_insert_obs_data.py` - Upload observation data.
 * [x] `dataex_obs_data_summary.py` - Download summary of observation data.
-* [x] `dataex_obs_parameter_list.py` - Retrieve a list of parameter information of a specific station
-* [x] `dataex_list_user_assets.py` - List user assets available to use in forecast analysis
-* [x] `dataex_list_reducers.py` - List reducer names available for use in forecast analysis
+* [x] `dataex_obs_parameter_list.py` - Retrieve a list of parameter information of a specific station.
+* [x] `dataex_list_user_assets.py` - List user assets available to use in forecast analysis.
+* [x] `dataex_list_reducers.py` - List reducer names available for use in forecast analysis.
 * [x] `dataex_region_data_analysis.py` - Download region specific forecast time series of ECMWF HRES/ENS/SEAS model forecasts.
+* [X] `dataex_forecast_graph_params.py` - Check the available parameters for forecast Graphics.
+* [X] `dataex_forecast_graph.py` - Download graph of forecasts of ECMWF HRES/ENS/SEAS model forecasts.
+* [X] `dataex_forecast_animation.py` - Download animation of forecasts of ECMWF HRES/ENS/SEAS model forecasts.
 
 ### Example
 
@@ -56,7 +59,7 @@ If you believe you've found something in the dataex client API which has securit
 
 MIT License
 
-Copyright © 2021 RIMES
+Copyright © 2022 RIMES
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

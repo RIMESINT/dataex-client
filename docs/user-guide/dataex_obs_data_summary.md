@@ -22,7 +22,7 @@ $ dataex_obs_data_summary.py --output <str> --output_type <str>
 ###Options
 ```
 
-output_type : str 
+output_format : str 
              json, table or csv  
              
 output      : str
@@ -39,14 +39,14 @@ The default output type is `table` format. The two options are not required and 
     There is no need for `.csv` or `.json` extension in the file name, it is appended by the program. 
 
 ```
-$ dataex_obs_data_summary.py --output ./summary.csv --output_type csv
+python dataex_obs_data_summary.py --output ./summary.csv --output_format csv
 
 ```
 Here, the observation summary data is downloaded in `csv` format. The file is saved as `summary.csv` in the current directory. 
 
 
 ```
-$ dataex_obs_data_summary.py
+python dataex_obs_data_summary.py
 ```
 
 This would download the data in `table` format and display in that form on the terminal itself.

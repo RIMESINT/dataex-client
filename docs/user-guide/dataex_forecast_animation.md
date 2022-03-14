@@ -62,14 +62,15 @@ The output of this command is a `html` video file which means it can be opened i
     
 ###Example
 
+For ECMWF HRES,
 ```
-$ dataex_forecast_animation.py -mt ecmwf_hres -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o hres_anime
+python dataex_forecast_animation.py -mt ecmwf_hres -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o hres_anime
 ```
-
+For ECMWF ENS,
 ```
-$ dataex_forecast_animation.py -mt ecmwf_ens -hp total_daily_rainfall -lat 12.55 36.32 -lon 67.68 85.25 -o ens_anime
+python dataex_forecast_animation.py -mt ecmwf_ens -ep total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o ens_anime
 ```
-
+For ECMWF SEAS,
 ```
-$ dataex_forecast_animation.py -mt ecmwf_seas -sp total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o seas_anime
+python dataex_forecast_animation.py -mt ecmwf_seas -sp total_daily_rainfall -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o seas_anime
 ```

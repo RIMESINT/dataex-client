@@ -40,12 +40,12 @@ For model types, the name is case insensitive but you must stick to the provided
 ### Example
 
 ```
-$ dataex_list_reducers.py --model_type ecmwf_hres --output_format json --output ./reducers.json
+python dataex_list_reducers.py --model_type ecmwf_hres --output_format json --output ./reducers.json
 ```
 Here, a json file is used to store the downloaded data. The model type is `ecmwf_hres`.
 
 ```
-$ dataex_list_reducers.py --model_type ECMWF_ENS 
+python dataex_list_reducers.py --model_type ECMWF_ENS 
 ```
 
 Model type is specified as `ECMWF ENS`. The output format is `table` which is the default. 

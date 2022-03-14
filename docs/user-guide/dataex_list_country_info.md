@@ -26,19 +26,19 @@ The default output format is `table`. Hence, leaving this option out from the co
 ###Example
 
 ```
-$ dataex_list_country_info.py --country Bangladesh --output_format  json --output ./country_info.json
+python dataex_list_country_info.py --country Bangladesh --output_format  json --output ./country_info.json
 
 ```
 Here, a json file with information on Bangladesh is downloaded.
 
 
 ```
-$ dataex_list_country_info.py
+python dataex_list_country_info.py
 ```
 All country data is downloaded and shown in tabular form.
 
 ```
-$ dataex_list_country_info.py --country Nepal
+python dataex_list_country_info.py --country Nepal
 ```
 This downloads and displays information on the terminal in `table` format for Nepal. 
 

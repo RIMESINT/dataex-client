@@ -67,15 +67,17 @@ The output is a `png` image file. Choosing the day of the forecast gives you the
     The lead days for `ecmwf hres` is 10 days while for `ecmwf ens` is 15 days and `ecmwf_seas` is 7 months.
     
 ###Example:
-
+For ECMWF ENS,
 ```
-$ dataex_forecast_graph.py -mt ecmwf_ens -ep temperature_max -q q25 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_ens
+python dataex_forecast_graph.py -mt ecmwf_ens -ep temperature_max -q q25 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_ens
 ```
+For ECMWF HRES,
 ```
-$ dataex_forecast_graph.py -mt ecmwf_hres -hp temperature_max -q q5 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_hres
+python dataex_forecast_graph.py -mt ecmwf_hres -hp temperature_max -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_hres
 ```
+For ECMWF SEAS,
 ```
-$ dataex_forecast_graph.py -mt ecmwf_seas -sp total_daily_rainfall -m 1 -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_seas
+python dataex_forecast_graph.py -mt ecmwf_seas -sp total_daily_rainfall -m 1 -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_seas
 ```
 
 
