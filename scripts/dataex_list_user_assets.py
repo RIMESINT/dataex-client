@@ -46,7 +46,7 @@ def main():
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-            check_output_format(data['user_assets'], output_format='table')
+                check_output_format(data['user_assets'], output_format='table')
         else:
             print(response.status_code)
             spinner.fail("💥 ")

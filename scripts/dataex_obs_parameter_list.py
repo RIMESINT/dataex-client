@@ -58,7 +58,7 @@ def main(station_id, output_format, output):
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-            check_output_format(data['data'], output, output_format)
+                check_output_format(data['data'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")

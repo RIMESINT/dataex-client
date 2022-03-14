@@ -36,7 +36,7 @@ def main(state_name, output):
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-            check_output_format(data['data'], output)
+                check_output_format(data['data'], output)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
