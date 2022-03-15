@@ -891,14 +891,14 @@ output       : str
 <p>Users can get station and parameter id numbers using <code>dataex_obs_station_list.py</code> and <code>dataex_obs_parameter_list.py</code> respectively.</p>
 </div>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre><span></span><code>python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 1 -pi 7 --output_format csv --output ./obs_data.csv
+<div class="highlight"><pre><span></span><code>python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7 --output_format csv --output ./obs_data.csv
 </code></pre></div>
 <p>It goes without saying that the <code>start_date</code> must be a date that is earlier than the <code>end_date</code>. The time period should be within 180 days. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>In case the time period is beyond 180 days, the server just returns a truncated observation dataset of 180 days instead.</p>
 </div>
-<p><div class="highlight"><pre><span></span><code>python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 1 -pi 7
+<p><div class="highlight"><pre><span></span><code>python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7
 </code></pre></div>
 Here, observation data will be displayed in tabular form in the terminal.</p>
                 
