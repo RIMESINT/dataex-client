@@ -42,7 +42,7 @@ Output type and output options are not required. The default output type is `tab
 ### Example
 
 ```
-python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 1 -pi 7 --output_format csv --output ./obs_data.csv
+python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7 --output_format csv --output ./obs_data.csv
 ```
 
 It goes without saying that the `start_date` must be a date that is earlier than the `end_date`. The time period should be within 180 days. 
@@ -51,6 +51,6 @@ It goes without saying that the `start_date` must be a date that is earlier than
     In case the time period is beyond 180 days, the server just returns a truncated observation dataset of 180 days instead.
 
 ```
-python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 1 -pi 7
+python dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7
 ```
 Here, observation data will be displayed in tabular form in the terminal.
