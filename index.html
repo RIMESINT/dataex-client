@@ -907,14 +907,14 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>dataex_forecast_animation.py</code> - Download animation of forecasts of ECMWF HRES/ENS/SEAS model forecasts.</li>
 </ul>
 <h3 id="example">Example</h3>
-<p>Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model <code>ecmwf-hres</code> for parameters <code>u10, swvl1, t2m</code>. We can use the following command, </p>
-<p><div class="highlight"><pre><span></span><code>$ dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/emwf_hres_subset.nc
+<p>Let's take a quick look at an example of one of the commands above. It's as easy as typing the command into your favourite terminal. Suppose, we want to download a netCDF file holding a subset of forecast values from model <code>ecmwf-hres</code> for parameters <code>u10, swvl1, t2m</code>. We can use the following command, </p>
+<p><div class="highlight"><pre><span></span><code>python dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
 </code></pre></div>
 Alternatively, you can use short forms of the option names used in the above command. </p>
 <h3 id="support">Support</h3>
-<p>For support please email us at support@rimes.int. Make sure to include the specific problem in the subject of the mail.</p>
+<p>For any technical support please send an email to support@rimes.int. Please make sure to include the specific problem in the subject of the mail.</p>
 <h3 id="security">Security</h3>
-<p>If you believe you've found something in the dataex client API which has security implications, pleas send a description of the issue via email to support@rimes.int.</p>
+<p>If you believe you've found something in the dataex client API which has security implications, please send a description of the issue via email to support@rimes.int.</p>
 <h3 id="license">License</h3>
 <p>MIT License</p>
 <p>Copyright © 2022 RIMES</p>
