@@ -38,21 +38,21 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 
 ### Example
 
-Let's take a look at a quick example of one of the above commands. It's as easy as typing the command into your favourite terminal. Suppose we want to download a netCDF subset file from model `ecmwf-hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
+Let's take a quick look at an example of one of the commands above. It's as easy as typing the command into your favourite terminal. Suppose, we want to download a netCDF file holding a subset of forecast values from model `ecmwf-hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
 
 ```
-$ dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/emwf_hres_subset.nc
+python dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
 
 ``` 
 Alternatively, you can use short forms of the option names used in the above command. 
 
 ### Support
 
-For support please email us at support@rimes.int. Make sure to include the specific problem in the subject of the mail.
+For any technical support please send an email to support@rimes.int. Please make sure to include the specific problem in the subject of the mail.
 
 ### Security
 
-If you believe you've found something in the dataex client API which has security implications, pleas send a description of the issue via email to support@rimes.int.
+If you believe you've found something in the dataex client API which has security implications, please send a description of the issue via email to support@rimes.int.
 
 
 ### License
