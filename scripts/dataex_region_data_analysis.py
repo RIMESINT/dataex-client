@@ -66,9 +66,7 @@ def main(model_type, reducer, asset_identifier, unique_field, output_format, out
     payload['unique_field'] = unique_field
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(URL, headers=headers, data=json.dumps(payload))
-        print(response.url)
-        
+        response = requests.post(URL, headers=headers, data=json.dumps(payload))        
         if response.status_code == 200:
             data = response.json()
             if check_error(data):
