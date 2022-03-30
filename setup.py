@@ -15,6 +15,9 @@ scripts_list = [
     "scripts/dataex_list_country_info.py",
     "scripts/dataex_obs_parameter_list.py",
     "scripts/dataex_region_data_analysis.py",
+    "scripts/dataex_forecast_graph.py",
+    "scripts/dataex_check_system_state.py",
+    "scripts/dataex_forecast_animation.py",    
 ]
 
 
