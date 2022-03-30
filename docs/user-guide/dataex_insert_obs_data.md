@@ -27,7 +27,7 @@ obs_data   : str
 ###Example
 
 ```
-python dataex_insert_obs_data.py --country_id 5 --obs_data ./input.csv
+dataex_insert_obs_data.py --country_id 5 --obs_data ./input.csv
 ```
 Here, the input observation data is provided in csv format using `--obs_data` option.
 

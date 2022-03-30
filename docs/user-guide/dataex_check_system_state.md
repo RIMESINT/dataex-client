@@ -13,5 +13,5 @@ This will download a json file related to the desired system state's information
 ###Example
 
 ```
-python dataex_check_system_state.py --state_name ECMWF_HRES_NC --output $HOME/system_state_params.json
+dataex_check_system_state.py --state_name ECMWF_HRES_NC --output $HOME/system_state_params.json
 ```

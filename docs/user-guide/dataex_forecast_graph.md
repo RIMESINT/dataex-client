@@ -69,15 +69,15 @@ The output is a `png` image file. Choosing the day of the forecast gives you the
 ###Example:
 For ECMWF ENS,
 ```
-python dataex_forecast_graph.py -mt ecmwf_ens -ep temperature_max -q q25 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_ens
+dataex_forecast_graph.py -mt ecmwf_ens -ep temperature_max -q q25 -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_ens
 ```
 For ECMWF HRES,
 ```
-python dataex_forecast_graph.py -mt ecmwf_hres -hp temperature_max -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_hres
+dataex_forecast_graph.py -mt ecmwf_hres -hp temperature_max -d 1 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_hres
 ```
 For ECMWF SEAS,
 ```
-python dataex_forecast_graph.py -mt ecmwf_seas -sp total_daily_rainfall -m 1 -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_seas
+dataex_forecast_graph.py -mt ecmwf_seas -sp total_daily_rainfall -m 1 -q q5 -lat 12.55 36.32 -lon 67.68 85.25 -o graph_seas
 ```
 
 

@@ -37,6 +37,6 @@ Each country has a number of stations with their own distinct id numbers. Using 
 
 ### Example
 ```
-python dataex_obs_station_list.py --country_id 3 --not_empty --output_format csv --output ./station_info.csv
+dataex_obs_station_list.py --country_id 3 --not_empty --output_format csv --output ./station_info.csv
 ```
 This will download a list of observation stations and their related information for country with `id` number 3 and since output type is `csv`, the data will be stored in a csv file with name `station_info.csv` in the current directory. Since, `non_empty` flag is set, only those stations with observations are retrieved.

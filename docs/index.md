@@ -41,7 +41,7 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 Let's take a quick look at an example of one of the commands above. It's as easy as typing the command into your favourite terminal. Suppose, we want to download a netCDF file holding a subset of forecast values from model `ecmwf-hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
 
 ```
-python dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
+dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
 
 ``` 
 Alternatively, you can use short forms of the option names used in the above command. 

@@ -4,7 +4,7 @@ This script helps the user to list the user's assets for used in forecast analys
 
 ###Usage
 ```
-python dataex_list_user_assets.py 
+dataex_list_user_assets.py 
 ```
 
 The available user assets are shown in tabluar form in the terminal.

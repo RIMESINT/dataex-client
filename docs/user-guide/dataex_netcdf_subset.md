@@ -73,12 +73,12 @@ There are five quantiles available for each parameter in both `ECMWF ENS` and `E
 
 ### Example
 ```
-python dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/hres_subset.nc
+dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/hres_subset.nc
 ```
 The model type input is case-insensitive. Here, only three parameters are provided. The `ecwmf_hres_params` denotes that the parameters are intended for `ecmwf hres` model. If the parameters are not provided then all model parameters are placed in the request.
 
 ```
-python dataex_netcdf_subset.py --model_type ecmwf_ens --ecmwf_ens_params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ens_subset.nc
+dataex_netcdf_subset.py --model_type ecmwf_ens --ecmwf_ens_params cp_q25 --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ens_subset.nc
 ```
 This one is for requesting netcdf data of model `ecmwf ens`. Here,`ecmwf_ens_params` denotes that the parameters are for model `ecmwf ens`. 
 

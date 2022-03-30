@@ -11,6 +11,6 @@ Running this command will print a table in terminal containing the parameters fo
 
 ###Example
 ```
-python dataex_forecast_graph_params.py -mt ecmwf_seas
+dataex_forecast_graph_params.py -mt ecmwf_seas
 
 ```

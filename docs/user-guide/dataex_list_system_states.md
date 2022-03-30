@@ -5,7 +5,7 @@ This script allows to look at the details of system states such as initializatio
 
 ###Usage
 ```
-python dataex_list_system_states.py
+dataex_list_system_states.py
 ```
 
 It is a simple command that prints a list of system states in a tabular format in your terminal.

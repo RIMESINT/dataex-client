@@ -49,7 +49,7 @@ The model type input is case-insensitive. Hence, ECMWF_ENS or ecmwf_ens are both
 ###Example
 
 ```
-python dataex_region_data_analysis.py -mt ecmwf_hres -r rainfall_daily_weighted_average -ai a248c22c-08de-4c24-a0df-acea44b1850f -uf ADM2_EN -of xlsx -o ./hres_region_data.xlsx
+dataex_region_data_analysis.py -mt ecmwf_hres -r rainfall_daily_weighted_average -ai a248c22c-08de-4c24-a0df-acea44b1850f -uf ADM2_EN -of xlsx -o ./hres_region_data.xlsx
 ```
 
 Here, the short option names are utilized. The output is an excel file.
