@@ -2,7 +2,7 @@
 
 """List reducers CLI
 
-This script allows the user to check the available reducer names for forecast analysis depending on the model type.
+This script allows the user to check the available reducer names for performing forecast analysis depending on the model type.
 
 Usage:
 
@@ -22,18 +22,19 @@ Options:
 """
 
 import json
-import pandas as pd
+import click
+import requests
+
+from yaspin import yaspin
+from tabulate import tabulate
+
 from dataexclient import auth_helper
 from dataexclient.config import CHECK_REDUCERS_URL
-import requests
-from tabulate import tabulate
-import click
-from yaspin import yaspin
-
+from dataexclient.utils import check_error, check_output_format
 
 
 @click.command()
-@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
+@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False))
 @click.option('--output_format', '-of' ,required=False, default='table' ,type=click.Choice(['json','table' ,'csv'], case_sensitive=False))
 @click.option('--output', '-o' ,required=False, help='output filename')
 
@@ -53,48 +54,13 @@ def main(model_type, output_format, output):
         print(response.url)
         
         if response.status_code == 200:
-
             data = response.json()
-
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-            if output_format=='json':
-                if output is not None:
-                    if not output.endswith('.json'):
-                        output += '.json'
-                    with open(f'{output}', 'w') as f:
-                        json.dump(data['reducers'], f)
-                else:
-                    print(data['reducers'])
-
-            elif output_format in ['csv','table']:
-                
-                df = pd.DataFrame(data['reducers'])
-                if output_format == 'table':
-                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-                    if output is not None:
-                        with open(output, 'w') as outfile:
-                            outfile.write(table)
-                    else:
-                        print(table)
-                
-                elif output_format == 'csv':
-                    if output is not None:
-                        if not output.endswith('.csv'):
-                            output += '.csv'
-                        df.to_csv(output, index=False)
-
-                    else:
-                        print(data['reducers'])
-
-
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+                check_output_format(data['reducers'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
@@ -102,7 +68,6 @@ def main(model_type, output_format, output):
 
 if __name__=='__main__':
     main()
-
 
 
 

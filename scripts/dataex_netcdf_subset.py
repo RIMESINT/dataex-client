@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Get NetCDF Subset HRES/ENS/SEAS CLI
+"""Get NetCDF Subset ECMWF HRES/ENS/SEAS CLI
 
 This script allows the user to get a subset of ECMWF HRES/ENS/SEAS data. 
 This tool downloads the data in netCDF file format.
@@ -11,13 +11,16 @@ $ dataex_netcdf_subset.py --model_type <str> --ens_params <str> --latbounds <flo
 
 Options:
     model_type : str
-                 type of model - ens or hres
+                 type of model - ecmwf ens, hres or seas
                  
-    hres_params : str
-                  Single or comma seperated parameter short names
+    ecmwf_hres_params : str
+                        Single or comma seperated parameter short names
         
-    ens_params : str or list of str
-                 Single or comma seperated parameter short names 
+    ecmwf_ens_params : str or list of str
+                       Single or comma seperated parameter short names 
+    
+    ecmwf_seas_params : str or list of str
+                       Single or comma seperated parameter short names 
 
     latbounds : first float is for south and second float is for north
                 South and North latitude values space seperated 
@@ -30,22 +33,24 @@ Options:
       
 
 """
-
 import json
-import requests
 import click 
+import requests
+
 from yaspin import yaspin
+
 from dataexclient import auth_helper
-from dataexclient.config import GET_NETCDF_SUBSET_URL, GET_NETCDF_SUBSET_ENS_URL
+from dataexclient.utils import export_nc, is_response_okay
+from dataexclient.config import GET_NETCDF_SUBSET_URL, GET_NETCDF_SUBSET_ENS_URL, GET_NETCDF_SUBSET_SEAS_URL
 
 
-hres_parameters = [
+ecmwf_hres_parameters = [
     'u10', 'swvl1','swvl2', 'swvl3', 'swvl4', 
     'd2m', 'v10', 't2m', 'cp', 'lsp',
     'ssr', 'str', 'sshf', 'slhf'
 ]
 
-ens_parameters = [
+ecmwf_seas_parameters = ecmwf_ens_parameters = [
     't2m_q5', 't2m_q25', 't2m_q50', 
     't2m_q75', 't2m_q95', 'lsp_q5',
     'lsp_q25', 'lsp_q50', 'lsp_q75', 
@@ -53,31 +58,40 @@ ens_parameters = [
     'cp_q50', 'cp_q75', 'cp_q95'
 ]
 
+
 @click.command()
-@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['hres', 'ens'], case_sensitive=False))
-@click.option('--hres_params', '-hp', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select hres parameters')
-@click.option('--ens_params', '-ep', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ens parameters')
+@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'], case_sensitive=False))
+@click.option('--ecmwf_hres_params', '-hp', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ecmwf hres parameters')
+@click.option('--ecmwf_ens_params', '-ep', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ecmwf ens parameters')
+@click.option('--ecmwf_seas_params', '-sp', required=False, is_flag=False, metavar='<columns>', type=click.STRING, help='Select ecmwf seas parameters')
 @click.option('--latbounds', '-lat', required=True, nargs=2, type=float, help='Enter bottom lat and then top lat with space in between')
 @click.option('--lonbounds', '-lon', required=True, nargs=2, type=float, help='Enter left lon and then right lon with space in between')
 @click.option('--output', '-o', required=True, help='output filename')
 
-def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
+def main(model_type, ecmwf_hres_params, ecmwf_ens_params, ecmwf_seas_params, latbounds, lonbounds, output):
 
     params = []
 
-    if model_type == 'hres':
+    if model_type == 'ecmwf_hres':
         URL = GET_NETCDF_SUBSET_URL
-        if hres_params is None:
-            params = hres_parameters
+        if ecmwf_hres_params is None:
+            params = ecmwf_hres_parameters
         else:
-            params = [param.strip() for param in hres_params.split(',')]
+            params = [param.strip() for param in ecmwf_hres_params.split(',')]
 
-    elif model_type == 'ens':
+    elif model_type == 'ecmwf_ens':
         URL = GET_NETCDF_SUBSET_ENS_URL
-        if ens_params is None:
-            params = ens_parameters
+        if ecmwf_ens_params is None:
+            params = ecmwf_ens_parameters
         else:
-            params = [param.strip() for param in ens_params.split(',')]
+            params = [param.strip() for param in ecmwf_ens_params.split(',')]
+           
+    elif model_type == 'ecmwf_seas':
+        URL = GET_NETCDF_SUBSET_SEAS_URL
+        if ecmwf_seas_params is None:
+            params = ecmwf_ens_parameters
+        else:
+            params = [param.strip() for param in ecmwf_seas_params.split(',')]
 
     
     payload = {}
@@ -99,25 +113,17 @@ def main(model_type, hres_params, ens_params, latbounds, lonbounds, output):
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(URL, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
-
-            if response.headers['content-type'] == "application/json":
-                data = response.json()
-                print(data['error'], data['message'])
-                spinner.fail("💥 ")
+            if is_response_okay(response):
+                export_nc(response.content, output)
+                spinner.text = "Done"
+                spinner.ok("✅")                
             else:
-                if not output.endswith('.nc'):
-                    output += '.nc'
-
-                with open(f'{output}', 'wb') as f:
-                    f.write(response.content)
-                spinner.text = "Done"    
-                spinner.ok("✅")
+                spinner.fail("💥 ")
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
            
-
 
 if __name__=='__main__':
     main()

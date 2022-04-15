@@ -21,16 +21,14 @@ Options:
           output filename
 
 """
-
-import json
-import pandas as pd
-from dataexclient import auth_helper
-from dataexclient.config import GET_PARAMETER_INFO_URL
-import requests
-from tabulate import tabulate
 import click
+import requests
+
 from yaspin import yaspin
 
+from dataexclient import auth_helper
+from dataexclient.config import GET_PARAMETER_INFO_URL
+from dataexclient.utils import check_error, check_output_format
 
 
 @click.command()
@@ -51,62 +49,19 @@ def main(station_id, output_format, output):
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.get(GET_PARAMETER_INFO_URL, headers=headers, params=payload)
+        print(response.url)
         
         if response.status_code == 200:
-
             data = response.json()
-
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-            if output_format == 'json':
-
-                if output is not None:
-
-                    if not output.endswith('.json'):
-                        output += '.json'
-
-                    with open(f'{output}', 'w') as f:
-                        json.dump(data['data'], f)
-
-                else:
-                    print(data['data'])        
-
-            elif output_format in ['csv','table']:
-
-                df = pd.DataFrame( data['data'] )
-
-                if output_format == 'table':
-                    table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-                    if output is not None:
-                        
-                        with open(output, 'w') as outfile:
-                            outfile.write(table)
-                    else:
-                        print(table)        
-
-                elif output_format == 'csv':
-
-                    if output is not None:
-
-                        if not output.endswith('.csv'):
-                            output += '.csv'
-                            
-                        df.to_csv(output, index=False)
-                    else:
-                        print(data['data'])
-
-
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+                check_output_format(data['data'], output, output_format)
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-
 
 if __name__=='__main__':
     main()

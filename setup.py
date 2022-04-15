@@ -15,6 +15,15 @@ scripts_list = [
     "scripts/dataex_list_country_info.py",
     "scripts/dataex_obs_parameter_list.py",
     "scripts/dataex_region_data_analysis.py",
+    "scripts/dataex_forecast_graph.py",
+    "scripts/dataex_check_system_state.py",
+    "scripts/dataex_forecast_animation.py",
+    "scripts/dataex_list_system_states.py",    
+    "scripts/dataex_list_user_preferences.py",
+    "scripts/dataex_forecast_graph_params.py",
+    "scripts/dataex_set_default_preference.py",
+    "scripts/dataex_climatology_graph.py",
+     
 ]
 
 
@@ -37,6 +46,7 @@ setup(
         "click",
         "openpyxl",
         "requests",
+        "tabulate",
     ]
 )
 

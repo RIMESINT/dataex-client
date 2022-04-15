@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
-import os
+"""CLI to get available parameters for forecast graphs and animation"""
 import json
-import requests
 import click
-import pandas as pd
+import requests
+
 from yaspin import yaspin
-from tabulate import tabulate
-from dataexclient.auth import auth
+
 from dataexclient import auth_helper
 from dataexclient.config import GET_FCST_GRAPH_PARAMS_URL
+from dataexclient.utils import check_error, check_output_format
 
 
 @click.command()
 @click.option(
     '--model_type', '-mt' ,
     required=True, 
-    type=click.Choice(['hres', 'ens'], case_sensitive=False), 
+    type=click.Choice(['ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'], case_sensitive=False), 
     help='choose model type'
 )
 
@@ -34,26 +34,17 @@ def main(model_type):
         response = requests.post(GET_FCST_GRAPH_PARAMS_URL, headers=headers, data=json.dumps(payload))
 
         if response.status_code == 200:
-
             data = response.json()
-
-            if 'error' in data: 
-                if data['error'] is None:
-                    print(data['message'])    
-                    spinner.text = "Done"
-                    spinner.ok("✅")
-                else:
-                    print(data['error'],'-> ',data['message'])
-                    spinner.fail("💥 ")
-
-                df = pd.DataFrame( data['params'] )
-                table = tabulate(df, headers='keys', showindex=False, tablefmt='psql')
-                print(table)
-
+            if check_error(data):
+                spinner.fail("💥 ")
+            else:
+                spinner.text = "Done"
+                spinner.ok("✅")
+                check_output_format(data['params'], output_format='table')
         else:
             print(response.status_code)
             spinner.fail("💥 ")
 
+
 if __name__=='__main__':
     main()
-
