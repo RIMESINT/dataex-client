@@ -30,10 +30,11 @@ def main(station_id, output):
     payload['station_id'] = station_id
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(GET_STATION_CLIMATOLOGY_URL, stream=True, headers=headers, data=json.dumps(payload))
+        duration = response.headers['duration']
         if response.status_code == 200:
             if is_response_okay(response):
                 export_graph(response.content, output)
-                spinner.text = "Done"    
+                spinner.text = f"Downloaded...climatology from {duration}"    
                 spinner.ok("✅")
             else:
                 spinner.fail("💥 ")   

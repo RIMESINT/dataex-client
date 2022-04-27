@@ -161,10 +161,10 @@ def main(model_type, ecmwf_hres_param, ecmwf_ens_param, ecmwf_seas_param, quanti
     with yaspin(text="Downloading...", color="yellow") as spinner:
         response = requests.post(URL, stream=True, headers=headers, data=json.dumps(payload))
         if response.status_code == 200:
-
+            init_time = response.headers['init_time']
             if is_response_okay(response):
                 export_graph(response.content, output)
-                spinner.text = "Done"    
+                spinner.text = f"Downloaded...Init time of forecast is {init_time}"
                 spinner.ok("✅")
             else:
                 spinner.fail("💥 ")   
