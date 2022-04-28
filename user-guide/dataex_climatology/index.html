@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://rimesint.github.io/dataex-client/user-guide/dataex_get_obs_data/">
+        <link rel="canonical" href="https://rimesint.github.io/dataex-client/user-guide/dataex_climatology/">
       
       <link rel="icon" href="../../favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.0">
     
     
       
-        <title>Download observation data - Dataex API</title>
+        <title>Download station climatology - Dataex API</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-observation-data-cli" class="md-skip">
+        <a href="#get-station-climatology-cli" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Download observation data
+              Download station climatology
             
           </span>
         </div>
@@ -369,74 +369,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Download observation data
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../dataex_get_obs_data/" class="md-nav__link">
         Download observation data
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-observation-data-cli" class="md-nav__link">
-    Get Observation Data CLI
-  </a>
-  
-    <nav class="md-nav" aria-label="Get Observation Data CLI">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -460,11 +397,74 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../dataex_climatology/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Download station climatology
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Download station climatology
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-station-climatology-cli" class="md-nav__link">
+    Get Station Climatology CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Station Climatology CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -818,11 +818,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-observation-data-cli" class="md-nav__link">
-    Get Observation Data CLI
+  <a href="#get-station-climatology-cli" class="md-nav__link">
+    Get Station Climatology CLI
   </a>
   
-    <nav class="md-nav" aria-label="Get Observation Data CLI">
+    <nav class="md-nav" aria-label="Get Station Climatology CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -841,7 +841,7 @@
         
           <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
-    Example
+    Example:
   </a>
   
 </li>
@@ -863,58 +863,33 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/RIMESINT/dataex-client/tree/master/edit/master/docs/user-guide/dataex_get_obs_data.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/RIMESINT/dataex-client/tree/master/edit/master/docs/user-guide/dataex_climatology.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Download observation data</h1>
+                  <h1>Download station climatology</h1>
                 
-                <h2 id="get-observation-data-cli">Get Observation Data CLI</h2>
-<p>This script is for downloading observation data from Dataex server. 
-Users can get the desired observation data in the selected format for a specific observation parameter and station.</p>
+                <h2 id="get-station-climatology-cli">Get Station Climatology CLI</h2>
+<p>Use to download the climatology graph of a station present in DataEx for the duration of observations available. </p>
 <h3 id="usage">Usage</h3>
-<div class="highlight"><pre><span></span><code>$ dataex_get_obs_data.py --start_date &lt;YYYY-MM-DD&gt; --end_date &lt;YYYY-MM-DD&gt; -- station_id &lt;int&gt; --parameter_id &lt;int&gt; --output_type &lt;str&gt; --output &lt;str&gt;
+<div class="highlight"><pre><span></span><code>$ python dataex_climatology_graph.py --station_id &lt;str&gt; --output &lt;str&gt;
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Option names too long, you can always use their short forms. Check using <code>--help</code></p>
 </div>
 <h3 id="options">Options</h3>
-<div class="highlight"><pre><span></span><code>start_date   : DateTime
-               Date in YYYY-MM-DD format
+<div class="highlight"><pre><span></span><code>station_id  : str
+              Id of desired station
 
-end_date     : DateTime
-               Date in YYYY-MM-DD format
-
-station_id   : int
-               station id
-
-parameter_id : int 
-               parameter id   
-
-output_format  : str
-               json, table or csv       
-
-output       : str
-               output filename
+output      : str
+              output filename
 </code></pre></div>
-<p>Output type and output options are not required. The default output type is <code>table</code>. </p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Users can get station and parameter id numbers using <code>dataex_obs_station_list.py</code> and <code>dataex_obs_parameter_list.py</code> respectively.</p>
-</div>
-<h3 id="example">Example</h3>
-<div class="highlight"><pre><span></span><code>dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7 --output_format csv --output ./obs_data.csv
+<h3 id="example">Example:</h3>
+<p><div class="highlight"><pre><span></span><code>python dataex_climatology_graph.py -sid 30 -o clim
 </code></pre></div>
-<p>It goes without saying that the <code>start_date</code> must be a date that is earlier than the <code>end_date</code>. The time period should be within 180 days. </p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>In case the time period is beyond 180 days, the server just returns a truncated observation dataset of 180 days instead.</p>
-</div>
-<p><div class="highlight"><pre><span></span><code>dataex_get_obs_data.py --start_date 1994-11-01 --end_date 1994-12-10 -si 53 -pi 7
-</code></pre></div>
-Here, observation data will be displayed in tabular form in the terminal.</p>
+Downloads climatology graph of station with id number 30. </p>
                 
               
               
@@ -934,7 +909,7 @@ Here, observation data will be displayed in tabular form in the terminal.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../dataex_insert_obs_data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upload observation data" rel="prev">
+        <a href="../dataex_obs_data_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Get observation data summary" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -943,20 +918,20 @@ Here, observation data will be displayed in tabular form in the terminal.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Upload observation data
+              Get observation data summary
             </div>
           </div>
         </a>
       
       
         
-        <a href="../dataex_obs_data_summary/" class="md-footer__link md-footer__link--next" aria-label="Next: Get observation data summary" rel="next">
+        <a href="../dataex_netcdf_subset/" class="md-footer__link md-footer__link--next" aria-label="Next: Download NetCDF" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Get observation data summary
+              Download NetCDF
             </div>
           </div>
           <div class="md-footer__button md-icon">
