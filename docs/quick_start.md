@@ -34,7 +34,7 @@ $ source env/bin/activate
 
 (env) $
 ``` 
-The env within the parenthesis means that you are now using the virtual environment.
+The env within the parenthesis is the name of the environment. It's apperance means that you are now inside the virtual environment.
 
 If you need to go back to the system context then just execute deactivate.
 ```

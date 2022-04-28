@@ -35,13 +35,14 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 * [X] `dataex_forecast_graph_params.py` - Check the available parameters for forecast Graphics.
 * [X] `dataex_forecast_graph.py` - Download graph of forecasts of ECMWF HRES/ENS/SEAS model forecasts.
 * [X] `dataex_forecast_animation.py` - Download animation of forecasts of ECMWF HRES/ENS/SEAS model forecasts.
+* [X] `dataex_climatology_graph.py` - Download climatology of a station for the available duration of observations.
 
 ### Example
 
 Let's take a quick look at an example of one of the commands above. It's as easy as typing the command into your favourite terminal. Suppose, we want to download a netCDF file holding a subset of forecast values from model `ecmwf-hres` for parameters `u10, swvl1, t2m`. We can use the following command, 
 
 ```
-dataex_netcdf_subset.py --model_type ecmwf_hres --ecmwf_hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
+dataex_netcdf_subset.py --model_type hres --hres_params u10,swvl1,t2m --latbounds 40.3 60.0 --lonbounds 90.0 120.0 --output $HOME/ecmwf_hres_subset.nc
 
 ``` 
 Alternatively, you can use short forms of the option names used in the above command. 

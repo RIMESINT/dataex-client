@@ -52,6 +52,7 @@ nav:
      - 'Upload observation data': 'user-guide/dataex_insert_obs_data.md'
      - 'Download observation data': 'user-guide/dataex_get_obs_data.md'
      - 'Get observation data summary': 'user-guide/dataex_obs_data_summary.md'
+     - 'Download station climatology': 'user-guide/dataex_climatology.md'
  - Forecast data:
      - 'Download NetCDF': 'user-guide/dataex_netcdf_subset.md'
      - 'List System States': 'user-guide/dataex_list_system_states.md'
