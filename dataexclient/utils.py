@@ -122,7 +122,7 @@ def create_json(file, country_id):
         row['level_id'] = int(file.iloc[i]['level_id'])
         row['start_time'] = file.iloc[i]['start_time'] + 'Z'
         row['end_time'] = file.iloc[i]['end_time'] + 'Z'
-        row['value'] = int(file.iloc[i]['value'])
+        row['value'] = round(float(file.iloc[i]['value']),2)
         data.append(row)
         row = {}
 
