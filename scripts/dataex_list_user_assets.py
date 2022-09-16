@@ -6,7 +6,7 @@ This script allows the user to get forecast asset information.
 
 Usage:
 
-$ dataex_list_user_assets.py 
+$ dataex_list_user_assets.py
 
 """
 
@@ -21,8 +21,8 @@ from dataexclient import auth_helper
 from dataexclient.config import GET_USER_ASSETS_URL
 from dataexclient.utils import check_error, check_output_format
 
+
 def main():
-    
     payload = dict()
     auth_obj = auth()
     cred = auth_obj.get_auth()
@@ -34,7 +34,11 @@ def main():
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_USER_ASSETS_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            GET_USER_ASSETS_URL,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         if response.status_code == 200:
             data = response.json()
             if check_error(data):
@@ -47,8 +51,6 @@ def main():
             print(response.status_code)
             spinner.fail("💥 ")
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
-
-
-

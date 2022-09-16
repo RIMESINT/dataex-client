@@ -2,19 +2,19 @@
 
 """Insert observation data CLI
 
-This script allows the user to insert observation data into Dataex server. 
+This script allows the user to insert observation data into Dataex server.
 It can takes as input either csv or excel file containing the observations along with the country id number.
 
 Usage:
 
-$ dataex_insert_obs_data.py --country_id <int> --obs_data <str> 
+$ dataex_insert_obs_data.py --country_id <int> --obs_data <str>
 
 Options:
     country_id : int
                  id number of country
-                 
+
     obs_data : str
-               input csv or excel file   
+               input csv or excel file
 """
 
 import json
@@ -30,9 +30,19 @@ from dataexclient.utils import check_error, create_json
 
 
 @click.command()
-@click.option('--obs_data', '-obs', required=True, help='filename or path to file with filename')
-@click.option('--country_id','-cid', required=True ,type=int, help='id of country')
-
+@click.option(
+    '--obs_data',
+    '-obs',
+    required=True,
+    help='filename or path to file with filename'
+)
+@click.option(
+    '--country_id',
+    '-cid',
+    required=True,
+    type=int,
+    help='id of country'
+)
 def main(obs_data, country_id):
 
     try:
@@ -49,7 +59,11 @@ def main(obs_data, country_id):
 
     with yaspin(text="Inserting...", color="yellow") as spinner:
 
-        response = requests.post(INSERT_OBS_DATA_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            INSERT_OBS_DATA_URL,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         print(response.url)
 
         if response.status_code == 200:
@@ -58,14 +72,13 @@ def main(obs_data, country_id):
                 spinner.fail("💥 ")
             else:
                 spinner.text = "Done"
-                spinner.ok("✅")            
+                spinner.ok("✅")
         else:
             print(response.status_code)
             data = response.json()
             print(data['error'], data['message'])
             spinner.fail("💥 ")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
-
-

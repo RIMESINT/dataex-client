@@ -2,7 +2,7 @@
 
 """List Country Info CLI
 
-This script allows the user to get country information such as ID number from Dataex server. 
+This script allows the user to get country information such as ID number from Dataex server.
 This tool can download in either csv or json file.
 
 Usage:
@@ -12,10 +12,10 @@ $ dataex_list_country_info.py --country <str> --output_format <str> --output <st
 Options:
 
     country : str
-              name of country      
+              name of country
 
     output_format : str
-                  json, table or csv       
+                  json, table or csv
 
     output : str
           output filename
@@ -27,7 +27,6 @@ import click
 import requests
 
 import pandas as pd
-
 from yaspin import yaspin
 from tabulate import tabulate
 
@@ -36,29 +35,24 @@ from dataexclient.config import GET_COUNTRY_INFO_URL
 from dataexclient.utils import check_error, check_output_format
 
 
-
 @click.command()
 @click.option(
-    '--country', '-c', 
+    '--country', '-c',
     type=click.STRING,
-    help='optional - either give country name or just leave it from command line', 
+    help='optional - either give country name or just leave it from command line',
 )
 @click.option(
-    '--output_format', '-of', 
-    required=False, 
+    '--output_format', '-of',
+    required=False,
     default='table',
     type=click.Choice(['json', 'csv', 'table'], case_sensitive=False)
 )
 @click.option(
     '--output', '-o',
-    required=False, 
+    required=False,
     help='output filename or path with filename'
 )
-
-
 def main(country, output_format, output):
-    
-
     payload = dict()
 
     if country is None:
@@ -72,9 +66,13 @@ def main(country, output_format, output):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_COUNTRY_INFO_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            GET_COUNTRY_INFO_URL,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         print(response.url)
-        
+
         if response.status_code == 200:
             data = response.json()
             if check_error(data):
@@ -88,5 +86,5 @@ def main(country, output_format, output):
             spinner.fail("💥 ")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
