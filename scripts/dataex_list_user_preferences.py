@@ -10,12 +10,24 @@ from dataexclient.auth import auth
 from dataexclient import auth_helper
 from dataexclient.utils import check_error, check_output_format
 
-from dataexclient.config import GET_REGION_PREFERENCE_URL, GET_POINT_PREFERENCE_URL
+from dataexclient.config import (
+    GET_REGION_PREFERENCE_URL, GET_POINT_PREFERENCE_URL
+)
+
 
 @click.command()
-@click.option('--preference_type', '-pt' ,required=True, help='choose either region or point',type=click.Choice(['region', 'point'], case_sensitive=False))
-
-
+@click.option(
+    '--preference_type',
+    '-pt',
+    required=True,
+    help='choose either region or point',
+    type=click.Choice(
+        [
+            'region', 'point'
+        ],
+        case_sensitive=False
+    )
+)
 def main(preference_type):
     payload = dict()
     auth_obj = auth()
@@ -34,7 +46,11 @@ def main(preference_type):
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(url, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         if response.status_code == 200:
             data = response.json()
             if check_error(data):
@@ -48,5 +64,5 @@ def main(preference_type):
             spinner.fail("💥 ")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

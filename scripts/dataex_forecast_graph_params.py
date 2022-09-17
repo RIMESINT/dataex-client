@@ -14,24 +14,30 @@ from dataexclient.utils import check_error, check_output_format
 
 @click.command()
 @click.option(
-    '--model_type', '-mt' ,
-    required=True, 
-    type=click.Choice(['ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'], case_sensitive=False), 
+    '--model_type', '-mt',
+    required=True,
+    type=click.Choice(
+        [
+            'ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'
+        ],
+        case_sensitive=False
+    ),
     help='choose model type'
 )
-
 def main(model_type):
-    
-    payload = dict()       
+    payload = dict()
     payload['model_type'] = model_type
-        
     headers = {
         'Content-Type': 'application/json',
         'Authorization': auth_helper.get_token()
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_FCST_GRAPH_PARAMS_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+                GET_FCST_GRAPH_PARAMS_URL,
+                headers=headers,
+                data=json.dumps(payload)
+        )
 
         if response.status_code == 200:
             data = response.json()
@@ -46,5 +52,5 @@ def main(model_type):
             spinner.fail("💥 ")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

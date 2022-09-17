@@ -2,7 +2,7 @@
 
 import json
 import click
-import requests 
+import requests
 
 from yaspin import yaspin
 
@@ -13,14 +13,11 @@ from dataexclient.utils import export_graph, is_response_okay
 
 @click.command()
 @click.option('--station_id', '-sid',
-               required=True,  
-               help='Id of the station'
-)
+              required=True,
+              help='Id of the station')
 @click.option('--output', '-o',
-               required=True,  
-               help='Name for file'
-)
-
+              required=True,
+              help='Name for file')
 def main(station_id, output):
     payload = dict()
     headers = {
@@ -29,21 +26,25 @@ def main(station_id, output):
     }
     payload['station_id'] = station_id
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(GET_STATION_CLIMATOLOGY_URL, stream=True, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            GET_STATION_CLIMATOLOGY_URL,
+            stream=True,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         if response.status_code == 200:
             if is_response_okay(response):
+                duration = response.headers['duration']
                 export_graph(response.content, output)
-                spinner.text = "Done"    
+                spinner.text = f"Downloaded...climatology from {duration}"
                 spinner.ok("✅")
             else:
-                spinner.fail("💥 ")   
+                spinner.fail("💥 ")
 
         else:
             print(response.status_code)
             spinner.fail("💥 ")
-    
-    
-    
-    
-if __name__=='__main__':
+
+
+if __name__ == '__main__':
     main()

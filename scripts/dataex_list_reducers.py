@@ -12,9 +12,9 @@ Options:
 
     model_type : str
                  ens or hres
-   
+
     output_format : str
-                    json, table or csv       
+                    json, table or csv
 
     output : str
              output filename
@@ -34,25 +34,47 @@ from dataexclient.utils import check_error, check_output_format
 
 
 @click.command()
-@click.option('--model_type', '-mt' ,required=True, type=click.Choice(['ecmwf_hres', 'ecmwf_ens'], case_sensitive=False))
-@click.option('--output_format', '-of' ,required=False, default='table' ,type=click.Choice(['json','table' ,'csv'], case_sensitive=False))
-@click.option('--output', '-o' ,required=False, help='output filename')
-
+@click.option(
+    '--model_type', '-mt',
+    required=True,
+    type=click.Choice(
+        [
+            'ecmwf_hres', 'ecmwf_ens'
+        ],
+        case_sensitive=False)
+)
+@click.option(
+    '--output_format', '-of',
+    required=False, default='table',
+    type=click.Choice(
+        [
+            'json', 'table', 'csv'
+        ],
+        case_sensitive=False)
+)
+@click.option(
+    '--output', '-o',
+    required=False,
+    help='output filename'
+)
 def main(model_type, output_format, output):
 
     payload = dict()
     payload['forecast_type'] = model_type
-    
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': auth_helper.get_token()
     }
 
-    
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(CHECK_REDUCERS_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            CHECK_REDUCERS_URL,
+            headers=headers,
+            data=json.dumps(payload)
+        )
         print(response.url)
-        
+
         if response.status_code == 200:
             data = response.json()
             if check_error(data):
@@ -66,8 +88,5 @@ def main(model_type, output_format, output):
             spinner.fail("💥 ")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
-
-
-

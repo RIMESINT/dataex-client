@@ -20,7 +20,11 @@ def main():
     }
 
     with yaspin(text="Downloading...", color="yellow") as spinner:
-        response = requests.post(LIST_SYSTEM_STATES_URL, headers=headers, data=json.dumps(payload))
+        response = requests.post(
+            LIST_SYSTEM_STATES_URL,
+            headers=headers,
+            data=json.dumps(payload)
+        )
 
         if response.status_code == 200:
             data = response.json()
@@ -29,12 +33,14 @@ def main():
             else:
                 spinner.text = "Done"
                 spinner.ok("✅")
-                check_output_format(data['system_states'], output_format='table')
+                check_output_format(
+                    data['system_states'],
+                    output_format='table'
+                )
         else:
             print(response.status_code)
             spinner.fail("💥 ")
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
-
-
