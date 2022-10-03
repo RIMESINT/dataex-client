@@ -9,7 +9,7 @@ from . import config
 
 class auth():
 
-    home_dir = os.environ['HOME']
+    home_dir = os.path.expanduser('~')
 
     def __init__(self):
         path_to_file = os.path.join(self.home_dir, '.dataex_auth.json')
