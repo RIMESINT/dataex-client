@@ -43,8 +43,8 @@ extra:
 nav:
  - Home: 'index.md'
  - Quick setup:
-     - 'Using virtual environment': 'quick_start.md'
-     - 'How to initialize dataex': 'user-guide/dataex_init.md'  
+     - 'How to initialize dataex': 'user-guide/dataex_init.md' 
+     - 'Using virtual environment': 'quick_start.md' 
  - Observation data: 
      - 'List countries': 'user-guide/dataex_list_country_info.md'
      - 'List stations': 'user-guide/dataex_obs_station_list.md'

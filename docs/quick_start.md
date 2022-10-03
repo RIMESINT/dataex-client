@@ -1,13 +1,7 @@
-We are going to set up a vitual environment to use the dataex client.
+In this section, we are going to set up a python virtual environment to use the dataex client. However, it should be noted that this step is not necessary to use dataex API.
 
-## Installation
 
-This is the quickest and easiest way to install the API. You can then start using the scripts right away.
-```
-pip install https://github.com/nzahasan/dataex-client/zipball/master
-```
-
-## Using a virtual environment
+## Virtual environment
 
 If you want to isolate the environment for the datex client module from your system wide environment, then using python virtual environment is the best way going forward.
 
@@ -44,7 +38,13 @@ $
 ```
 With this your shell session reverts to normal with python commands referring to the global python install.
 
-Finally, run the above `pip` install command while activating the virtual environment to create an isolated python context that is not going to affect your global python setting.
+## Installation
+
+```
+pip install https://github.com/nzahasan/dataex-client/zipball/master
+```
+
+Finally, after running the above `pip` install command while the virtual environment is activated, we created an isolated python context that is not going to affect your global python setting.
 
 ### Running a command
 
