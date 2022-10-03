@@ -422,6 +422,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#level_id" class="md-nav__link">
+    level_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start_time-and-end_time" class="md-nav__link">
+    start_time and end_time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#csv-file-format" class="md-nav__link">
     CSV file format
   </a>
@@ -875,6 +889,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#level_id" class="md-nav__link">
+    level_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start_time-and-end_time" class="md-nav__link">
+    start_time and end_time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#csv-file-format" class="md-nav__link">
     CSV file format
   </a>
@@ -941,13 +969,45 @@ Here, the input observation data is provided in csv format using <code>--obs_dat
 <p>The column headers in both csv and excels must be:</p>
 <p><code>start_time, end_time, value, level_id, parameter_id and station_id</code></p>
 <ul>
-<li>Start and end time denote the date of recorded observation. </li>
-<li>Accumulated parameters have different start and end times while instant parameters have the same start and end times.</li>
-<li>Every parameter has a distinct id.</li>
-<li>The level id is used for identifying observation levels such as surface level, 2m or 10 m.</li>
-<li>Every station has a unique id assigned to it.  </li>
+<li>Start and end time denote the time of recorded observation.</li>
+<li>The start and time values must be in <code>YYYY-MM-DD HH:MM</code> format for both csv and excel files.</li>
+<li>Accumulated parameters such as rainfall have different start and end times while instant parameters have the same start and end times.</li>
+<li>Every parameter has a distinct id. Find the details using <code>dataex_obs_parameter_list.py</code> command.</li>
+<li>The level id is used for identifying observation measurement levels such as surface level, 2m or 10 m.</li>
+<li>Every station has a unique id assigned to it. Use the <code>dataex_obs_station_list.py</code> command to retrieve it.</li>
 </ul>
-<p>The time values must be in <code>YYYY-MM-DD HH:MM</code> format for both csv and excel files.</p>
+<h3 id="level_id">level_id</h3>
+<p>This is related to the level of measurement regarding an observation. The table below shows the id numbers of levels in Dataex:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>full_name</th>
+<th>id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sfc</td>
+<td>Surface</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2m</td>
+<td>2 Meter</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3m</td>
+<td>3 Meter</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="start_time-and-end_time">start_time and end_time</h3>
+<p>Determing these two times depends on the observation itself. If the observation is 24 hourly then these times should account for that period.
+For example, if the start_time is 1995-01-01 00:00, then end_time is 1995-01-02 00:00, when the observation time period is 24 hours. 
+In case there is only 15 minute difference then it would be 1995-01-01 00:15. Further, when it is an instant parameter type then both times are same.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Please adhere strictly to the format below used in the examples for successful execution of the command.</p>
@@ -988,6 +1048,7 @@ Here, the input observation data is provided in csv format using <code>--obs_dat
 </tr>
 </tbody>
 </table>
+<p>This file format ensures a standard input format for all observations. Raw observations can be formatted to follow this standard for easy upload and usage in dataex.</p>
                 
               
               
