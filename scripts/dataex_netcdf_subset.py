@@ -176,8 +176,8 @@ def main(
             data=json.dumps(payload)
         )
         if response.status_code == 200:
-            init_time = response.headers['init_time']
             if is_response_okay(response):
+                init_time = response.headers['init_time']
                 export_nc(response.content, output)
                 spinner.text = (f"Downloaded...Init time "
                                 f"of forecast is {init_time}")
