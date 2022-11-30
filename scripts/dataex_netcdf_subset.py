@@ -48,7 +48,7 @@ from dataexclient.config import (
 ecmwf_hres_parameters = [
     'u10', 'swvl1', 'swvl2', 'swvl3', 'swvl4',
     'd2m', 'v10', 't2m', 'cp', 'lsp',
-    'ssr', 'str', 'sshf', 'slhf'
+    'ssr', 'sshf'
 ]
 
 ecmwf_seas_parameters = ecmwf_ens_parameters = [
@@ -70,7 +70,7 @@ ecmwf_seas_parameters = ecmwf_ens_parameters = [
             'ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'
         ],
         case_sensitive=False)
-    )
+)
 @click.option(
     '--ecmwf_hres_params',
     '-hp',
@@ -155,6 +155,7 @@ def main(
     payload = {}
     coords = {}
     param_list = []
+    print(params)
     for param in params:
         param_list.append(param)
 
