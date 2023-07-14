@@ -3,7 +3,7 @@
 
 # Dataex API 
 
-A dataex API client library to:
+An API client library developed using python to provide programmatic acess to DataEx modules. The following are some usecases it provides:
 
 - Download and insert station specific observation data.
 - Download summary of available observation data for every member country.
@@ -20,6 +20,8 @@ pip install https://github.com/nzahasan/dataex-client/zipball/master
 ```
 
 ### Commands
+
+Below are some python scripts included in the library. Please explore the documentation for further info.
 
 * [x] `dataex_init.py` - Create `.dataex_auth.json` file for dataex user authentication
 * [x] `dataex_netcdf_subset.py` - Download raw netcdf subset of ECMWF HRES/ENS/SEAS model forecasts.
@@ -60,7 +62,7 @@ If you believe you've found something in the dataex client API which has securit
 
 MIT License
 
-Copyright © 2022 RIMES
+Copyright © <script>document.write(new Date().getFullYear())</script> RIMES
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
