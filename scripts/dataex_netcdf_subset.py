@@ -42,7 +42,8 @@ from dataexclient.utils import export_nc, is_response_okay
 from dataexclient.config import (
     GET_NETCDF_SUBSET_URL,
     GET_NETCDF_SUBSET_ENS_URL,
-    GET_NETCDF_SUBSET_SEAS_URL
+    GET_NETCDF_SUBSET_SEAS_URL,
+    GET_NETCDF_SUBSET_WRF_URL,
 )
 
 ecmwf_hres_parameters = [
@@ -59,6 +60,10 @@ ecmwf_seas_parameters = ecmwf_ens_parameters = [
     'cp_q50', 'cp_q75', 'cp_q95'
 ]
 
+imd_wrf_parameters = [
+    'APCP', 'R2Hm','T2m', 'U10', 'V10'
+]
+
 
 @click.command()
 @click.option(
@@ -67,7 +72,7 @@ ecmwf_seas_parameters = ecmwf_ens_parameters = [
     required=True,
     type=click.Choice(
         [
-            'ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas'
+            'ecmwf_hres', 'ecmwf_ens', 'ecmwf_seas', 'imd_wrf'
         ],
         case_sensitive=False)
 )
@@ -99,6 +104,15 @@ ecmwf_seas_parameters = ecmwf_ens_parameters = [
     help='Select ecmwf seas parameters'
 )
 @click.option(
+    '--imd_wrf_params',
+    '-wp',
+    required=False,
+    is_flag=False,
+    metavar='<columns>',
+    type=click.STRING,
+    help='Select imd wrf parameters'
+)
+@click.option(
     '--latbounds',
     '-lat',
     required=True,
@@ -125,6 +139,7 @@ def main(
     ecmwf_hres_params,
     ecmwf_ens_params,
     ecmwf_seas_params,
+    imd_wrf_params,
     latbounds,
     lonbounds,
     output
@@ -151,6 +166,12 @@ def main(
             params = ecmwf_ens_parameters
         else:
             params = [param.strip() for param in ecmwf_seas_params.split(',')]
+    elif model_type == 'imd_wrf':
+        URL = GET_NETCDF_SUBSET_WRF_URL
+        if imd_wrf_params is None:
+            params = imd_wrf_params
+        else:
+            params = [param.strip() for param in imd_wrf_params.split(',')]
 
     payload = {}
     coords = {}

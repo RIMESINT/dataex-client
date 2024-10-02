@@ -39,7 +39,8 @@ from dataexclient import auth_helper
 from dataexclient.utils import check_error, check_output_format
 from dataexclient.config import (
     GET_ECMWF_HRES_REGION_DATA_URL,
-    GET_ECMWF_ENS_REGION_DATA_URL
+    GET_ECMWF_ENS_REGION_DATA_URL,
+    GET_IMD_WRF_REGION_DATA_URL,
 )
 
 
@@ -50,7 +51,7 @@ from dataexclient.config import (
     required=True,
     type=click.Choice(
         [
-            'ecmwf_hres', 'ecmwf_ens'
+            'ecmwf_hres', 'ecmwf_ens', 'imd_wrf'
         ],
         case_sensitive=False
     )
@@ -105,6 +106,8 @@ def main(
         URL = GET_ECMWF_ENS_REGION_DATA_URL
     elif model_type == 'ecmwf_hres':
         URL = GET_ECMWF_HRES_REGION_DATA_URL
+    elif model_type == 'imd_wrf':
+        URL = GET_IMD_WRF_REGION_DATA_URL
 
     payload = dict()
     headers = {

@@ -6,3 +6,4 @@ dist/
 *.pyo
 .venv/
 .DS_Store
+venv/
