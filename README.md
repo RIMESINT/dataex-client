@@ -34,7 +34,7 @@ $ dataex_netcdf_subset.py --model_type hres --params u10,cp --latbounds 20 40 --
 Options:
 ```
 --model_type: str
-              ens or hres(default) model
+              ens, imd_wrf or hres(default) model
             
 --params -p : str or list of str (e.g. u10,ssr,cp)
               Single or comma seperated parameter short names 
