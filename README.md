@@ -70,6 +70,15 @@ The following parameters are available for subsetting in `ECMWF ENS`,
     lsp_q5, lsp_q25, lsp_q50, lsp_q75, lsp_q95
 ```
 
+#### List of parameters in IMD WRF
+
+The following parameters are available for subsetting in `IMD WRF`,
+
+```
+    APCP, T2m, RH2m, U10, V10,
+    SWNETB, LWNETB, dbz, cldfra
+```
+
 #### Using dataex_insert_obs_data.py 
 
 This script is for inserting observation data into dataex. It takes as input a json file and country id.
