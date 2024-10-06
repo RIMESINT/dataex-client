@@ -192,7 +192,7 @@ Options:
 ```
 
     model_type : str
-                 ens or hres
+                 ens, imd_wrf or hres
    
     output_format : str
                     json, table or csv       
