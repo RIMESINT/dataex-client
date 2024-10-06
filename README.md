@@ -2,9 +2,9 @@
 A client API for using dataex services such as:
 - Downloading observation data from dataex.
 - Insert observation data into dataex.
-- Downloading netcdf subset files of HRES and ENS forecasts.
+- Downloading netcdf subset files of HRES, ENS and IMD WRF forecasts.
 - Fetching summary information of observation data.
-- Downloading HRES/ENS forecast analysis region data.
+- Downloading HRES/ENS/IMD WRF forecast analysis region data.
 
 #### Installation
 
